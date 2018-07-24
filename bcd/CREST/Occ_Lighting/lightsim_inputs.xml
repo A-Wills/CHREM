@@ -1,0 +1,80 @@
+<!--Author: Adam Wills, Carleton Univ., Jul 2015
+        Lighting Model parameter inputs
+        Bulb distribution data estimated from DOE 2010
+        U.S. Lighting Market Characterization-->
+<LIGHT>
+    <!--Mean value and standard deviation of dwelling turn on threshold-->
+    <threshold mean="60" std="10"/>
+    
+    <!--Each calibration scalar was determined by sampling 377 dwellings
+        and using the Golden Section search method to match 2011 NRCan OEE
+        average annual lighting energy consumption per dwelling to model
+        predictions-->
+    <_1-AT> 
+        <_1-SD Calibration="0.0159274229058208"/>
+        <_2-DR Calibration="0.011329045075881"/>
+    </_1-AT>
+    <_2-QC> 
+        <_1-SD Calibration="0.0397368783576845"/>
+        <_2-DR Calibration="0.0336744375570855"/>
+    </_2-QC>
+    <_3-OT> 
+        <_1-SD Calibration="0.00808657549621997"/>
+        <_2-DR Calibration="0.00643485973269886"/>
+    </_3-OT>
+    <_4-PR> 
+        <_1-SD Calibration="0.0434836427685411"/>
+        <_2-DR Calibration="0.0211412829263704"/>
+    </_4-PR>
+    <_5-BC> 
+        <_1-SD Calibration="0.0400440742110621"/>
+        <_2-DR Calibration="0.0236728536327706"/>
+    </_5-BC>
+    
+    <Types>
+        <Incandescent Share="0.62">
+            <sub>
+                <General_A Share="0.563" Wattage="64"/>
+                <General_Dec Share="0.272" Wattage="44"/>
+                <Reflector Share="0.12" Wattage="69"/>
+                <Misc Share="0.045" Wattage="45"/>
+            </sub>
+        </Incandescent>
+        <CFL Share="0.228">
+            <sub>
+                <Screw Share="0.848" Wattage="17"/>
+                <Pin Share="0.004" Wattage="22"/>
+                <Reflector Share="0.087" Wattage="17"/>
+                <Misc Share="0.061" Wattage="18"/>
+            </sub>
+        </CFL>
+        <Halogen Share="0.044">
+            <sub>
+                <General Share="0.1042" Wattage="50"/>
+                <Reflector Share="0.6571" Wattage="68"/>
+                <Low_Volt Share="0.0753" Wattage="44"/>
+                <Misc Share="0.1634" Wattage="18"/>
+            </sub>
+        </Halogen>
+        <Tubes Share="0.099">
+            <sub>
+                <T5 Share="0.0063" Wattage="19"/>
+                <T8_Short Share="0.0053" Wattage="16"/>
+                <T8_Long Share="0.1118" Wattage="26"/>
+                <T8_VLong Share="0.0024" Wattage="41"/>
+                <T12_Short Share="0.0123" Wattage="16"/>
+                <T12_Long Share="0.5791" Wattage="27"/>
+                <T12_VLong Share="0.0501" Wattage="50"/>
+                <T8_U Share="0.002" Wattage="27"/>
+                <T12_U Share="0.0006" Wattage="27"/>
+                <Misc Share="0.2302" Wattage="16"/>
+            </sub>
+        </Tubes>
+        <Other Share="0.009">
+            <sub>
+                <LED Share="0.166" Wattage="11"/>
+                <Misc Share="0.834" Wattage="54"/>
+            </sub>
+        </Other>
+    </Types>
+</LIGHT>

@@ -1,0 +1,4 @@
+Target was 718.97
+Minimum target difference of 0.203575464228152
+for scalar 0.00643485973269886
+Validation: Difference=13.040491307852 and Average=705.929508692148

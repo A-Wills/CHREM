@@ -1,0 +1,24 @@
+<!--Author: Adam Wills, Carleton Univ., Jul 2015
+        Probability distributions of the number of active occupants in a 
+        house between 00:00 and 00:10 Data taken from the CREST Domestic electricity demand model-->
+        <!--ADW Mar 2017: Updated probabilities based on Canadian GSS 2005 data, except for 6 occupants-->
+<PDF>
+    <wd>
+        <one zero="0.878076" one="0.121924" two="0" three="0" four="0" five="0" six="0"/>
+        <two zero="0.8582" one="0.1362" two="0.0056" three="0" four="0" five="0" six="0"/>
+        <three zero="0.7304" one="0.2436" two="0.0248" three="0.0012" four="0" five="0" six="0"/>
+        <four zero="0.6896" one="0.2682" two="0.0402" three="0.002" four="0.00" five="0" six="0"/>
+        <five zero="0.6612" one="0.2852" two="0.0498" three="0.0036" four="0.0002" five="0.00" six="0"/>
+        <six zero="0.615384615384615" one="0.205128205128205" two="0.102564102564103" three="0.0512820512820513" four="0" five="0.0256410256410256" six="0"/>
+    </wd>
+    
+    <we>
+        <one zero="0.880302" one="0.119698" two="0" three="0" four="0" five="0" six="0"/>
+        <two zero="0.8148" one="0.1766" two="0.0086" three="0" four="0" five="0" six="0"/>
+        <three zero="0.6898" one="0.273" two="0.035" three="0.0022" four="0" five="0" six="0"/>
+        <four zero="0.656" one="0.2938" two="0.0482" three="0.0018" four="0.0002" five="0" six="0"/>
+        <five zero="0.4846" one="0.375" two="0.1184" three="0.0208" four="0.0012" five="0" six="0"/>
+        <six zero="0.666666666666667" one="0.138888888888889" two="0.111111111111111" three="0.0277777777777778" four="0.0555555555555556" five="0" six="0"/>
+    </we>
+</PDF>
+

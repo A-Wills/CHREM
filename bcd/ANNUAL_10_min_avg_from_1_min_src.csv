@@ -1,0 +1,32 @@
+*comment,This file cross references the bcd files to integrated annual values of each data field.
+*comment,It is used to determine 'best fit' of profiles and to calculate a multiplier for the profiles.
+*comment,The term 'pY' means 'per year'.
+*header,bcd_file,DHW_LpY,AL-Stove_GJpY,AL-Dryer_GJpY,AL-Other_GJpY
+*units,-,Litres,GJ,GJ,GJ
+*data,DHW_100_Lpd.AL_Stove-high_Dryer-high_Other-high_W.10_min_avg_from_1_min_src.bcd,36500,3.702,7.217,35.723
+*data,DHW_100_Lpd.AL_Stove-high_Dryer-low_Other-high_W.10_min_avg_from_1_min_src.bcd,36500,3.702,2.206,35.723
+*data,DHW_100_Lpd.AL_Stove-high_Dryer-med_Other-high_W.10_min_avg_from_1_min_src.bcd,36500,3.702,4.898,35.723
+*data,DHW_100_Lpd.AL_Stove-low_Dryer-high_Other-low_W.10_min_avg_from_1_min_src.bcd,36500,2.700,7.217,12.239
+*data,DHW_100_Lpd.AL_Stove-low_Dryer-low_Other-low_W.10_min_avg_from_1_min_src.bcd,36500,2.700,2.206,12.239
+*data,DHW_100_Lpd.AL_Stove-low_Dryer-med_Other-low_W.10_min_avg_from_1_min_src.bcd,36500,2.700,4.898,12.239
+*data,DHW_100_Lpd.AL_Stove-med_Dryer-high_Other-med_W.10_min_avg_from_1_min_src.bcd,36500,2.664,7.217,21.813
+*data,DHW_100_Lpd.AL_Stove-med_Dryer-low_Other-med_W.10_min_avg_from_1_min_src.bcd,36500,2.664,2.206,21.813
+*data,DHW_100_Lpd.AL_Stove-med_Dryer-med_Other-med_W.10_min_avg_from_1_min_src.bcd,36500,2.664,4.898,21.813
+*data,DHW_200_Lpd.AL_Stove-high_Dryer-high_Other-high_W.10_min_avg_from_1_min_src.bcd,73000,3.702,7.217,35.723
+*data,DHW_200_Lpd.AL_Stove-high_Dryer-low_Other-high_W.10_min_avg_from_1_min_src.bcd,73000,3.702,2.206,35.723
+*data,DHW_200_Lpd.AL_Stove-high_Dryer-med_Other-high_W.10_min_avg_from_1_min_src.bcd,73000,3.702,4.898,35.723
+*data,DHW_200_Lpd.AL_Stove-low_Dryer-high_Other-low_W.10_min_avg_from_1_min_src.bcd,73000,2.700,7.217,12.239
+*data,DHW_200_Lpd.AL_Stove-low_Dryer-low_Other-low_W.10_min_avg_from_1_min_src.bcd,73000,2.700,2.206,12.239
+*data,DHW_200_Lpd.AL_Stove-low_Dryer-med_Other-low_W.10_min_avg_from_1_min_src.bcd,73000,2.700,4.898,12.239
+*data,DHW_200_Lpd.AL_Stove-med_Dryer-high_Other-med_W.10_min_avg_from_1_min_src.bcd,73000,2.664,7.217,21.813
+*data,DHW_200_Lpd.AL_Stove-med_Dryer-low_Other-med_W.10_min_avg_from_1_min_src.bcd,73000,2.664,2.206,21.813
+*data,DHW_200_Lpd.AL_Stove-med_Dryer-med_Other-med_W.10_min_avg_from_1_min_src.bcd,73000,2.664,4.898,21.813
+*data,DHW_300_Lpd.AL_Stove-high_Dryer-high_Other-high_W.10_min_avg_from_1_min_src.bcd,109500,3.702,7.217,35.723
+*data,DHW_300_Lpd.AL_Stove-high_Dryer-low_Other-high_W.10_min_avg_from_1_min_src.bcd,109500,3.702,2.206,35.723
+*data,DHW_300_Lpd.AL_Stove-high_Dryer-med_Other-high_W.10_min_avg_from_1_min_src.bcd,109500,3.702,4.898,35.723
+*data,DHW_300_Lpd.AL_Stove-low_Dryer-high_Other-low_W.10_min_avg_from_1_min_src.bcd,109500,2.700,7.217,12.239
+*data,DHW_300_Lpd.AL_Stove-low_Dryer-low_Other-low_W.10_min_avg_from_1_min_src.bcd,109500,2.700,2.206,12.239
+*data,DHW_300_Lpd.AL_Stove-low_Dryer-med_Other-low_W.10_min_avg_from_1_min_src.bcd,109500,2.700,4.898,12.239
+*data,DHW_300_Lpd.AL_Stove-med_Dryer-high_Other-med_W.10_min_avg_from_1_min_src.bcd,109500,2.664,7.217,21.813
+*data,DHW_300_Lpd.AL_Stove-med_Dryer-low_Other-med_W.10_min_avg_from_1_min_src.bcd,109500,2.664,2.206,21.813
+*data,DHW_300_Lpd.AL_Stove-med_Dryer-med_Other-med_W.10_min_avg_from_1_min_src.bcd,109500,2.664,4.898,21.813
