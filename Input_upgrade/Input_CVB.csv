@@ -1,0 +1,2 @@
+*header,blind_position,slat_type,slat_angle,slat_curve,orientation,Num,Side_1,Side_2,Side_3,Side_4,sensor,actuator
+*data,O,1,45,F,H,4,S,E,W,N,solar_radiation,0

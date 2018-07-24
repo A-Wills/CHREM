@@ -213,6 +213,15 @@ This file holds values related to materials for ESP-r-->
 		  emissivity_in="0.9" emissivity_out="0.9" 
 		  absorptivity_in="0.3" absorptivity_out="0.3" 
 	/>
+	<material name="Glass_Fibre_Quilt" class="Insulation" type="OPAQ" description="Glass Fibre Quilt for PV" 
+		  conductivity_W_mK="0.04" 
+		  density_kg_m3="12" 
+		  spec_heat_J_kgK="840" 
+		  default_thickness_mm="100" 
+		  vapor_resist="30" 
+		  emissivity_in="0.9" emissivity_out="0.9" 
+		  absorptivity_in="0.65" absorptivity_out="0.65" 
+	/>
 
 <!-- WALLBOARD -->
 	<material name="Drywall" class="Wallboard" type="OPAQ" description="Drywall gypsum board" 
@@ -278,6 +287,16 @@ This file holds values related to materials for ESP-r-->
 		  absorptivity_in="0.6" absorptivity_out="0.6" 
 	/>
 
+	<material name="Grey_Cotd_Aluminum" class="Metal" type="OPAQ" description="Grey Coated Aluminum Sheet" 
+		  conductivity_W_mK="210" 
+		  density_kg_m3="2700" 
+		  spec_heat_J_kgK="880" 
+		  default_thickness_mm="1" 
+		  vapor_resist="19200" 
+		  emissivity_in="0.82" emissivity_out="0.82"
+		  absorptivity_in="0.72" absorptivity_out="0.72" 
+	/>
+
 <!-- GLASS -->
 	<material name="Glass_Float" class="Glass" type="TRAN" description="Float glass pane" 
 		  conductivity_W_mK="1.05" 
@@ -285,10 +304,94 @@ This file holds values related to materials for ESP-r-->
 		  spec_heat_J_kgK="750" 
 		  default_thickness_mm="3" 
 		  vapor_resist="19200" 
-		  emissivity_in="0.83" emissivity_out="0.83" 
+		  emissivity_in="0.84" emissivity_out="0.84" 
 		  absorptivity_in="0.05" absorptivity_out="0.05" 
 		  >
-		<optic_mat_props clr_render="0" refl_solar_in="0" refl_solar_out="0" refl_vis_in="0" refl_vis_out="0" trans_long="0" trans_solar="0" trans_vis="0" />
+		<optic_mat_props clr_render="0" refl_solar_in="0.075" refl_solar_out="0.075" refl_vis_in="0.081" refl_vis_out="0.081" trans_long="0" trans_solar="0.85" trans_vis="0.901" />
+	</material>
+	
+	<material name="Glass_Low_E0.04" class="Glass" type="TRAN" description="Float glass pane with low e coated 0.04" 
+		  conductivity_W_mK="1.05" 
+		  density_kg_m3="2500" 
+		  spec_heat_J_kgK="750" 
+		  default_thickness_mm="3" 
+		  vapor_resist="19200" 
+		  emissivity_in="0.04" emissivity_out="0.84" 
+		  absorptivity_in="0.06" absorptivity_out="0.06" 
+		  >
+		<optic_mat_props clr_render="0" refl_solar_in="0.37" refl_solar_out="0.34" refl_vis_in="0.06" refl_vis_out="0.07" trans_long="0" trans_solar="0.45" trans_vis="0.78" />
+	</material>
+	
+	<material name="Glass_Low_E0.1" class="Glass" type="TRAN" description="Float glass pane with low e coated 0.1" 
+		  conductivity_W_mK="1.05" 
+		  density_kg_m3="2500" 
+		  spec_heat_J_kgK="750" 
+		  default_thickness_mm="3" 
+		  vapor_resist="19200" 
+		  emissivity_in="0.1" emissivity_out="0.84" 
+		  absorptivity_in="0.06" absorptivity_out="0.06" 
+		  >
+		<optic_mat_props clr_render="0" refl_solar_in="0.22" refl_solar_out="0.19" refl_vis_in="0.056" refl_vis_out="0.079" trans_long="0" trans_solar="0.63" trans_vis="0.85" />
+	</material>
+	
+	<material name="Glass_Low_E0.2" class="Glass" type="TRAN" description="Float glass pane with low e coated 0.2" 
+		  conductivity_W_mK="1.05" 
+		  density_kg_m3="2500" 
+		  spec_heat_J_kgK="750" 
+		  default_thickness_mm="3" 
+		  vapor_resist="19200" 
+		  emissivity_in="0.2" emissivity_out="0.84" 
+		  absorptivity_in="0.06" absorptivity_out="0.06" 
+		  >
+		<optic_mat_props clr_render="0" refl_solar_in="0.1" refl_solar_out="0.09" refl_vis_in="0.12" refl_vis_out="0.11" trans_long="0" trans_solar="0.74" trans_vis="0.82" />
+	</material>
+	
+	<material name="Glass_Low_E0.4" class="Glass" type="TRAN" description="Float glass pane with low e coated 0.4" 
+		  conductivity_W_mK="1.05" 
+		  density_kg_m3="2500" 
+		  spec_heat_J_kgK="750" 
+		  default_thickness_mm="3" 
+		  vapor_resist="19200" 
+		  emissivity_in="0.4" emissivity_out="0.84" 
+		  absorptivity_in="0.06" absorptivity_out="0.06" 
+		  >
+		<optic_mat_props clr_render="0" refl_solar_in="0.1" refl_solar_out="0.1" refl_vis_in="0.12" refl_vis_out="0.12" trans_long="0" trans_solar="0.75" trans_vis="0.85" />
+	</material>
+	
+<!-- SHADING -->
+	<material name="Venetian_blind" class="Shading" type="TRAN" description="Shading layer" 
+		  conductivity_W_mK="100" 
+		  density_kg_m3="1000" 
+		  spec_heat_J_kgK="750" 
+		  default_thickness_mm="6" 
+		  vapor_resist="19200" 
+		  emissivity_in="0.84" emissivity_out="0.84" 
+		  absorptivity_in="0.06" absorptivity_out="0.06" 
+		  >
+		<optic_mat_props clr_render="0" refl_solar_in="0.07" refl_solar_out="0.08" refl_vis_in="0.08" refl_vis_out="0.08" trans_long="0" trans_solar="0.78" trans_vis="0.88" />
 	</material>
 
+<!-- PV_Elements -->
+	<material name="EVA" class="PV_Elements" type="OPAQ" description="Ethylene-vinyl-acetate" 
+		  conductivity_W_mK="0.25" 
+		  density_kg_m3="930" 
+		  spec_heat_J_kgK="2700" 
+		  default_thickness_mm="2" 
+		  vapor_resist="19200" 
+		  emissivity_in="0.9" emissivity_out="0.9"
+		  absorptivity_in="0.05" absorptivity_out="0.05" 
+	/>
+	
+	<material name="LI_Glass" class="PV_Elements" type="TRAN" description="Low iron glass" 
+		  conductivity_W_mK="1.05" 
+		  density_kg_m3="2500" 
+		  spec_heat_J_kgK="750" 
+		  default_thickness_mm="3" 
+		  vapor_resist="19200" 
+		  emissivity_in="0.84" emissivity_out="0.84"
+		  absorptivity_in="0.005" absorptivity_out="0.005" 
+		  >
+		<optic_mat_props clr_render="0" refl_solar_in="0.08" refl_solar_out="0.08" refl_vis_in="0.08" refl_vis_out="0.08" trans_long="0" trans_solar="0.90" trans_vis="0.91" />
+	</material>
+	
 </materials>

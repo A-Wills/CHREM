@@ -1,0 +1,22 @@
+<!--Author: Sara Nikoofard, Dalhousie Univ., Oct 2011
+	    This file holds fuel prices for secondary residential energy consumption-->
+
+<STATS>
+<!-- CSDDRD --> 
+<FileSrc name="CSDDRD">
+        <includeVal field="vintage"/>
+        <includeVal field="main_wall_RSI"/>
+        <includeVal field="blower_door_house_volume"/>
+        <includeVal field="main_floor_area_1"/>
+        <includeVal field="main_floor_area_2"/>
+        <includeVal field="main_floor_area_3"/>
+        <includeVal field="exterior_area"/>
+</FileSrc>
+	
+<!-- Results File -->
+<FileSrc name="ResFile">
+    <includeVal field="Space_heating energy (GJ)"/>
+    <includeVal field="Total energy (GJ)"/>
+</FileSrc>
+
+</STATS>

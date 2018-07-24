@@ -1,0 +1,124 @@
+<!--Author: Adam Wills, NRC Construction, Nov. 2017
+NBC 2015 Compliant constructions  -->
+<!--Based on: Lukas Swan, Dalhousie Univ., Jan 2009-->
+
+<constructions>
+
+<!--	construction (define a construction for each construction type)
+		name =  construction name
+		type = OPAQ (opaque) or TRAN (translucent) or CFC (complex fenestration construction)
+		symmetry = SYMMETRIC or NONSYMMETRIC
+		code = the value is zero for common constructions, note that Doors and Windows are fully defined and as such recieve a code
+		description =
+
+
+		IF (type = "TRAN") THEN {
+		optic_name = TMC optic name
+		}
+		If (type = "CFC") THEN {
+		optic_name = USE GSLedit
+		}
+
+		layers (one for each material layers, from outside to inside)
+			mat = material name (see mat_db_xml_list)
+			thickness_mm = layers thickness in meters
+			component = its general purpose (e.g. siding, insulation_1)
+
+			IF (mat = "Gap") {
+			gap_RSI
+				vert = RSI for vertical placement
+				horiz = horizontal
+				slope = sloped
+			}-->
+
+<!-- WINDOW FRAME -->
+
+	<construction name="FRM_Al_brk_NBC" type="OPAQ" symmetry="SYMMETRIC" code="100" description="Aluminum window frame with thermal break">
+		<layers mat="Steel" thickness_mm="3" component="siding"/>
+		<layers mat="Gap" thickness_mm="20" component="gap_1">
+			<gap_RSI horiz="0.04" slope="0.04" vert="0.04" />
+		</layers>
+		<layers mat="Steel" thickness_mm="3" component="interior"/>
+	</construction>
+	<construction name="FRM_NBC_Vinyl" type="OPAQ" symmetry="SYMMETRIC" code="450" description="Vinyl window frame from WINDOWS 7.5">
+		<layers mat="Vinyl" thickness_mm="3" component="siding"/>
+		<layers mat="Gap" thickness_mm="54" component="gap_1">
+			<gap_RSI horiz="0.34" slope="0.34" vert="0.34" />
+		</layers>
+		<layers mat="Vinyl" thickness_mm="3" component="interior"/>
+	</construction>
+
+<!-- WINDOW CENTER-OF-GLASS TMC -->
+    <!-- Zone 4 and 5 -->
+		<construction name="WNDW_Z_4_1" type="TRAN" symmetry="SYMMETRIC" optic_name="Optic_NBC41" code="300" description="Triple glaze (3 mm), clear, 13 mm gaps, air" frame="FRM_NBC_Vinyl">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="12.7" component="gap_2">
+				<gap_RSI horiz="0.2" slope="0.2" vert="0.2" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+				<gap_RSI horiz="0.18" slope="0.18" vert="0.18" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		<construction name="WNDW_Z_4_2" type="TRAN" symmetry="NONSYMMETRIC" optic_name="Optic_NBC42" code="210" description="Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon" frame="FRM_NBC_Vinyl">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+				<gap_RSI horiz="0.51" slope="0.51" vert="0.51" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+        <construction name="WNDW_Z_5_2" type="TRAN" symmetry="NONSYMMETRIC" optic_name="Optic_NBC42" code="210" description="Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon" frame="FRM_NBC_Vinyl">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+				<gap_RSI horiz="0.51" slope="0.51" vert="0.51" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+    <!-- Zone 6 and 7A -->
+        <construction name="WNDW_Z_6_2" type="TRAN" symmetry="SYMMETRIC" optic_name="Optic_NBC62" code="300" description="Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air" frame="FRM_NBC_Vinyl">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+				<gap_RSI horiz="0.29" slope="0.29" vert="0.29" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+				<gap_RSI horiz="0.27" slope="0.27" vert="0.27" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+        <construction name="WNDW_Z_7A_2" type="TRAN" symmetry="SYMMETRIC" optic_name="Optic_NBC62" code="300" description="Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air" frame="FRM_NBC_Vinyl">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+				<gap_RSI horiz="0.29" slope="0.29" vert="0.29" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+				<gap_RSI horiz="0.27" slope="0.27" vert="0.27" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+        <!-- Zone 7B and 8 -->
+        <construction name="WNDW_Z_7B_1" type="TRAN" symmetry="SYMMETRIC" optic_name="Optic_NBC7B" code="300" description="Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air" frame="FRM_NBC_Vinyl">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="12.7" component="gap_2">
+				<gap_RSI horiz="0.42" slope="0.42" vert="0.42" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="12.7" component="gap_1">
+				<gap_RSI horiz="0.40" slope="0.40" vert="0.40" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+        <construction name="WNDW_Z_8_1" type="TRAN" symmetry="SYMMETRIC" optic_name="Optic_NBC7B" code="300" description="Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air" frame="FRM_NBC_Vinyl">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="12.7" component="gap_2">
+				<gap_RSI horiz="0.42" slope="0.42" vert="0.42" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="12.7" component="gap_1">
+				<gap_RSI horiz="0.40" slope="0.40" vert="0.40" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+</constructions>

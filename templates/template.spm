@@ -1,0 +1,5 @@
+# ESP-r special materials file used in 
+# configuration file tempelate.cfg
+#NUM_SPM_NODE
+ 1# No. of special material nodes.
+#END_SPM_DATA

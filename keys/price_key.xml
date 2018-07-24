@@ -1,0 +1,148 @@
+<!--Author: Sara Nikoofard, Dalhousie Univ., Oct 2011
+	    This file holds fuel prices for secondary residential energy consumption-->
+
+<PRICE>
+
+<!-- all prices are tax included except for natural gas for some provinces-->
+<!-- in case price is not available the average price of region is used -->
+
+<!-- Natural_gas -->
+<!-- Data is extracted from Statistics Canada Handbook and Heritage Gas -->
+
+	<en_src name = "natural_gas" unit="c/m3">
+	
+		<province name="NEWFOUNDLAND" price= "45.3"/>
+
+		<province name="PRINCE EDWARD ISLAND" price= "45.3"/>
+			
+		<province name="NOVA SCOTIA" price= "45.3"/>
+			
+		<province name="NEW BRUNSWICK" price= "46.04"/>
+
+		<province name="QUEBEC" price= "47.91"/>
+
+		<province name="ONTARIO" price= "28.96"/>
+
+		<province name="MANITOBA" price= "33.41"/>
+
+		<province name="SASKATCHEWAN" price= "27.92"/>
+
+		<province name="ALBERTA" price= "20.31"/>
+
+		<province name="BRITISH COLUMBIA" price= "42.8"/>
+		
+	</en_src>
+	
+<!-- Propane -->
+
+	<en_src name = "propane" unit="c/l">
+	
+		<province name="NEWFOUNDLAND" price= "96"/>
+
+		<province name="PRINCE EDWARD ISLAND" price= "96"/>
+			
+		<province name="NOVA SCOTIA" price= "96"/>
+			
+		<province name="NEW BRUNSWICK" price= "116.5"/>
+
+		<province name="QUEBEC" price= "95.4"/>
+
+		<province name="ONTARIO" price= "65.9"/>
+
+		<province name="MANITOBA" price= "85.9"/>
+
+		<province name="SASKATCHEWAN" price= "82.9"/>
+
+		<province name="ALBERTA" price= "79.9"/>
+
+		<province name="BRITISH COLUMBIA" price= "78.9"/>
+	</en_src>
+
+<!--Light fuel oil -->
+
+<!-- Data is from Statistics Canada handbook for 2011 http://www.statcan.gc.ca/pub/57-601-x/2010004/t184-eng.htm -->
+
+	<en_src name = "oil" unit="c/l">
+	
+		<province name="NEWFOUNDLAND" price= "104"/>
+
+		<province name="PRINCE EDWARD ISLAND" price= "97.2"/>
+			
+		<province name="NOVA SCOTIA" price= "100.8"/>
+			
+		<province name="NEW BRUNSWICK" price= "108.1"/>
+
+		<province name="QUEBEC" price= "109.8"/>
+
+		<province name="ONTARIO" price= "117.2"/>
+
+		<province name="MANITOBA" price= "107.7"/>
+
+		<province name="SASKATCHEWAN" price= "107"/>
+
+		<province name="ALBERTA" price= "N/A"/>
+
+		<province name="BRITISH COLUMBIA" price= "115.7"/>
+		
+	</en_src>
+
+<!-- ELECTRICITY -->
+
+<!-- Data is from Hydro-Quebec "Comparison of electricity prices in major North American cities" 2011  --> 
+
+	<en_src name = "electricity" unit="c/kWh">
+
+		<province name="NEWFOUNDLAND" price= "12.41"/>
+
+		<province name="PRINCE EDWARD ISLAND" price= "15.23"/>
+			
+		<province name="NOVA SCOTIA" price= "14.3"/>
+			
+		<province name="NEW BRUNSWICK" price= "13.36"/>
+
+		<province name="QUEBEC" price= "7.7"/>
+
+		<province name="ONTARIO" price= "12.65"/>
+
+		<province name="MANITOBA" price= "8.36"/>
+
+		<province name="SASKATCHEWAN" price= "14.42"/>
+
+		<province name="ALBERTA" price= "17.22"/>
+
+		<province name="BRITISH COLUMBIA" price= "8.27"/>
+		
+	</en_src>
+	
+<!-- wood -->
+
+<!-- the prices are given by suppliers and the following websites: -->
+<!-- http://www.tdc.ca/wood.htm#PRICE -->
+<!-- http://www.calgaryfirewood.com/ -->
+<!-- http://www.moreland.ca/firewood.htm/ -->
+<!-- wood_mixed assumed have the mass of 3600 lb/cord or 1.6 tonne/cord (britch, maple or pine tree) -->
+
+	<en_src name = "mixed_wood" unit="$/tonne">
+	
+		<province name="NEWFOUNDLAND" price= "156.25"/>
+
+		<province name="PRINCE EDWARD ISLAND" price= "156.25"/>
+			
+		<province name="NOVA SCOTIA" price= "156.25"/>
+			
+		<province name="NEW BRUNSWICK" price= "218.75"/>
+
+		<province name="QUEBEC" price= "159.38"/>
+
+		<province name="ONTARIO" price= "187.5"/>
+
+		<province name="MANITOBA" price= "162.5"/>
+
+		<province name="SASKATCHEWAN" price= "156.25"/>
+
+		<province name="ALBERTA" price= "312.5"/>
+
+		<province name="BRITISH COLUMBIA" price= "150"/>
+	</en_src>
+
+</PRICE>

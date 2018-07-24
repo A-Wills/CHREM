@@ -1,2 +1,3 @@
 House,hse_type,region,DHW filename,DHW multiplier,Dryer filename,Dryer multiplier,Stove-Other filename,Stove-Other multiplier
-11DDA00082,2-DR,1-AT,DHW_200_Lpd,0.90,Dryer-low,0.46,Stove-med,1.25
+A11000sf_FREDERICTON,1-SD,1-AT,big-example,1,,1,,
+A11000sf_HALIFAX,1-SD,1-AT,big-example,1,,1,,

@@ -1,0 +1,198 @@
+<opt>
+     <!-- Include airtightness (1) or not (0)-->
+     <INC_AIRTIGHT>1</INC_AIRTIGHT>
+     <!-- Ceiling upgrade assume that blown in insulation is just placed on top of existing insulation-->
+     <CEIL_INS ins_sys="0">
+         <sys_1 max_RSI="7.04" ins_k="0.043" ins_rho="16.0" ins_Cp="835.0"/>
+         <sys_2 max_RSI="10.57" ins_k="0.043" ins_rho="16.0" ins_Cp="835.0"/>
+         <sys_3 max_RSI="14.09" ins_k="0.043" ins_rho="16.0" ins_Cp="835.0"/>
+     </CEIL_INS>
+     <!-- Ventilation system type. vent_sys=0 will yield just a fan, 1 is HRV, 2 is ERV-->
+     <VNT vent_sys="1">
+         <HRV>
+             <flowrate>22</flowrate>
+             <flowrate>51</flowrate>
+             <flowrate>39</flowrate>
+             <flowrate>31</flowrate>
+             <Supply_22 detail="Venmar 50H"    hsp_T="0.00" hsp_SRE="66.0" hsp_P="39.00" vltt_T="-25.00" vltt_SRE="60.0" vltt_P="48.00"  tre="40.0" Preheat_P="0"/>
+             <Supply_31 detail="Venmar 90HV+"  hsp_T="0.00" hsp_SRE="75.0" hsp_P="54.00" vltt_T="-25.00" vltt_SRE="70.0" vltt_P="72.00"  tre="40.0" Preheat_P="0"/>
+             <Supply_39 detail="vanEE 200H"    hsp_T="0.00" hsp_SRE="65.0" hsp_P="71.00" vltt_T="-25.00" vltt_SRE="60.0" vltt_P="114.00" tre="40.0" Preheat_P="0"/>
+             <Supply_51 detail="vanEE 2001HRV" hsp_T="0.00" hsp_SRE="70.0" hsp_P="92.00" vltt_T="-25.00" vltt_SRE="60.0" vltt_P="104.00" tre="40.0" Preheat_P="0"/>
+         </HRV>
+         <!--ERV>
+             <flowrate>22</flowrate>
+             <Supply_22 detail="Venmar 50H"    hsp_T="0.00" hsp_SRE="66.0" hsp_LRMT="0.45" hsp_P="39.00" vltt_T="-25.00" vltt_SRE="60.0" hsp_LRMT="0.45" vltt_LRMT="0.26" vltt_P="48.00"  tre="40.0" Preheat_P="0"/>
+         </ERV-->
+     </VNT>
+     <!-- Wall upgrade assumes that new insulation is added to the exterior (full height)-->
+     <WALL_INS RSI_goal="2" clad="1" ins="1">
+         <goal_1>4.23</goal_1> <!-- R24 -->
+         <goal_2>4.75</goal_2> <!-- R27 -->
+         <goal_3>5.46</goal_3> <!-- R31 -->
+         <!-- ins_k: Conductivity (W/mK), ins_rho: Density (kg/m3), ins_Cp: Specific Heat (J/kgK), ins_t: Thickness (m)-->
+         <clad_1 cld_k="0.16" cld_rho="1380" cld_Cp="1000" cld_t="0.003" description="siding_UPG - Vinyl"/>
+         <!-- ins_k: Conductivity (W/mK), ins_rho: Density (kg/m3), ins_Cp: Specific Heat (J/kgK), n_t: number of different board thicknesses-->
+         <ins_1 ins_k="0.043" ins_rho="16.0" ins_Cp="835.0" description="insulation_UPG - XPS" n_t="3">
+            <!--Thicknesses (m), low to high -->
+            <t_1>0.0254</t_1> <!--One inch -->
+            <t_2>0.0381</t_2> <!--One and half inch -->
+            <t_3>0.0508</t_3> <!--Two inch -->
+         </ins_1>
+     </WALL_INS>
+     <!-- Foundation upgrade assumes that new insulation is added to the interior (full height)-->
+     <BASE_INS ins_sys="2">
+         <sys_1>
+             <bsmt max_RSI="1.76"/>
+             <!-- EPS: (ASHRAE Fundamentals 2009)-->
+             <!--crawl max_RSI="3.17" ins_k="0.036" ins_rho="20.0" ins_Cp="1470.0"/-->
+             <!-- XPS (ASHRAE Fundamentals 2009)-->
+             <crawl max_RSI="5.3" ins_k="0.026" ins_rho="33.0" ins_Cp="1470.0"/>
+         </sys_1>
+         <sys_2>
+             <bsmt max_RSI="2.64"/>
+             <!-- EPS: (ASHRAE Fundamentals 2009)-->
+             <!--crawl max_RSI="3.17" ins_k="0.036" ins_rho="20.0" ins_Cp="1470.0"/-->
+             <!-- XPS (ASHRAE Fundamentals 2009)-->
+             <crawl max_RSI="5.3" ins_k="0.026" ins_rho="33.0" ins_Cp="1470.0"/>
+         </sys_2>
+         <sys_3>
+             <bsmt max_RSI="3.52"/>
+             <!-- EPS: (ASHRAE Fundamentals 2009)-->
+             <!--crawl max_RSI="3.17" ins_k="0.036" ins_rho="20.0" ins_Cp="1470.0"/-->
+             <!-- XPS (ASHRAE Fundamentals 2009)-->
+             <crawl max_RSI="5.3" ins_k="0.026" ins_rho="33.0" ins_Cp="1470.0"/>
+         </sys_3>
+     </BASE_INS>
+     <!-- PV RETROFIT -->
+     <PV_ROOF  bIsAdd="0"/>
+     <!-- DISTRICT HEATING -->
+     <DH_SYSTEM SysNumber="1">
+         <System_1 description="CHP microturbine"/>
+         <System_2 description="DH GSHP"/>
+     </DH_SYSTEM>
+     <!-- Glazing type to upgrade to. See Sara Nikoofard's thesis for details-->
+     <GLZ GlzSystem="3">
+         <!-- Glazing System 1-->
+         <GLZ_1 glaze_type="2" coating="3" fill_gas="1" gap_width="0" numLayers="3" numGaps="1" description="Pilk energiKare">
+             <GAPS gapPos_1="2" gapRSI_1="0.405"/>
+             <CONS>
+                 <Layer_1>1.00  2500.0  750.0  0.0039  0 0 0 0 # pane_outside - Clear_Glass; RSI = 0.0; U value = 350.000 (W/m^2K)</Layer_1>
+                 <Layer_2>0 0 0 0.016 0 0 0 0 # Argon Gap; RSI = 0.405; U value = 2.468 (W/m^2K)</Layer_2>
+                 <Layer_3>1.00 2500.0  750.0  0.0038 0 0 0 0 # pane_inside - Clear_Glass; RSI = 0.0; U value = 350.000 (W/m^2K)</Layer_3>
+             </CONS>
+             <EMIS>
+                 <inside>0.837</inside>
+                 <outside>0.84</outside>
+             </EMIS>
+             <SLR_ASB>
+                 <inside>0.161</inside>
+                 <outside>0.018</outside>
+             </SLR_ASB>
+             <TMC>
+                 <trans>0.644   0.626   0.572   0.411   0.208   0.760</trans>
+                 <Layer_1>0.018   0.020   0.021   0.025   0.027</Layer_1>
+                 <Layer_2>0.001   0.001   0.001   0.001   0.001</Layer_2>
+                 <Layer_3>0.161   0.164   0.156   0.131   0.079</Layer_3>
+             </TMC>
+             <frame numLayers="3" numGaps="1" description="Frm UPG1">
+                 <GAPS gapPos_1="2" gapRSI_1="0.15" gapPos_2="3" gapRSI_2="0.75"/>
+                 <CONS>
+                     <Layer_1>0.16 1380 1000 0.003 0 0 0 0 # outside - Vinyl; RSI = 0.0; U value = 53.333 (W/m^2K)</Layer_1>
+                     <Layer_2>0 0 0 0.02 0 0 0 0 # gap_1 - Gap; RSI = 0.13; U value = 7.692 (W/m^2K)</Layer_2>
+                     <Layer_3>0.16 1380 1000 0.003 0 0 0 0 # inside - Vinyl; RSI = 0.0; U value = 53.333 (W/m^2K)</Layer_3>
+                 </CONS>
+                 <EMIS>
+                     <inside>0.75</inside>
+                     <outside>0.87</outside>
+                 </EMIS>
+                 <SLR_ASB>
+                     <inside>0.66</inside>
+                     <outside>0.45</outside>
+                 </SLR_ASB>
+             </frame>
+         </GLZ_1>
+         <!-- Glazing System 2-->
+         <GLZ_2 glaze_type="2" coating="1" fill_gas="1" gap_width="0" numLayers="3" numGaps="1" description="Pilk energiKare Adv.">
+             <GAPS gapPos_1="2" gapRSI_1="0.563"/>
+             <CONS>
+                 <Layer_1>1.00  2500.0  750.0  0.0039  0 0 0 0 # pane_outside - Clear_Glass; RSI = 0.0; U value = 350.000 (W/m^2K)</Layer_1>
+                 <Layer_2>0 0 0 0.016 0 0 0 0 # Argon Gap; RSI = 0.563; U value = 2.468 (W/m^2K)</Layer_2>
+                 <Layer_3>1.00  2500.0  750.0  0.0038 0 0 0 0 # pane_inside - Clear_Glass; RSI = 0.0; U value = 350.000 (W/m^2K)</Layer_3>
+             </CONS>
+             <EMIS>
+                 <inside>0.173</inside>
+                 <outside>0.842</outside>
+             </EMIS>
+             <SLR_ASB>
+                 <inside>0.067</inside>
+                 <outside>0.173</outside>
+             </SLR_ASB>
+             <TMC>
+                 <trans>0.408   0.385   0.343   0.232   0.112   0.688</trans>
+                 <Layer_1>0.173   0.192   0.207   0.239   0.212</Layer_1>
+                 <Layer_2>0.001   0.001   0.001   0.001   0.001</Layer_2>
+                 <Layer_3>0.067   0.067   0.064   0.054   0.033</Layer_3>
+             </TMC>
+             <frame numLayers="3" numGaps="1" description="Frm UPG1">
+                 <GAPS gapPos_1="2" gapRSI_1="0.15" gapPos_2="3" gapRSI_2="0.75"/>
+                 <CONS>
+                     <Layer_1>0.16 1380 1000 0.003 0 0 0 0 # outside - Vinyl; RSI = 0.0; U value = 53.333 (W/m^2K)</Layer_1>
+                     <Layer_2>0 0 0 0.02 0 0 0 0 # gap_1 - Gap; RSI = 0.13; U value = 7.692 (W/m^2K)</Layer_2>
+                     <Layer_3>0.16 1380 1000 0.003 0 0 0 0 # inside - Vinyl; RSI = 0.0; U value = 53.333 (W/m^2K)</Layer_3>
+                 </CONS>
+                 <EMIS>
+                     <inside>0.75</inside>
+                     <outside>0.87</outside>
+                 </EMIS>
+                 <SLR_ASB>
+                     <inside>0.66</inside>
+                     <outside>0.45</outside>
+                 </SLR_ASB>
+             </frame>
+         </GLZ_2>
+         <!-- Glazing System 3-->
+         <GLZ_3 glaze_type="3" coating="3" fill_gas="1" gap_width="0" numLayers="5" numGaps="2" description="Pilk energiKare Triple">
+             <GAPS gapPos_1="2" gapRSI_1="0.235" gapPos_2="4" gapRSI_2="0.448"/>
+             <CONS>
+                 <Layer_1>1.00  2500.0  750.0  0.0039  0 0 0 0 # pane_outside - Clear_Glass; RSI = 0.0; U value = 350.000 (W/m^2K)</Layer_1>
+                 <Layer_2>0 0 0 0.012 0 0 0 0 # Argon Gap; RSI = 0.235; U value = 2.468 (W/m^2K)</Layer_2>
+                 <Layer_3>1.00  2500.0  750.0  0.0038 0 0 0 0 # pane_inside - Clear_Glass; RSI = 0.0; U value = 350.000 (W/m^2K)</Layer_3>
+                 <Layer_4>0 0 0 0.012 0 0 0 0 # Argon Gap; RSI = 0.448; U value = 2.468 (W/m^2K)</Layer_4>
+                 <Layer_5>1.00  2500.0  750.0  0.0038 0 0 0 0 # pane_inside - Clear_Glass; RSI = 0.0; U value = 350.000 (W/m^2K)</Layer_5>
+             </CONS>
+             <EMIS>
+                 <inside>0.173</inside>
+                 <outside>0.84</outside>
+             </EMIS>
+             <SLR_ASB>
+                 <inside>0.018</inside>
+                 <outside>0.182</outside>
+             </SLR_ASB>
+             <TMC>
+                 <trans>0.482   0.470   0.406   0.257   0.109   0.639</trans>
+                 <Layer_1>0.018   0.019   0.022   0.026   0.028</Layer_1>
+                 <Layer_2>0.001   0.001   0.001   0.001   0.001</Layer_2>
+                 <Layer_3>0.182   0.186   0.180   0.161   0.107</Layer_3>
+                 <Layer_4>0.001   0.001   0.001   0.001   0.001</Layer_4>
+                 <Layer_5>0.106   0.108   0.098   0.094   0.037</Layer_5>
+             </TMC>
+             <frame numLayers="3" numGaps="1" description="Frm UPG1">
+                 <GAPS gapPos_1="2" gapRSI_1="0.15" gapPos_2="3" gapRSI_2="0.75"/>
+                 <CONS>
+                     <Layer_1>0.16 1380 1000 0.003 0 0 0 0 # outside - Vinyl; RSI = 0.0; U value = 53.333 (W/m^2K)</Layer_1>
+                     <Layer_2>0 0 0 0.02 0 0 0 0 # gap_1 - Gap; RSI = 0.13; U value = 7.692 (W/m^2K)</Layer_2>
+                     <Layer_3>0.16 1380 1000 0.003 0 0 0 0 # inside - Vinyl; RSI = 0.0; U value = 53.333 (W/m^2K)</Layer_3>
+                 </CONS>
+                 <EMIS>
+                     <inside>0.75</inside>
+                     <outside>0.87</outside>
+                 </EMIS>
+                 <SLR_ASB>
+                     <inside>0.66</inside>
+                     <outside>0.45</outside>
+                 </SLR_ASB>
+             </frame>
+         </GLZ_3>
+         <!-- Glazing System 4-->
+     </GLZ>
+</opt>

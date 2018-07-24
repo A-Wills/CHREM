@@ -130,50 +130,73 @@ DIFFERENCE: {
 	# Remove the 'en_src' field from the GHG information as that is all we need
 	my $en_srcs = $GHG->{'en_src'};
 
-	# Cycle over the UPGRADED file and compare the differences with original file
+	# Cycle over the UPGRADED file and compare the energy and quantity differences with original file
 	foreach my $region (keys(%{$results_all->{'upgraded'}->{'house_names'}})) { # By region
 		foreach my $province (keys(%{$results_all->{'upgraded'}->{'house_names'}->{$region}})) { # By province
 			foreach my $hse_type (keys(%{$results_all->{'upgraded'}->{'house_names'}->{$region}->{$province}})) { # By house type
 				foreach my $house (@{$results_all->{'upgraded'}->{'house_names'}->{$region}->{$province}->{$hse_type}}) { # Cycle over each listed house
-					# Declare an indicator that is used to show that the original house also exists and has valid data
-					my $indicator = 0;
-					
-					# Cycle over the results for this house and do the comparison
-					foreach my $key (keys(%{$results_all->{'upgraded'}->{'house_results'}->{$house}})) {
-						# For energy and quantity, just calculate the difference
-						if ($key =~ /(energy|quantity)\/integrated$/) {
-							# Verify that the original house also has this data
-							if (defined($results_all->{'orig'}->{'house_results'}->{$house}->{$key})) {
+					# Check to see that the upgraded house has an original house counterpart - if not note it
+					if (defined($results_all->{'orig'}->{'house_results'}->{$house})) {
+						# Create a list of fields to compare - draw from both the original house and the upgraded house (e.g. if fuel switching occurred the change in original fuel (not zero) will not be accounted for if we only cycled over the upgraded house)
+						my $fields = {}; # Create a hash to store fields
+						@{$fields}{keys(%{$results_all->{'upgraded'}->{'house_results'}->{$house}})} = undef; # Store all fields from the upgraded house
+						@{$fields}{keys(%{$results_all->{'orig'}->{'house_results'}->{$house}})} = undef; # Store fields of the orig house. Any new fields will be added and identical ones will be replaced. This way there are no duplicates.
+						
+						# Cycle over the results for this house and do the comparison
+						foreach my $field (keys(%{$fields})) {
+							# For energy and quantity, just calculate the annual difference
+							if ($field =~ /(energy|quantity)\/integrated$/) {
+								# Determine the values of the upgaded and orig - if none exists then set to zero.
+								my ($orig, $upgraded) = (0, 0);
+								if (defined($results_all->{'orig'}->{'house_results'}->{$house}->{$field})) {$orig = $results_all->{'orig'}->{'house_results'}->{$house}->{$field};};
+								if (defined($results_all->{'upgraded'}->{'house_results'}->{$house}->{$field})) {$upgraded = $results_all->{'upgraded'}->{'house_results'}->{$house}->{$field};};
 								# Subtract the original from the upgraded to get the difference (negative means lowered consumption or emissions)
-								$results_all->{'difference'}->{'house_results'}->{$house}->{$key} = $results_all->{'upgraded'}->{'house_results'}->{$house}->{$key} - $results_all->{'orig'}->{'house_results'}->{$house}->{$key};
-								# Store the parameter units and set the indicator
-								$results_all->{'difference'}->{'parameter'}->{$key} = $results_all->{'upgraded'}->{'parameter'}->{$key};
-								$indicator = 1;
+								$results_all->{'difference'}->{'house_results'}->{$house}->{$field} = $upgraded - $orig;
+								# Store the parameter units and set the indicator. Again we need to pull from where the value actually exists so check if defined in orig or upgraded house
+								if (defined($results_all->{'upgraded'}->{'parameter'}->{$field})) {
+									$results_all->{'difference'}->{'parameter'}->{$field} = $results_all->{'upgraded'}->{'parameter'}->{$field};
+								}
+								else {
+									$results_all->{'difference'}->{'parameter'}->{$field} = $results_all->{'orig'}->{'parameter'}->{$field};
+								};
+							};
+							# For electricity calculate the period differences (this includes monthly and annual)
+							if ($field =~ /electricity\/quantity\/integrated$/) {
+							
+								my $periods = {}; # Create a hash to store periods
+								@{$periods}{keys(%{$results_all->{'upgraded'}->{'house_results_electricity'}->{$house}->{$field}})} = undef; # Store all periods from the upgraded house
+								@{$periods}{keys(%{$results_all->{'orig'}->{'house_results_electricity'}->{$house}->{$field}})} = undef; # Store periods of the orig house. Any new fields will be added and identical ones will be replaced. This way there are no duplicates.
+								foreach my $period (keys(%{$periods})) {
+									my ($orig, $upgraded) = (0, 0);
+									if (defined($results_all->{'orig'}->{'house_results_electricity'}->{$house}->{$field}->{$period})) {$orig = $results_all->{'orig'}->{'house_results_electricity'}->{$house}->{$field}->{$period};};
+									if (defined($results_all->{'upgraded'}->{'house_results_electricity'}->{$house}->{$field}->{$period})) {$upgraded = $results_all->{'upgraded'}->{'house_results_electricity'}->{$house}->{$field}->{$period};};
+									
+									$results_all->{'difference'}->{'house_results_electricity'}->{$house}->{$field}->{$period} = $upgraded - $orig;
+								};
 							};
 						};
-						if ($key =~ /electricity\/quantity\/integrated$/) {
-							foreach my $period (@{&order($results_all->{'upgraded'}->{'house_results_electricity'}->{$house}->{$key})}) {
-								$results_all->{'difference'}->{'house_results_electricity'}->{$house}->{$key}->{$period} = $results_all->{'upgraded'}->{'house_results_electricity'}->{$house}->{$key}->{$period} - $results_all->{'orig'}->{'house_results_electricity'}->{$house}->{$key}->{$period};
-							};
-						};
-					};
-					
-					# The indicator was set, so store the sim_period and push the name of the house onto the list for the difference group
-					if ($indicator) {
+						# Store the sim_period and push the name of the house onto the list for the difference group
 						$results_all->{'difference'}->{'house_results'}->{$house}->{'sim_period'} = dclone($results_all->{'upgraded'}->{'house_results'}->{$house}->{'sim_period'});
 						push(@{$results_all->{'difference'}->{'house_names'}->{$region}->{$province}->{$hse_type}}, $house);
+					}
+					# If No original house was available then note this occurance
+					else {
+						push(@{$results_all->{'difference'}->{'house_names_bad'}->{$region}->{$province}->{$hse_type}}, $house);
 					};
 				};
 			};
 		};
 	};
 	print "Completed the difference calculations on energy and quantity\n";
-	&GHG_conversion_difference($results_all);
 
+	# Calculate the GHG emission changes
+	&GHG_conversion_difference($results_all);
 	print "Completed the GHG calculations\n";
+	
 	# Call the remaining results printout and pass the results_all
 	&print_results_out_difference($results_all, $difference_set_name);
+	print "Completed the Results Printing\n";
 
-	print Dumper $results_all;
+# 	print Dumper $results_all;
 };
 

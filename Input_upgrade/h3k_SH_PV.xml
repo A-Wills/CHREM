@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<apply_style_sheet>true</apply_style_sheet>
+<!-- 	<dump_all_data>true</dump_all_data> -->
+	<enable_xml_wildcards>true</enable_xml_wildcards>
+	<hierarchy>tree</hierarchy>
+	<link_style_sheet>true</link_style_sheet>
+	<output_dictionary>true</output_dictionary>
+    
+<!-- START: Timestep report data -->
+    <step_variable>building/day/present</step_variable>
+    
+    <!-- Thermal Comfort Data -->
+    <step_variable>building/zone_*/air_point/temperature</step_variable>
+
+    <!-- PV Upgrade Data -->
+    <step_variable>CHREM/Site_Bal/NodeBalance/V_node_1/net_export</step_variable>
+    <step_variable>CHREM/Site_Bal/NodeBalance/V_node_1/net_import</step_variable>
+
+    <!-- DH Heating Data -->
+    <step_variable>CHREM/zone_*/Power/GN_Heat</step_variable>
+    
+<!-- END: Timestep report data -->
+    
+<!-- 	<report_startup_period_data>true</report_startup_period_data> -->
+<!-- 	<save_to_disk>true</save_to_disk> -->
+	<style_sheet>../../../xsl/fc_stylesheet.xsl</style_sheet>
+	<transform_destination_file>out.xml</transform_destination_file>
+
+
+<!-- SUMMARY -->
+	<log_variable>CHREM/*</log_variable>
+<!-- 	<step_variable>CHREM/DHW/*</step_variable> -->
+<!-- 	<step_variable>CHREM/BCD/DHW/*</step_variable> -->
+<!-- 	<step_variable>CHREM/DHW/water_draw</step_variable> -->
+<!-- 	<step_variable>CHREM/zone_01/Temp/*</step_variable> -->
+<!-- 	<summary_variable>CHREM/*</summary_variable> -->
+
+<!-- AL -->
+<!-- 	<summary_variable>electrical_net/loads/occupant_load</summary_variable> -->
+
+<!-- HVAC -->
+<!-- 	<summary_variable>plant/ideal_hvac_models/component*/thermal_output/*</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_hvac_models/component*/fuel_use/*</summary_variable> -->
+
+<!-- DHW -->
+	<!-- NOTE: Need to break up DHW energy_input into energy sources -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/water_heating_load</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/energy_input</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/burner_heat_output</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/delivery_temperature</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/energy_input</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/flue_loss</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/heat_transfer_to_building</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/skin_loss</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/supply_temperature</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/water_draw</summary_variable> -->
+<!-- 	<summary_variable>plant/ideal_DHW_model/water_heating_load</summary_variable> -->
+
+<!-- FUEL USE -->
+	<!-- NOTE: Need to add energy_content to most energy source types so we don't do another external conversion -->
+	<!-- NOTE: Need to add the electrical AL to the Electricity fuel use type -->
+<!-- 	<summary_variable>total_fuel_use/*/all_end_uses/energy_content</summary_variable> -->
+<!-- 	<summary_variable>total_fuel_use/*/all_end_uses/quantity</summary_variable> -->
+
+</configuration>

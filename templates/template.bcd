@@ -3,7 +3,7 @@
 *version 0.1
 #-------------------------------------
 # period start date (DD/MM/YYYY)
-*period_start 1 1 2007
+*period_start 1 1 2009
 #-------------------------------------
 # period frequency (seconds/sample)
 *frequency 3600
@@ -13,12 +13,11 @@
 # - data can be space/comma/tab separated
 # - First row contains column headers 
 # - Second row contains column units 
-# - Subsequent rows contail column data.
+# - Subsequent rows contain column data.
 #
 #NOTES
 #END_NOTES
 #
-*data_header
-*data_units
+*data_header           DHW ALStoveElectric       ALStoveNG   AL-Dryer ALOtherElectric
+*data_units            L/h               W               W          W               W
 *data_start
-*data_end

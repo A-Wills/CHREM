@@ -1,0 +1,180 @@
+<!--Author: Sara Nikoofard, Dalhousie Univ., Mar 2012
+This file holds values related to plant components for ESP-r-->
+
+<plant_components>
+
+<!-- plant component (define a component for each plant componnet type)
+		name = name of the component (user defined)
+		description = component description
+		comp_num = component number from the ESP-r plant database
+		num_control = number of control varaiable(s) for this component
+		IF (num_control > 0) THEN {
+		cont_data = data for the control varaibale}
+		num_data = number of data required for this component
+		comp_data (there are num_data information exist for each component)
+			number = number data in the list
+			description = name/description of data
+			amount = amount of data
+			(the inc. angle correction pair is based on user input if Interpolation is used
+			in case of fit the data pairs are ignored so in case of interpolation check the data pair it can be up to 10 pair)
+-->
+
+<!-- SOLAR AND OTHER -->
+	<component name="fuel_tank" description="3-node tank for charging by residential fuel cell" comp_num="57" num_control="1" cont_data="0.000000" num_data="14">
+		<comp_data number="1" description="Component total mass (kg)" amount="180.00"/>
+		<comp_data number="2" description="Average specific heat of water and casing (J/kgK)" amount="4200.0"/>
+		<comp_data number="3" description="UA modulus (node 1 to surroundings) (W/K)" amount="1.0000"/>
+		<comp_data number="4" description="Nominal burner capacity when ON (W)" amount="5000.0"/>
+		<comp_data number="5" description="Nominal burner capacity when OFF(standby) (W)" amount="0.0000"/>
+		<comp_data number="6" description="Combustion + flue efficiency (%)" amount="85.000"/>
+		<comp_data number="7" description="Excess air (%)" amount="165.00"/>
+		<comp_data number="8" description="molar fraction of N2 in fuel" amount="0.17600E-01"/>
+		<comp_data number="9" description="molar fraction of CO2 in fuel" amount="0.55000E-02"/>
+		<comp_data number="10" description="molar fraction of CH4 in fuel" amount="0.94760"/>
+		<comp_data number="11" description="molar fraction of C2H6 in fuel" amount="0.27000E-01"/>
+		<comp_data number="12" description="molar fraction of C3H8 in fuel" amount="0.23000E-02"/>
+		<comp_data number="13" description="DHW draw profile (0=no DHW; 1=CSA)" amount="0.0000"/>
+		<comp_data number="14" description="Space-heating flag (0=no fan-coil; 1=fan coil)" amount="0.0000"/>
+	</component>
+	
+	<component name="electric_tank" description="1-node tank for charging by residential fuel cell" comp_num="58" num_control="1" cont_data="0.000000" num_data="7">
+		<comp_data number="1" description="Component total mass (kg)" amount="180.00"/>
+		<comp_data number="2" description="Average specific heat of water and casing (J/kgK)" amount="4200.0"/>
+		<comp_data number="3" description="UA modulus (node 1 to surroundings) (W/K)" amount="1.0000"/>
+		<comp_data number="4" description="Heater element capacity when ON (W)" amount="5000.0"/>
+		<comp_data number="5" description="Heater element capacity when OFF(standby) (W)" amount="0.0000"/>
+		<comp_data number="6" description="DHW draw profile (0=no DHW; 1=CSA)" amount="0.0000"/>
+		<comp_data number="7" description="Space-heating flag (0=no fan-coil; 1=fan coil)" amount="0.0000"/>
+	</component>
+	
+	<component name="storage_tank" description="1-node tank for TAC work" comp_num="60" num_control="0" num_data="3">
+		<comp_data number="1" description="Component total mass (kg)" amount="270"/>
+		<comp_data number="2" description="Tank heat gain coefficient (W/K)" amount="1.0000"/>
+		<comp_data number="3" description="Specific heat of water in tank (J/kgK)" amount="4200.0"/>
+	</component>
+	
+	<component name="water_flow" description="Water flow source for plant networks" comp_num="76" num_control="2" cont_data="20.00000 0.2000000" num_data="4">
+		<comp_data number="1" description="Minimum temperature (oC, -99.0 for none)" amount="-99.000"/>
+		<comp_data number="2" description="Maximum temperature (oC, -99.0 for none)" amount="-99.000"/>
+		<comp_data number="3" description="Minimum flow (kg/s, -99.0 for none)" amount="-99.000"/>
+		<comp_data number="4" description="Maximum flow (kg/s, -99.0 for none)" amount="-99.000"/>
+	</component>
+	
+	<component name="solar_collector" description="Simplified flat plate solar collector, 1 node model" comp_num="84" num_control="0" num_data="36">
+		<comp_data number="1" description="Collector area (m2)" amount="2.9800"/>
+		<comp_data number="2" description="Type of efficiency equ. (1=North-American,2=European)" amount="1.0000"/>
+		<comp_data number="3" description="Constant coef. of efficiency equ. (-)" amount="0.6940"/>
+		<comp_data number="4" description="Linear coef. of efficiency equ. (W/m2/C)" amount="4.8090"/>
+		<comp_data number="5" description="Quadratic coef. of efficiency equ. (W/m2/C2)" amount="0.0000"/>
+		<comp_data number="6" description="Collector test flow rate (kg/s)" amount="0.0200"/>
+		<comp_data number="7" description="Heat capacitance of fluid used for test (J/kg/s)" amount="4200.0"/>
+		<comp_data number="8" description="Inc. angle correction (=1 Fit,=2 Interpolation)" amount="1.0000"/>
+		<comp_data number="9" description="Inc. angle equation linear term coef. (-)" amount="0.2500"/>
+		<comp_data number="10" description="Inc. angle equation quadratic term coef. (-)" amount="0.0000"/>
+		<comp_data number="11" description="Number of data pairs for inc angle correction (-)" amount="0.0000"/>
+		<comp_data number="12" description="1st inc. angle correction data pair angle (Deg)" amount="0.0000"/>
+		<comp_data number="13" description="1st inc. angle correction data pair factor (-)" amount="1.0000"/>
+		<comp_data number="14" description="2nd inc. angle correction data pair angle (Deg)" amount="30.000"/>
+		<comp_data number="15" description="2nd inc. angle correction data pair factor (-)" amount="0.99400"/>
+		<comp_data number="16" description="3rd inc. angle correction data pair angle (Deg)" amount="45.000"/>
+		<comp_data number="17" description="3rd inc. angle correction data pair factor (-)" amount="0.96400"/>
+		<comp_data number="18" description="4th inc. angle correction data pair angle (Deg)" amount="60.000"/>
+		<comp_data number="19" description="4th inc. angle correction data pair factor (-)" amount="0.82800"/>
+		<comp_data number="20" description="5th inc. angle correction data pair angle (Deg)" amount="70.000"/>
+		<comp_data number="21" description="5th inc. angle correction data pair factor (-)" amount="0.74000"/>
+		<comp_data number="22" description="6th inc. angle correction data pair angle (Deg)" amount="0.0000"/>
+		<comp_data number="23" description="6th inc. angle correction data pair factor (-)" amount="1.0000"/>
+		<comp_data number="24" description="7th inc. angle correction data pair angle (Deg)" amount="0.0000"/>
+		<comp_data number="25" description="7th inc. angle correction data pair factor (-)" amount="1.0000"/>
+		<comp_data number="26" description="8th inc. angle correction data pair angle (Deg)" amount="0.0000"/>
+		<comp_data number="27" description="8th inc. angle correction data pair factor (-)" amount="1.0000"/>
+		<comp_data number="28" description="9th inc. angle correction data pair angle (Deg)" amount="0.0000"/>
+		<comp_data number="29" description="9th inc. angle correction data pair factor (-)" amount="1.0000"/>
+		<comp_data number="30" description="10th inc. angle correction data pair angle (Deg)" amount="0.0000"/>
+		<comp_data number="31" description="10th inc. angle correction data pair factor (-)" amount="1.0000"/>
+		<comp_data number="32" description="Collector slope (deg. from horizontal)" amount="23.000"/>
+		<comp_data number="33" description="Collector azimuth (deg., N=0, E=90)" amount="180.00"/>
+		<comp_data number="34" description="Mass fraction of propylene glycol (%)" amount="50.000"/>
+		<comp_data number="35" description="Mass of collector (kg)" amount="45.000"/>
+		<comp_data number="36" description="Collector average capacitance (J/kg-C)" amount="322.00"/>
+	</component>
+	
+	<component name="solar_tank" description="2-node Storage Tank with Immersed Coil" comp_num="86" num_control="0" num_data="13">
+		<comp_data number="1" description="Mass of tank side node 1 (liquid+solid) (kg)" amount="270.00"/>
+		<comp_data number="2" description="Specific heat of tank side node 1 (kJ/kg-K)" amount="4200.0"/>
+		<comp_data number="3" description="Mass of tube side node 2 (liquid+solid) (kg)" amount="5.0000"/>
+		<comp_data number="4" description="Specific heat of tube side node 2 (kJ/kg-K)" amount="3500.0"/>
+		<comp_data number="5" description="Tank UA value (w/K)" amount="1.0000"/>
+		<comp_data number="6" description="Total length of tube (m)" amount="9.1400"/>
+		<comp_data number="7" description="Inside diameter of tube (m)" amount="0.25400E-01"/>
+		<comp_data number="8" description="Outside diameter of tube (m)" amount="0.27400E-01"/>
+		<comp_data number="9" description="Tube wall thermal conductivity (W/m-K)" amount="300.00"/>
+		<comp_data number="10" description="Diameter of coil (m)" amount="0.40000"/>
+		<comp_data number="11" description="Coil height (m)" amount="0.50000"/>
+		<comp_data number="12" description="Shell diameter (m)" amount="0.50000"/>
+		<comp_data number="13" description="Coil type (=1 hor. tube;=2 ver. helix)" amount="2.0000"/>
+	</component>
+	
+	<component name="mains_water" description="1-node mains water temperature and draw profiles" comp_num="87" num_control="0" num_data="13">
+		<comp_data number="1" description="Temperature Method (=1 Moore model,=2 User input)" amount="1.0000"/>
+		<comp_data number="2" description="January mains temperature (Deg C)" amount="6.5500"/>
+		<comp_data number="3" description="February mains temperature (Deg C)" amount="5.7700"/>
+		<comp_data number="4" description="March mains temperature (Deg C)" amount="6.5500"/>
+		<comp_data number="5" description="April mains temperature (Deg C)" amount="8.6900"/>
+		<comp_data number="6" description="May mains temperature (Deg C)" amount="11.610"/>
+		<comp_data number="7" description="June mains temperature (Deg C)" amount="14.530"/>
+		<comp_data number="8" description="July mains temperature (Deg C)" amount="16.670"/>
+		<comp_data number="9" description="August mains temperature (Deg C)" amount="17.460"/>
+		<comp_data number="10" description="September mains temperature (Deg C)" amount="16.670"/>
+		<comp_data number="11" description="October mains temperature (Deg C)" amount="14.530"/>
+		<comp_data number="12" description="November mains temperature (Deg C)" amount="11.610"/>
+		<comp_data number="13" description="December mains temperature (Deg C)" amount="8.6900"/>
+	</component>
+	
+	<component name="water_draw" description="1-node water hourly draw profile" comp_num="88" num_control="0" num_data="24">
+		<comp_data number="1" description="Water draw for ending 1:00 a.m. (L/hr)" amount="9.0000"/>
+		<comp_data number="2" description="Water draw for ending 2:00 a.m. (L/hr)" amount="7.0000"/>
+		<comp_data number="3" description="Water draw for ending 3:00 a.m. (L/hr)" amount="0.0000"/>
+		<comp_data number="4" description="Water draw for ending 4:00 a.m. (L/hr)" amount="0.0000"/>
+		<comp_data number="5" description="Water draw for ending 5:00 a.m. (L/hr)" amount="0.0000"/>
+		<comp_data number="6" description="Water draw for ending 6:00 a.m. (L/hr)" amount="0.0000"/>
+		<comp_data number="7" description="Water draw for ending 7:00 a.m. (L/hr)" amount="0.0000"/>
+		<comp_data number="8" description="Water draw for ending 8:00 a.m. (L/hr)" amount="8.0000"/>
+		<comp_data number="9" description="Water draw for ending 9:00 a.m. (L/hr)" amount="18.000"/>
+		<comp_data number="10" description="Water draw for ending 10:00 a.m. (L/hr)" amount="15.000"/>
+		<comp_data number="11" description="Water draw for ending 11:00 a.m. (L/hr)" amount="16.000"/>
+		<comp_data number="12" description="Water draw for ending 12:00 p.m. (L/hr)" amount="16.000"/>
+		<comp_data number="13" description="Water draw for ending 1:00 p.m. (L/hr)" amount="14.000"/>
+		<comp_data number="14" description="Water draw for ending 2:00 p.m. (L/hr)" amount="13.000"/>
+		<comp_data number="15" description="Water draw for ending 3:00 p.m. (L/hr)" amount="12.000"/>
+		<comp_data number="16" description="Water draw for ending 4:00 p.m. (L/hr)" amount="10.000"/>
+		<comp_data number="17" description="Water draw for ending 5:00 p.m. (L/hr)" amount="9.0000"/>
+		<comp_data number="18" description="Water draw for ending 6:00 p.m. (L/hr)" amount="10.000"/>
+		<comp_data number="19" description="Water draw for ending 7:00 p.m. (L/hr)" amount="12.000"/>
+		<comp_data number="20" description="Water draw for ending 8:00 p.m. (L/hr)" amount="16.000"/>
+		<comp_data number="21" description="Water draw for ending 9:00 p.m. (L/hr)" amount="17.000"/>
+		<comp_data number="22" description="Water draw for ending 10:00 p.m. (L/hr)" amount="14.000"/>
+		<comp_data number="23" description="Water draw for ending 11:00 p.m. (L/hr)" amount="12.000"/>
+		<comp_data number="24" description="Water draw for ending 12:00 a.m. (L/hr)" amount="11.000"/>
+	</component>
+	
+<!-- WATER HEATING -->
+	<component name="pump" description="variable speed domestic WCH pump; 1 node model" comp_num="15" num_control="1" cont_data="2.0000000E-05" num_data="6">
+		<comp_data number="1" description="Component total mass (kg)" amount="3.4000"/>
+		<comp_data number="2" description="Mass weighted average specific heat (J/kgK)" amount="2250.0"/>
+		<comp_data number="3" description="UA modulus from wall to environment (W/K)" amount="0.0000"/>
+		<comp_data number="4" description="Rated total absorbed power (W)" amount="85.000"/>
+		<comp_data number="5" description="Rated volume flow rate (m^3.s)" amount="0.20000E-04"/>
+		<comp_data number="6" description="Overall efficiency (-)" amount="0.70000"/>
+	</component>
+	
+	<component name="heat_exchanger" description="Generic 2-node fluid fluid heat exchanger with multiple flow regimes" comp_num="52" num_control="0" num_data="6">
+		<comp_data number="1" description="Mass of encapsulated fluid on 'hot' side (kg)" amount="1.0000"/>
+		<comp_data number="2" description="Mass of encapsulated fluid on the 'cold' side (kg)" amount="1.0000"/>
+		<comp_data number="3" description="Overall heat transfer coefficient (W/m^2K)" amount="3000.0"/>
+		<comp_data number="4" description="Heat transfer surface area (m^2)" amount="1.0000"/>
+		<comp_data number="5" description="UA modulus for component (W/K)" amount="0.0000"/>
+		<comp_data number="6" description="Flow arrangment index (-)" amount="2.0000"/>
+	</component>
+		
+</plant_components>

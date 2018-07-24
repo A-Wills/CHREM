@@ -21,7 +21,7 @@ GEN  zone zone_description
 # surface attributes follow: 
 # id number
 # surface name
-# construction type OPAQ, TRAN
+# construction type OPAQ, TRAN, CFC
 # placement FLOR, CEIL, VERT, SLOP
 # construction name
 # outside condition EXTERIOR, ANOTHER, BASESIMP, ADIABATIC

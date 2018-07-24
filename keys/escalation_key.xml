@@ -1,0 +1,40 @@
+<!--Author: Sara Nikoofard, Dalhousie Univ., Oct 2011
+	    This file holds real fuel escalation rate -->
+
+<ESCALATION>
+
+<!-- The rates are real rate(%), the nominal rate will be calculated using money interest rate-->
+<!-- Since the rate is different in different region of Canada three cases are included-->
+
+<!-- Low rates -->
+<!-- Data is extracted from NEB and EERC-->
+
+	<es_mode name = "LOW">
+		<en_src name="electricity" rate= "2"/>
+		<en_src name="natural_gas" rate= "2"/>	
+		<en_src name="oil" rate= "6"/>
+		<en_src name="propane" rate= "2"/>
+		<en_src name="mixed_wood" rate= "3"/>
+	</es_mode>
+	
+<!-- Medium rates -->
+
+	<es_mode name = "MED">
+		<en_src name="electricity" rate= "6"/>
+		<en_src name="natural_gas" rate= "5"/>	
+		<en_src name="oil" rate= "10"/>
+		<en_src name="propane" rate= "5"/>
+		<en_src name="mixed_wood" rate= "6"/>
+	</es_mode>
+	
+<!-- High rates -->
+
+	<es_mode name = "HIGH">
+		<en_src name="electricity" rate= "10"/>
+		<en_src name="natural_gas" rate= "8"/>	
+		<en_src name="oil" rate= "14"/>
+		<en_src name="propane" rate= "8"/>
+		<en_src name="mixed_wood" rate= "9"/>
+	</es_mode>
+
+</ESCALATION>

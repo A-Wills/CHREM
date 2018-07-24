@@ -1,6 +1,6 @@
 # AIM-2 input file
 # Set the FileVersion equal to 0, 1, or 2, but these do different things.
-FileVersion 2
+FileVersion 1
 # air tightness type [1-6], but only 1-2 result in read of data subsequent data on line. The remainder represent loose, tight, etc.
 # NO version: airtightness type, AC/h @ 50 Pa, ELA deltaP, ELA given flag [1 leads to next values], ELA cm^2
 # FileVersion: airtightness type, blower door input option [1-3]
@@ -25,6 +25,3 @@ FileVersion 2
 1 1 # Total number of zones receiving infil followed by indices of zones receiving infil
 0 0 0 0 # Index of basement zone, crawl space zone, attic zone (=0 if non-existant), crawl space zone AC/h rate (0. to 2.)
 #END_ZONE_INDICES
-# OPTIONAL
-#WINDOW_CONTROL: control_flag (1 has window control) actuating_zone (zone for temp comparison) hot_setpoint (below this ambient temp windows can operate) cold_setpoint(below this zone temp the windows are closed) DeltaT (if zone - ambient > deltaT windows can operate) AIM_multiplier (the value that the AIM infiltration is multiplied by if windows are open)
-1 1 21 25 1

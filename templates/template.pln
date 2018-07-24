@@ -1,0 +1,28 @@
+ESP-r plant file version 2 written on: Tue Feb 28 15:56:15 2012
+# Project title:
+                                                                        
+# Total no. of specified components and simulation type
+#COMPONENT_NUM
+    6    3
+#COMPONENT_DATA
+# component number in the plant network
+# component discription
+# component name
+# component number in plant database
+# component number of control variables
+# copmonent number of data
+# component data
+#COMPONENT_DATA_END                      
+# The following is a list of component connections.
+#CONNECTIONS_NUM
+  8          # Total number of connections
+# receiving       node  conncn sending          node  diversion  suppl1   suppl2
+# component              type  component                ratio
+#CONNECTIONS_DATA
+# The following is a list of containment temperatures.
+#CONTAINMENTS_NUM
+  3          # Total number of containments
+# Component       cont type        suppl1     suppl2    suppl3
+#CONTAINMENTS_DATA
+# No mass flow network defined.
+    0

@@ -123,7 +123,7 @@ COMMAND_LINE: {
 # -----------------------------------------------
 # Develop the ESP-r databases and cross reference keys
 # -----------------------------------------------
-my ($mat_data, $con_data, $optic_data) = &database_XML();	# construct the databases and leave the information loaded in the variables for use in house generation
+my ($mat_data, $con_data, $optic_data, $cfc_data) = &database_XML();	# construct the databases and leave the information loaded in the variables for use in house generation
 
 # -----------------------------------------------
 # Develop the HVAC and DHW cross reference keys
@@ -173,7 +173,16 @@ my $BCD_dhw_al_ann = &cross_ref_readin($BCD_dhw_al_ann_files[0]);	# create an DH
 # -----------------------------------------------
 # The template extentions that will be used in file generation (alphabetical order)
 my $bld_extensions = ['aim', 'cfg', 'cnn', 'ctl', 'dhw', 'elec', 'gshp', 'hvac', 'log', 'mvnt', 'afn'];	# extentions that are building based (not per zone)
-my $zone_extensions = ['bsm', 'con', 'geo', 'obs', 'opr', 'tmc'];	# extentions that are used for individual zones
+# If the simulation uses TMC file for optic or CFC file two different templates are needed
+my $zone_extensions = ['bsm', 'con', 'geo', 'obs', 'opr', 'tmc'];
+if ($set_name =~ /TMC/i) {
+# create tmc file for optical properties
+$zone_extensions = ['bsm', 'con', 'geo', 'obs', 'opr', 'tmc'];	# extentions that are used for individual zones
+ }
+elsif ($set_name =~ /CFC/i) {
+# create cfc file for optical properties
+$zone_extensions = ['bsm','cfc', 'con', 'geo', 'obs', 'opr'];	# extentions that are used for individual zones
+};
 
 # -----------------------------------------------
 # Read in the templates
@@ -273,7 +282,7 @@ MULTI_THREAD: {
 	push (@pref, qw(coded defined reversed default name codes));
 
 	# construction name ordering
-	push (@pref, qw(B_slab B->M B_wall C_slab C->M C_wall M->B M->C M_slab M_floor M->M M->A M_ceil M_wall A_or_R->M A_or_R_slop A_or_R_gbl D_ FRM_ WNDW_));
+	push (@pref, qw(B_slab B->M B_wall C_slab C->M C_wall M->B M->C M_slab M_floor M->M M->A M_ceil M_wall A_or_R->M A_or_R_slop A_or_R_gbl D_ FRM_ WNDW_ WNDW_C_));
 
 # 	print Dumper @pref;
 	
@@ -631,6 +640,7 @@ MAIN: {
 				# CREATE THE BASIC FILES FOR EACH ZONE 
 				foreach my $zone (keys (%{$zones->{'name->num'}})) {
 					# files required for each zone
+
 					foreach my $ext qw(opr con geo) {
 						&copy_template($zone, $ext, $hse_file, $coordinates);
 					};
@@ -645,23 +655,48 @@ MAIN: {
 				
 				# create an obstruction file for MAIN
 # 				&copy_template('main_1', 'obs', $hse_file, $coordinates);;
-
-				# CHECK MAIN WINDOW AREA (m^2) AND CREATE A TMC FILE
-				if ($CSDDRD->{'wndw_area_front'} + $CSDDRD->{'wndw_area_right'} + $CSDDRD->{'wndw_area_back'} + $CSDDRD->{'wndw_area_left'} > 1) {
-					my $ext = 'tmc';
-					# cycle through the zone names
-					foreach my $zone (keys (%{$zones->{'name->num'}})) {
-						# we will distribute the window areas over all main zones so make a tmc file for each one
-						if ($zone =~ /^main_\d$/) {&copy_template($zone, $ext, $hse_file, $coordinates);}
-						# check for walkout basements and if so create a tmc file if the window area matches that side
-						elsif ($zone eq 'bsmt') {
-							# cycle through the surfaces
-							CHECK_BSMT_TMC: foreach my $surface (@sides) {
-								# make sure that side has both window area and then check to see if that side is a walkout exposed side
-								if ($CSDDRD->{'wndw_area_' . $surface} > 0.5 && $record_indc->{'foundation'} =~ $surface) {
-									&copy_template($zone, $ext, $hse_file, $coordinates);
-									# we only want to create 1 tmc file, so jump out at this point
-									last CHECK_BSMT_TMC;
+				
+				if ($set_name =~ /TMC/i) {
+					# CHECK MAIN WINDOW AREA (m^2) AND CREATE A TMC FILE
+					if ($CSDDRD->{'wndw_area_front'} + $CSDDRD->{'wndw_area_right'} + $CSDDRD->{'wndw_area_back'} + $CSDDRD->{'wndw_area_left'} > 1) {
+						my $ext = 'tmc';
+						# cycle through the zone names
+						foreach my $zone (keys (%{$zones->{'name->num'}})) {
+							# we will distribute the window areas over all main zones so make a tmc file for each one
+							if ($zone =~ /^main_\d$/) {&copy_template($zone, $ext, $hse_file, $coordinates);}
+							# check for walkout basements and if so create a tmc file if the window area matches that side
+							elsif ($zone eq 'bsmt') {
+								# cycle through the surfaces
+								CHECK_BSMT_TMC: foreach my $surface (@sides) {
+									# make sure that side has both window area and then check to see if that side is a walkout exposed side
+									if ($CSDDRD->{'wndw_area_' . $surface} > 0.5 && $record_indc->{'foundation'} =~ $surface) {
+										&copy_template($zone, $ext, $hse_file, $coordinates);
+										# we only want to create 1 tmc file, so jump out at this point
+										last CHECK_BSMT_TMC;
+									};
+								};
+							};
+						};
+					};
+				}
+				elsif ($set_name =~ /CFC/i){
+					# CHECK MAIN WINDOW AREA (m^2) AND CREATE A CFC FILE
+					if ($CSDDRD->{'wndw_area_front'} + $CSDDRD->{'wndw_area_right'} + $CSDDRD->{'wndw_area_back'} + $CSDDRD->{'wndw_area_left'} > 1) {
+						my $ext = 'cfc';
+						# cycle through the zone names
+						foreach my $zone (keys (%{$zones->{'name->num'}})) {
+							# we will distribute the window areas over all main zones so make a cfc file for each one
+							if ($zone =~ /^main_\d$/) {&copy_template($zone, $ext, $hse_file, $coordinates);}
+							# check for walkout basements and if so create a cfc file if the window area matches that side
+							elsif ($zone eq 'bsmt') {
+								# cycle through the surfaces
+								CHECK_BSMT_CFC: foreach my $surface (@sides) {
+									# make sure that side has both window area and then check to see if that side is a walkout exposed side
+									if ($CSDDRD->{'wndw_area_' . $surface} > 0.5 && $record_indc->{'foundation'} =~ $surface) {
+										&copy_template($zone, $ext, $hse_file, $coordinates);
+										# we only want to create 1 cfc file, so jump out at this point
+										last CHECK_BSMT_CFC;
+									};
 								};
 							};
 						};
@@ -674,7 +709,7 @@ MAIN: {
 			# -----------------------------------------------
 			CFG: {
 
-				&replace ($hse_file->{'cfg'}, "#ROOT", 1, 1, "%s\n", "*root $CSDDRD->{'file_name'}");	# Label with the record name (.HSE stripped)
+				&replace ($hse_file->{'cfg'}, "#ROOT", 1, 1, "%s\n", "*root $CSDDRD->{'file_name'}" . $set_name);	# Label with the record name (.HSE stripped)
 				
 				# Cross reference the weather city to the CWEC weather data
 				if ($CSDDRD->{'HOT2XP_PROVINCE_NAME'} eq $climate_ref->{'data'}->{$CSDDRD->{'HOT2XP_CITY'}}->{'HOT2XP_PROVINCE_NAME'}) {	# find a matching climate name that has an appropriate province name
@@ -701,23 +736,23 @@ MAIN: {
 
 				# cycle through the common filename structures and replace the tag and filename. Note the use of concatenation (.) and uppercase (uc)
 				foreach my $file qw(aim ctl mvnt dhw hvac cnn) {
-					&replace ($hse_file->{'cfg'}, '#' . uc($file), 1, 1, "%s\n", "*$file ./$CSDDRD->{'file_name'}.$file");	# file path at the tagged location
+					&replace ($hse_file->{'cfg'}, '#' . uc($file), 1, 1, "%s\n", "*$file ./$CSDDRD->{'file_name'}$set_name.$file");	# file path at the tagged location
 				};
 				
 				# If a gshp template exists, then we have already verified we need it. Place the tag a line below the *hvac tag b/c they are connected
 				if ($hse_file->{'gshp'}) {
 					# Use an escape character because we are looking for an asterisk in the subroutine regex
-					&insert ($hse_file->{'cfg'}, '\*hvac', 1, 1, 0, "%s\n", "*gshp ./$CSDDRD->{'file_name'}.gshp");
+					&insert ($hse_file->{'cfg'}, '\*hvac', 1, 1, 0, "%s\n", "*gshp ./$CSDDRD->{'file_name'}$set_name.gshp");
 				};
 
-				&replace ($hse_file->{'cfg'}, "#PNT", 1, 1, "%s\n", "*pnt ./$CSDDRD->{'file_name'}.elec");	# electrical network path
+				&replace ($hse_file->{'cfg'}, "#PNT", 1, 1, "%s\n", "*pnt ./$CSDDRD->{'file_name'}$set_name.elec");	# electrical network path
 				&replace ($hse_file->{'cfg'}, "#SIM_PRESET_LINE1", 1, 1, "%s %.0f %s\n", '*sps 1 4', 60  / $time_step, '1 5 0');	# sim setup: no. data sets retained; startup days; zone_ts (step/hr); plant_ts (??multiplier of zone step/hr??); save_lv @ each zone_ts; save_lv @ each zone_ts;
 # 				&replace ($hse_file->{'cfg'}, "#SIM_PRESET_LINE2", 1, 1, "%s\n", "1 1 1 1 sim_presets");	# simulation start day; start mo.; end day; end mo.; preset name
-				&replace ($hse_file->{'cfg'}, "#SIM_PRESET_LINE3", 1, 1, "%s\n", "*sblr $CSDDRD->{'file_name'}.res");	# res file path
-				&replace ($hse_file->{'cfg'}, "#SIM_PRESET_LINE4", 1, 1, "%s\n", "*selr $CSDDRD->{'file_name'}.elr");	# electrical load results file path
-				&replace ($hse_file->{'cfg'}, "#SIM_PRESET_LINE5", 1, 1, "%s\n", "*sflr $CSDDRD->{'file_name'}.mfr");	# mass flow results file path
-				&replace ($hse_file->{'cfg'}, "#PROJ_LOG", 1, 2, "%s\n", "$CSDDRD->{'file_name'}.log");	# log file path
-				&replace ($hse_file->{'cfg'}, "#BLD_NAME", 1, 2, "%s\n", "$CSDDRD->{'file_name'}");	# name of the building
+				&replace ($hse_file->{'cfg'}, "#SIM_PRESET_LINE3", 1, 1, "%s\n", "*sblr $CSDDRD->{'file_name'}$set_name.res");	# res file path
+				&replace ($hse_file->{'cfg'}, "#SIM_PRESET_LINE4", 1, 1, "%s\n", "*selr $CSDDRD->{'file_name'}$set_name.elr");	# electrical load results file path
+				&replace ($hse_file->{'cfg'}, "#SIM_PRESET_LINE5", 1, 1, "%s\n", "*sflr $CSDDRD->{'file_name'}$set_name.mfr");	# mass flow results file path
+				&replace ($hse_file->{'cfg'}, "#PROJ_LOG", 1, 2, "%s\n", "$CSDDRD->{'file_name'}$set_name.log");	# log file path
+				&replace ($hse_file->{'cfg'}, "#BLD_NAME", 1, 2, "%s\n", "$CSDDRD->{'file_name'}$set_name");	# name of the building
 
 				my $zone_count = keys (%{$zones->{'name->num'}});	# scalar of keys, equal to the number of zones
 				&replace ($hse_file->{'cfg'}, "#ZONE_COUNT", 1, 1, "%s\n", "$zone_count");	# number of zones
@@ -730,9 +765,9 @@ MAIN: {
 					foreach my $ext (@{&order($hse_file)}) {
 						if ($ext =~ /^$zone\.(\w{3})$/) {
 							# insert a path for each valid zone file with the proper name (note use of regex brackets and $1)
-							&insert ($hse_file->{'cfg'}, '#END_ZONES', 1, 0, 0, "%s\n", "*$1 ./$CSDDRD->{'file_name'}.$ext");
-							if ($1 eq 'tmc') {
-								&insert ($hse_file->{'cfg'}, '#END_ZONES', 1, 0, 0, "%s\n", "*isi ./$CSDDRD->{'file_name'}.$zone.shd");
+							&insert ($hse_file->{'cfg'}, '#END_ZONES', 1, 0, 0, "%s\n", "*$1 ./$CSDDRD->{'file_name'}$set_name.$ext");
+							if (($1 eq 'tmc') || ($1 eq 'cfc')) {
+								&insert ($hse_file->{'cfg'}, '#END_ZONES', 1, 0, 0, "%s\n", "*isi ./$CSDDRD->{'file_name'}$set_name.$zone.shd");
 							};
 						};
 					};
@@ -744,7 +779,7 @@ MAIN: {
 					&insert ($hse_file->{'cfg'}, '#END_ZONES', 1, 0, 0, "%s\n", "*zend");	# provide the *zend at the end
 				};
 				
-				&replace ($hse_file->{'cfg'}, "#AIR_FLOW_NETWORK", 1, 1, "%s\n%s\n%s\n", "1 # AFN exists", "./$CSDDRD->{'file_name'}.afn ", "@{$zones->{'num_order'}} # Name of corresponding AFN node in zone order listed above");	# air flow network path, and AFN node zone correspondance
+				&replace ($hse_file->{'cfg'}, "#AIR_FLOW_NETWORK", 1, 1, "%s\n%s\n%s\n", "1 # AFN exists", "./$CSDDRD->{'file_name'}$set_name.afn ", "@{$zones->{'num_order'}} # Name of corresponding AFN node in zone order listed above");	# air flow network path, and AFN node zone correspondance
 			};
 
 
@@ -1129,7 +1164,6 @@ MAIN: {
 					if ($CSDDRD->{'wndw_area_' . $surface} > 0) {
 						# intialiaze a hash reference to store window_type => duplicates info
 						my $wndw_type = {};
-
 						# cycle over the 10 window instances for each side
 						foreach my $index (1..10) {
 							# make XX instead of X digits
@@ -1160,20 +1194,40 @@ MAIN: {
 						};
 						
 						$record_indc->{'wndw'}->{$surface}->{'code'} =~ /(\d{3})\d{3}/ or &die_msg ('GEO: Unknown window code', $record_indc->{'wndw'}->{$surface}->{'code'}, $coordinates);
-						my $con = "WNDW_$1";
-						# THIS IS A SHORT TERM WORKAROUND TO THE FACT THAT I HAVE NOT CHECKED ALL THE WINDOW TYPES YET FOR EACH SIDE
-						# check that the window is defined in the database
-						unless (defined ($con_data->{$con})) {
-							# it is not, so determine the favourite code
-							$CSDDRD->{'wndw_favourite_code'} =~ /(\d{3})\d{3}/ or &die_msg ('GEO: Favourite window code is misconstructed', $CSDDRD->{'wndw_favourite_code'}, $coordinates);
-							# check that the favourite is in the database
-							if (defined ($con_data->{"WNDW_$1"})) {
-								# it is, so set an issue and proceed with this code
-								$issues = set_issue("%s", $issues, 'Windows', 'Code not find in database - using favourite (ORIGINAL FAVOURITE HOUSE)', "$con $1", $coordinates);
-								$record_indc->{'wndw'}->{$surface}->{'code'} = $CSDDRD->{'wndw_favourite_code'};
-							}
-							# the favourite also does not exist, so die
-							else {&die_msg ('GEO: Bad favourite window code', "WNDW_$1", $coordinates);};
+						my $wndw_code = $1;
+						if ($set_name =~/TMC/i) {
+							my $con = "WNDW_$wndw_code";
+							# THIS IS A SHORT TERM WORKAROUND TO THE FACT THAT I HAVE NOT CHECKED ALL THE WINDOW TYPES YET FOR EACH SIDE
+							# check that the window is defined in the database
+							unless (defined ($con_data->{$con})) {
+								# it is not, so determine the favourite code
+								$CSDDRD->{'wndw_favourite_code'} =~ /(\d{3})\d{3}/ or &die_msg ('GEO: Favourite window code is misconstructed', $CSDDRD->{'wndw_favourite_code'}, $coordinates);
+								# check that the favourite is in the database
+								if (defined ($con_data->{"WNDW_$1"})) {
+									# it is, so set an issue and proceed with this code
+									$issues = set_issue("%s", $issues, 'Windows', 'Code not find in database - using favourite (ORIGINAL FAVOURITE HOUSE)', "$con $1", $coordinates);
+									$record_indc->{'wndw'}->{$surface}->{'code'} = $CSDDRD->{'wndw_favourite_code'};
+								}
+								# the favourite also does not exist, so die
+								else {&die_msg ('GEO: Bad favourite window code', "WNDW_$1", $coordinates);};
+							 };
+						}
+						elsif ($set_name =~ /CFC/i) {
+							my $con = "WNDW_C_$wndw_code";
+							# THIS IS A SHORT TERM WORKAROUND TO THE FACT THAT I HAVE NOT CHECKED ALL THE WINDOW TYPES YET FOR EACH SIDE
+							# check that the window is defined in the database
+							unless (defined ($con_data->{$con})) {
+								# it is not, so determine the favourite code
+								$CSDDRD->{'wndw_favourite_code'} =~ /(\d{3})\d{3}/ or &die_msg ('GEO: Favourite window code is misconstructed', $CSDDRD->{'wndw_favourite_code'}, $coordinates);
+								# check that the favourite is in the database
+								if (defined ($con_data->{"WNDW_C_$1"})) {
+									# it is, so set an issue and proceed with this code
+									$issues = set_issue("%s", $issues, 'Windows', 'Code not find in database - using favourite (ORIGINAL FAVOURITE HOUSE)', "$con $1", $coordinates);
+									$record_indc->{'wndw'}->{$surface}->{'code'} = $CSDDRD->{'wndw_favourite_code'};
+								}
+								# the favourite also does not exist, so die
+								else {&die_msg ('GEO: Bad favourite window code', "WNDW_C_$1", $coordinates);};
+							 };
 						};
 						# THE FOLLOWING LOGIC WILL UPGRADE ALL WINDOWS TO TG LOW-E
 #						$record_indc->{'wndw'}->{$surface}->{'code'} = '323004';
@@ -1823,18 +1877,26 @@ MAIN: {
 									$record_indc->{'wndw'}->{$surface}->{'code'} =~ /(\d{3})\d{2}(\d)/ or &die_msg ('GEO: Unknown window code', $record_indc->{'wndw'}->{$surface}->{'code'}, $coordinates);
 									
 									my $con = \%{$record_indc->{$zone}->{'surfaces'}->{$surface . '-aper'}->{'construction'}};
-									# determine the window type name
-									$con->{'name'} = "WNDW_$1";
-									
+									$con->{'name'} = "WNDW_$1";	#this lines is unnecessary 
+									my $wndw_code = $1;
+									my $fr_code =$2;
+									if ($set_name =~ /TMC/i) {
+										# determine the window type name
+										$con->{'name'} = "WNDW_$wndw_code";
+									}
+									elsif ($set_name =~ /CFC/i) {
+										# determine the window type name
+										$con->{'name'} = "WNDW_C_$wndw_code";
+									};
 									facing('EXTERIOR', $zone, $surface . '-aper', $zones, $record_indc, $coordinates);
 									
 									# store the info - we do not need to check the RSI as this was already specified by the detailed window type
 									con_surf_conn(0, $zone, $surface . '-aper', $zones, $record_indc, $issues, $coordinates);
-									
+							
 									# and the frame NOTE: we need to look into different frame types
 									$con = \%{$record_indc->{$zone}->{'surfaces'}->{$surface . '-frame'}->{'construction'}};
-									
-									$con->{'name'} = {0 => 'FRM_Al', 1 => 'FRM_Al_brk', 2 => 'FRM_wood', 3 => 'FRM_wood_Al', 4 => 'FRM_Vnl', 5 => 'FRM_Vnl', 6 => 'FRM_Fbgls'}->{$2} or $con->{'name'} = 'FRM_Al';
+								
+									$con->{'name'} = {0 => 'FRM_Al', 1 => 'FRM_Al_brk', 2 => 'FRM_wood', 3 => 'FRM_wood_Al', 4 => 'FRM_Vnl', 5 => 'FRM_Vnl', 6 => 'FRM_Fbgls'}->{$fr_code} or $con->{'name'} = 'FRM_Al';
 
 									facing('EXTERIOR', $zone, $surface . '-frame', $zones, $record_indc, $coordinates);
 									
@@ -2280,23 +2342,33 @@ MAIN: {
 									$record_indc->{'wndw'}->{$surface}->{'code'} =~ /(\d{3})\d{2}(\d)/ or &die_msg ('GEO: Unknown window code', $record_indc->{'wndw'}->{$surface}->{'code'}, $coordinates);
 									
 									my $con = \%{$record_indc->{$zone}->{'surfaces'}->{$surface . '-aper'}->{'construction'}};
-									# determine the window type name
 									$con->{'name'} = "WNDW_$1";
-									
+									my $wndw_code = $1;
+									my $fr_code = $2;
+									if ($set_name =~ /TMC/i){
+										# determine the window type name
+										$con->{'name'} = "WNDW_$wndw_code";
+									 }
+									elsif ($set_name =~ /CFC/i){
+										# determine the window type name
+										$con->{'name'} = "WNDW_C_$wndw_code";
+									};
+										
 									facing('EXTERIOR', $zone, $surface . '-aper', $zones, $record_indc, $coordinates);
-									
+										  
 									# store the info - we do not need to check the RSI as this was already specified by the detailed window type
 									con_surf_conn(0, $zone, $surface . '-aper', $zones, $record_indc, $issues, $coordinates);
 									
 									# and the frame NOTE: we need to look into different frame types
 									$con = \%{$record_indc->{$zone}->{'surfaces'}->{$surface . '-frame'}->{'construction'}};
 									
-									$con->{'name'} = {0 => 'FRM_Al', 1 => 'FRM_Al_brk', 2 => 'FRM_wood', 3 => 'FRM_wood_Al', 4 => 'FRM_Vnl', 5 => 'FRM_Vnl', 6 => 'FRM_Fbgls'}->{$2} or $con->{'name'} = 'FRM_Al';
+									$con->{'name'} = {0 => 'FRM_Al', 1 => 'FRM_Al_brk', 2 => 'FRM_wood', 3 => 'FRM_wood_Al', 4 => 'FRM_Vnl', 5 => 'FRM_Vnl', 6 => 'FRM_Fbgls'}->{$fr_code} or $con->{'name'} = 'FRM_Al';
 
 									facing('EXTERIOR', $zone, $surface . '-frame', $zones, $record_indc, $coordinates);
 									
 									# again we do not check RSI as we know the specific type
 									con_surf_conn(0, $zone, $surface . '-frame', $zones, $record_indc, $issues, $coordinates);
+									
 								};
 								
 								# check for DOORS
@@ -2448,6 +2520,9 @@ MAIN: {
 					my @tmc_type;	# initialize arrays to hold optical reference data
 					my $tmc_flag = 0; # to note if real optics are present
 					my $em_abs; # store the solar absorbtivity and IR emissivity
+					my @cfc_type;
+					my $cfc_flag = 0;
+					my @gas_type;
 					
 					# loop over the basic surfaces (we expect floor, ceiling, and the sides)
 					foreach my $surface_basic ('floor', 'ceiling', @sides) {
@@ -2515,11 +2590,21 @@ MAIN: {
 
 								&insert ($hse_file->{"$zone.con"}, "#END_LAYERS_GAPS", 1, 0, 0, "%s\n", "$layer_count $gaps # $surface $con->{'name'}");
 # print Dumper $con;
-								if ($con->{'type'} eq "OPAQ") { push (@tmc_type, 0);}
-								elsif ($con->{'type'} eq "TRAN") {
-									push (@tmc_type, $con->{'optic_name'});
-									$tmc_flag = 1;
-								};
+								if ($set_name =~ /TMC/i) {
+									if ($con->{'type'} eq "OPAQ") { push (@tmc_type, 0);}
+									elsif ($con->{'type'} eq "TRAN") {
+										push (@tmc_type, $con->{'optic_name'});
+										$tmc_flag = 1;
+									};
+								}
+								elsif ($set_name =~ /CFC/i) {
+#print $con->{'type'};
+								if ($con->{'type'} eq "OPAQ") { push (@cfc_type, 0);}
+									elsif ($con->{'type'} eq "CFC") {
+										push (@cfc_type, $con->{'name'});
+										$cfc_flag = 1;
+									};
+								}
 								if (@pos_rsi) {
 									&insert ($hse_file->{"$zone.con"}, "#END_GAP_POS_AND_RSI", 1, 0, 0, "%s\n", "@pos_rsi # $surface $con->{'name'}");
 								};
@@ -2538,27 +2623,64 @@ MAIN: {
 					&insert ($hse_file->{"$zone.con"}, "#EM_OUTSIDE", 1, 1, 0, "%s\n", "@{$em_abs->{'em'}->{'outside'}}");
 					&insert ($hse_file->{"$zone.con"}, "#SLR_ABS_INSIDE", 1, 1, 0, "%s\n", "@{$em_abs->{'abs'}->{'inside'}}");
 					&insert ($hse_file->{"$zone.con"}, "#SLR_ABS_OUTSIDE", 1, 1, 0, "%s\n", "@{$em_abs->{'abs'}->{'outside'}}");
-
-					if ($tmc_flag) {
-						&replace ($hse_file->{"$zone.tmc"}, "#SURFACE_COUNT", 1, 1, "%s\n", $#tmc_type + 1);
-						my %optic_lib = (0, 0);
-						foreach my $element (0..$#tmc_type) {
-							my $optic = $tmc_type[$element];
-							unless (defined ($optic_lib{$optic})) {
-								$optic_lib{$optic} = keys (%optic_lib);
-								my $layers = @{$optic_data->{$optic}->{'layers'}};
-								&insert ($hse_file->{"$zone.tmc"}, "#END_TMC_DATA", 1, 0, 0, "%s\n", "$layers $optic");
-								&insert ($hse_file->{"$zone.tmc"}, "#END_TMC_DATA", 1, 0, 0, "%s\n", "$optic_data->{$optic}->{'optic_con_props'}->{'trans_solar'} $optic_data->{$optic}->{'optic_con_props'}->{'trans_vis'}");
-								foreach my $layer (@{$optic_data->{$optic}->{'layers'}}) {
-									&insert ($hse_file->{"$zone.tmc"}, "#END_TMC_DATA", 1, 0, 0, "%s\n", $layer->{'absorption'});
+					
+					if ($set_name =~ /TMC/i){
+						if ($tmc_flag) {
+							&replace ($hse_file->{"$zone.tmc"}, "#SURFACE_COUNT", 1, 1, "%s\n", $#tmc_type + 1);
+							my %optic_lib = (0, 0);
+							foreach my $element (0..$#tmc_type) {
+								my $optic = $tmc_type[$element];
+								unless (defined ($optic_lib{$optic})) {
+									$optic_lib{$optic} = keys (%optic_lib);
+									my $layers = @{$optic_data->{$optic}->{'layers'}};
+									&insert ($hse_file->{"$zone.tmc"}, "#END_TMC_DATA", 1, 0, 0, "%s\n", "$layers $optic");
+									&insert ($hse_file->{"$zone.tmc"}, "#END_TMC_DATA", 1, 0, 0, "%s\n", "$optic_data->{$optic}->{'optic_con_props'}->{'trans_solar'} $optic_data->{$optic}->{'optic_con_props'}->{'trans_vis'}");
+									foreach my $layer (@{$optic_data->{$optic}->{'layers'}}) {
+										&insert ($hse_file->{"$zone.tmc"}, "#END_TMC_DATA", 1, 0, 0, "%s\n", $layer->{'absorption'});
+									};
+									&insert ($hse_file->{"$zone.tmc"}, "#END_TMC_DATA", 1, 0, 0, "%s\n", "0");	# optical control flag
 								};
-								&insert ($hse_file->{"$zone.tmc"}, "#END_TMC_DATA", 1, 0, 0, "%s\n", "0");	# optical control flag
+								$tmc_type[$element] = $optic_lib{$optic};	# change from optics name to the appearance number in the tmc file
 							};
-							$tmc_type[$element] = $optic_lib{$optic};	# change from optics name to the appearance number in the tmc file
+							&replace ($hse_file->{"$zone.tmc"}, "#TMC_INDEX", 1, 1, "%s\n", "@tmc_type");	# print the key that links each surface to an optic (by number) 
 						};
-						&replace ($hse_file->{"$zone.tmc"}, "#TMC_INDEX", 1, 1, "%s\n", "@tmc_type");	# print the key that links each surface to an optic (by number)
+					}
+					elsif ($set_name =~ /CFC/i){
+						if ($cfc_flag) {
+							&replace ($hse_file->{"$zone.cfc"}, "#SURFACE_COUNT", 1, 1, "%s\n", $#cfc_type + 1);
+							my %optic_C_lib = (0, 0);
+							foreach my $element (0..$#cfc_type) {
+								my $optic = $cfc_type[$element];
+								unless (defined ($optic_C_lib{$optic})) {
+									$optic_C_lib{$optic} = keys (%optic_C_lib);
+									my $layers_solar = @{$cfc_data->{$optic}->{'layers_solar_normal'}};
+									my $layers_visible = @{$cfc_data->{$optic}->{'layers_visible_normal'}};
+									my $layers_longwave = @{$cfc_data->{$optic}->{'layers_longwave_normal'}};
+									&insert ($hse_file->{"$zone.cfc"}, "#END_CFC_DATA", 1, 0, 0, "%s\n", "$layers_solar");
+# 									&insert ($hse_file->{"$zone.cfc"}, "#END_CFC_DATA", 1, 0, 0, "%s\n", "$cfc_data->{$optic}->{'optic_con_props'}->{'trans_solar'} $optic_data->{$optic}->{'optic_con_props'}->{'trans_vis'}");
+									foreach my $layer_solar (@{$cfc_data->{$optic}->{'layers_solar_normal'}}) {
+										&insert ($hse_file->{"$zone.cfc"}, "#END_CFC_DATA", 1, 0, 0, "%s # %s \n", $layer_solar->{'R_Tran'}, $layer_solar->{'description'} );
+									};
+									foreach my $layer_visible (@{$cfc_data->{$optic}->{'layers_visible_normal'}}) {
+										&insert ($hse_file->{"$zone.cfc"}, "#END_CFC_DATA", 1, 0, 0, "%s # %s \n", $layer_visible->{'R_Tran'}, $layer_visible->{'description'});
+									};
+									foreach my $layer_longwave (@{$cfc_data->{$optic}->{'layers_longwave_normal'}}) {
+										&insert ($hse_file->{"$zone.cfc"}, "#END_CFC_DATA", 1, 0, 0, "%s # %s \n", $layer_longwave->{'R_Tran'}, $layer_longwave->{'description'});
+									};
+									foreach my $layer_solar (@{$cfc_data->{$optic}->{'layers_solar_normal'}}) {
+										&insert ($hse_file->{"$zone.cfc"}, "#END_GAS_DATA", 1, 0, 0, "%s ", $layer_solar->{'code'});
+									};
+									&insert ($hse_file->{"$zone.cfc"}, "#END_GAS_DATA", 1, 0, 0, "# %s\n", "layer type index" );	
+									foreach my $layer_gas (@{$cfc_data->{$optic}->{'gas_layers'}}) {
+										&insert ($hse_file->{"$zone.cfc"}, "#END_GAS_DATA", 1, 0, 0, "%s # %s\n%s # %s\n%s # %s\n%s # %s\n", $layer_gas->{'mol_mass'}, "molecular mass of gas mixture (g/gmole)",  $layer_gas->{'coefs_cond'}, "a and b coeffs.- gas conductivity (W/m.K)", $layer_gas->{'coefs_visc'}, "a and b coeffs.- gas viscosity (N.s/m2)", $layer_gas->{'coefs_spec_h'}, "a and b coeffs.- specific heat (J/kg.K)");
+									};
+								};
+								$cfc_type[$element] = $optic_C_lib{$optic};	# change from optics name to the appearance number in the cfc file
+							};
+							
+							&replace ($hse_file->{"$zone.cfc"}, "#CFC_INDEX", 1, 1, "%s\n", "@cfc_type");	# print the key that links each surface to an optic (by number)
+						 };
 					};
-
 
 					# replace the number of vertices, surfaces, and the rotation angle
 					&replace ($hse_file->{"$zone.geo"}, "#VER_SUR_ROT", 1, 1, "%u %u %u\n", $vertex_count, $surface_count, ($CSDDRD->{'front_orientation'} - 1) * 45);
@@ -2946,7 +3068,7 @@ MAIN: {
 						
 							# temperature control and backup system data (note the use of element 1 to direct it to the backup system type
 							&insert ($hse_file->{"hvac"}, "#END_DATA_$system", 1, 0, 0, "%s\n", "# temp_control_algorithm cutoff_temp backup_system_type backup_sys_num");
-							&insert ($hse_file->{"hvac"}, "#END_DATA_$system", 1, 0, 0, "%s\n", "3 -15 $systems[1] 1");
+							&insert ($hse_file->{"hvac"}, "#END_DATA_$system", 1, 0, 0, "%s\n", "2 -20 $systems[1] 1");
 						}
 						
 						elsif ($heat_cool[$system] == 2) {	# air conditioner mode
@@ -3510,7 +3632,7 @@ MAIN: {
 				&replace ($hse_file->{'aim'}, '#ZONE_INDICES', 1, 2, "%s\n", "@aim_zones # the number of zones that recieve infiltration followed by the zone number list");
 				
 				# WINDOW CONTROL
-# 				&replace ($hse_file->{'aim'}, '#WINDOW_CONTROL', 1, 1, "%s\n", "1 $zones->{'name->num'}->{'main_1'} 30 23 1 10");
+# 				&replace ($hse_file->{'aim'}, '#WINDOW_CONTROL', 1, 1, "%s\n", "1 $zones->{'name->num'}->{'main_1'} 25 21 1 21");
 
 			};
 
@@ -3604,6 +3726,7 @@ MAIN: {
 			# -----------------------------------------------
 			FILE_PRINTOUT: {
 				# Develop a path and make the directory tree to get to that path
+				$CSDDRD->{'file_name'} = $CSDDRD->{'file_name'} . $set_name;
 				my $folder = "../$hse_type$set_name/$region/$CSDDRD->{'file_name'}";	# path to the folder for writing the house folder
 				mkpath ($folder);	# make the output path directory tree to store the house files
 				
@@ -3646,6 +3769,7 @@ SUBROUTINES: {
 		my $ext = shift;
 		my $hse_file = shift;
 		my $coordinates = shift;
+		
 		
 		if (defined ($template->{$ext})) {
 			$hse_file->{"$zone.$ext"} = [@{$template->{$ext}}];	# create the template file for the zone

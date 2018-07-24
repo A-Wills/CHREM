@@ -2,7 +2,7 @@
 *date,Mon Mar  1 13:30:17 2010
 *doc,Materials database (tagged format) constructed from mat_db.xml by Database.pm
 #
-8 # total number of classes
+10 # total number of classes
 #
 # Material classes are listed as follows:
 #	*class, 'class number'(2 digits),'number of materials in class','class name'
@@ -22,17 +22,25 @@
 #
 #
 # CLASS
-*class,1,1,Glass
-Glass class includes the following materials: Glass_Float
+*class,1,5,Glass
+Glass class includes the following materials: Glass_Float Glass_Low_E0.04 Glass_Low_E0.1 Glass_Low_E0.2 Glass_Low_E0.4
 #
 # MATERIALS
 *item,Glass_Float,1,1,Float glass pane
-1.050,2500,750,0.830,0.830,0.050,0.050,19200,3.0,t,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000
+1.050,2500,750,0.840,0.840,0.050,0.050,19200,3.0,t,0.000,0.850,0.901,0.075,0.075,0.081,0.081,0.000
+*item,Glass_Low_E0.04,2,1,Float glass pane with low e coated 0.04
+1.050,2500,750,0.840,0.040,0.060,0.060,19200,3.0,t,0.000,0.450,0.780,0.340,0.370,0.070,0.060,0.000
+*item,Glass_Low_E0.1,3,1,Float glass pane with low e coated 0.1
+1.050,2500,750,0.840,0.100,0.060,0.060,19200,3.0,t,0.000,0.630,0.850,0.190,0.220,0.079,0.056,0.000
+*item,Glass_Low_E0.2,4,1,Float glass pane with low e coated 0.2
+1.050,2500,750,0.840,0.200,0.060,0.060,19200,3.0,t,0.000,0.740,0.820,0.090,0.100,0.110,0.120,0.000
+*item,Glass_Low_E0.4,5,1,Float glass pane with low e coated 0.4
+1.050,2500,750,0.840,0.400,0.060,0.060,19200,3.0,t,0.000,0.750,0.850,0.100,0.100,0.120,0.120,0.000
 #
 #
 # CLASS
-*class,2,11,Insulation
-Insulation class includes the following materials: Cellulose_23.7 Cellulose_25.3 EPS Fbrglas_Batt Fibre_18.6 Icynene_25.0 Newspaper Polyurethane Straw Vermiculite Woodshavings
+*class,2,12,Insulation
+Insulation class includes the following materials: Cellulose_23.7 Cellulose_25.3 EPS Fbrglas_Batt Fibre_18.6 Glass_Fibre_Quilt Icynene_25.0 Newspaper Polyurethane Straw Vermiculite Woodshavings
 #
 # MATERIALS
 *item,Cellulose_23.7,11,2,Cellulose 23.7 RSI/m
@@ -45,17 +53,19 @@ Insulation class includes the following materials: Cellulose_23.7 Cellulose_25.3
 0.040,16,835,0.900,0.900,0.300,0.300,4,100.0,o
 *item,Fibre_18.6,15,2,Mineral fibre 18.6 RSI/m
 0.054,300,1000,0.900,0.900,0.300,0.300,4,100.0,o
-*item,Icynene_25.0,16,2,Icynene at 25 RSI/m
+*item,Glass_Fibre_Quilt,16,2,Glass Fibre Quilt for PV
+0.040,12,840,0.900,0.900,0.650,0.650,30,100.0,o
+*item,Icynene_25.0,17,2,Icynene at 25 RSI/m
 0.040,55,1210,0.900,0.900,0.300,0.300,67,25.0,o
-*item,Newspaper,17,2,Paper
+*item,Newspaper,18,2,Paper
 0.180,300,1000,0.900,0.900,0.300,0.300,67,25.0,o
-*item,Polyurethane,18,2,Urethane foam
+*item,Polyurethane,19,2,Urethane foam
 0.026,70,1045,0.900,0.900,0.300,0.300,1000,25.0,o
-*item,Straw,19,2,Straw
+*item,Straw,20,2,Straw
 0.070,240,180,0.900,0.900,0.300,0.300,67,25.0,o
-*item,Vermiculite,20,2,Industrial insulation
+*item,Vermiculite,21,2,Industrial insulation
 0.068,60,1210,0.900,0.900,0.300,0.300,67,25.0,o
-*item,Woodshavings,21,2,Wood
+*item,Woodshavings,22,2,Wood
 0.087,350,1590,0.900,0.900,0.300,0.300,67,25.0,o
 #
 #
@@ -73,56 +83,78 @@ Masonry class includes the following materials: Brick Concrete Stone
 #
 #
 # CLASS
-*class,4,2,Metal
-Metal class includes the following materials: Aluminum Steel
+*class,4,3,Metal
+Metal class includes the following materials: Aluminum Grey_Cotd_Aluminum Steel
 #
 # MATERIALS
 *item,Aluminum,41,4,Aluminum Sheet
 168.000,2790,883,0.900,0.900,0.600,0.600,10000,1.0,o
-*item,Steel,42,4,Steel sheet
+*item,Grey_Cotd_Aluminum,42,4,Grey Coated Aluminum Sheet
+210.000,2700,880,0.820,0.820,0.720,0.720,19200,1.0,o
+*item,Steel,43,4,Steel sheet
 60.000,7854,434,0.900,0.900,0.600,0.600,10000,1.0,o
 #
 #
 # CLASS
-*class,5,2,Plastics
+*class,5,2,PV_Elements
+PV_Elements class includes the following materials: EVA LI_Glass
+#
+# MATERIALS
+*item,EVA,51,5,Ethylene-vinyl-acetate
+0.250,930,2700,0.900,0.900,0.050,0.050,19200,2.0,o
+*item,LI_Glass,52,5,Low iron glass
+1.050,2500,750,0.840,0.840,0.005,0.005,19200,3.0,t,0.000,0.900,0.910,0.080,0.080,0.080,0.080,0.000
+#
+#
+# CLASS
+*class,6,2,Plastics
 Plastics class includes the following materials: Fbrglas_Sld Vinyl
 #
 # MATERIALS
-*item,Fbrglas_Sld,51,5,Solid fibreglass for doors and window frames
+*item,Fbrglas_Sld,61,6,Solid fibreglass for doors and window frames
 0.600,1800,835,0.900,0.900,0.600,0.600,10000,3.0,o
-*item,Vinyl,52,5,Vinyl window frames and siding
+*item,Vinyl,62,6,Vinyl window frames and siding
 0.160,1380,1000,0.900,0.900,0.600,0.600,10000,3.0,o
 #
 #
 # CLASS
-*class,6,1,Roofing
+*class,7,1,Roofing
 Roofing class includes the following materials: Asph_Shngl
 #
 # MATERIALS
-*item,Asph_Shngl,61,6,Aspault Shingles
+*item,Asph_Shngl,71,7,Aspault Shingles
 0.062,2115,920,0.900,0.900,0.650,0.650,1000,6.0,o
 #
 #
 # CLASS
-*class,7,1,Wallboard
+*class,8,1,Shading
+Shading class includes the following materials: Venetian_blind
+#
+# MATERIALS
+*item,Venetian_blind,81,8,Shading layer
+100.000,1000,750,0.840,0.840,0.060,0.060,19200,6.0,t,0.000,0.780,0.880,0.080,0.070,0.080,0.080,0.000
+#
+#
+# CLASS
+*class,9,1,Wallboard
 Wallboard class includes the following materials: Drywall
 #
 # MATERIALS
-*item,Drywall,71,7,Drywall gypsum board
+*item,Drywall,91,9,Drywall gypsum board
 0.170,800,1090,0.900,0.900,0.300,0.300,10,12.0,o
 #
 #
 # CLASS
-*class,8,4,Wood
+*class,10,4,Wood
 Wood class includes the following materials: MDF OSB Plywood SPF
 #
 # MATERIALS
-*item,MDF,81,8,Medium density fibreboard
+*item,MDF,101,10,Medium density fibreboard
 0.170,750,2000,0.900,0.900,0.650,0.650,12,15.0,o
-*item,OSB,82,8,Oriented strand chipboard
+*item,OSB,102,10,Oriented strand chipboard
 0.150,800,2093,0.900,0.900,0.650,0.650,96,15.0,o
-*item,Plywood,83,8,Plywood for sheathing and flooring
+*item,Plywood,103,10,Plywood for sheathing and flooring
 0.150,800,2093,0.900,0.900,0.650,0.650,576,15.0,o
-*item,SPF,84,8,Spruce pine fir framing
+*item,SPF,104,10,Spruce pine fir framing
 0.130,630,2760,0.900,0.900,0.650,0.650,12,40.0,o
 *end

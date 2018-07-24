@@ -66,6 +66,7 @@ sub con_layers {
 			# 5 = Mortar, assume Concrete and 25 mm thick
 			# 6 = Stucco, assume Concrete and 25 mm thick
 			# 7 = Stone, assume 25 mm thick
+            # 8 = Asphalt, assume 
 			
 			switch ($con->{'code_fields'}->{$comp}) {
 				case (0) {} # none
@@ -75,6 +76,7 @@ sub con_layers {
 				case (4) {push (@{$con->{'layers'}}, {'mat' => 'Brick', 'thickness_mm' => 100, 'component' => $comp});}	# brick
 				case [5, 6] {push (@{$con->{'layers'}}, {'mat' => 'Concrete', 'thickness_mm' => 25, 'component' => $comp});}	# mortar and stucco
 				case (7) {push (@{$con->{'layers'}}, {'mat' => 'Stone', 'thickness_mm' => 25, 'component' => $comp});}	# stone
+                case (8) {push (@{$con->{'layers'}}, {'mat' => 'Asph_Shngl', 'thickness_mm' => 5, 'component' => 'roofing'});}	# asphalt
 				else {push (@{$con->{'layers'}}, {'mat' => 'Vinyl', 'thickness_mm' => 3, 'component' => $comp});};	# assume vinyl
 			};
 		}

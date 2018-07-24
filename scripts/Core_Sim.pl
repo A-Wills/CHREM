@@ -90,11 +90,11 @@ SIMULATION: {
 		chdir($folder); # Change to the appropriate directory for simulation. Sim has to be in directory for xml output
 
 		# House name and CFG file to determine ish zones
-		my ($hse_type, $region, $house_name) = ($folder =~ /^\.\.\/(.{4}).+\/(.+)\/(\w+)(\/$|$)/); # Determine the house name which is the last 10 digits (note that a check is done for an extra slash)
+		my ($hse_type, $region, $house_name) = ($folder =~ /^\.\.\/(.{4}).+\/(.+)\/(.+)(\/$|$)/); # Determine the house name which is the last 10 digits (note that a check is done for an extra slash) 		
 		my $coordinates = {'hse_type' => $hse_type, 'region' => $region, 'file_name' => $house_name};
 		
 		# Prior to simulation, delete any existing files
-		foreach my $ext qw(ish bps energy_balance temperature summary secondary dictionary xml xml.orig cfg.h3k csv mfr elr res shd shda) {
+		foreach my $ext (qw(ish bps energy_balance temperature summary secondary dictionary xml xml.orig cfg.h3k csv mfr elr res shd shda)) {
 			unlink "./$house_name.$ext"; # Unlink (delete) the previous file
 		};
 
@@ -108,20 +108,23 @@ SIMULATION: {
 
 		# BEGIN SHADING ANALYSIS EFFORTS
 		# Cycle over the CFG file using the grep command and look for *isi tags - when one is found, store the zone name
-		my @isi_zones = grep (s/^\*isi \.\/\w+\.(bsmt|main_\d)\.shd$/$1/, @cfg);
+		my @isi_zones = grep (s/^\*isi \.\/.+\.(bsmt|main_\d|PV)\.shd$/$1/, @cfg);
 
 		print $FILE "ish "; # Denote that ish is about to begin
 
 		$filename = $house_name .'.ish';
 		# Cycle over the isi zones and do the ish shading analysis on that zone
 		foreach my $isi_zone (@isi_zones) {
-			system ("timelimit 30 ish -mode text -file $cfg -zone $isi_zone -act update_silent >> $filename");	# call the ish shading and insolation analyzer with variables to automate the analysis. Note that ">>" is used so as to append each zone in the log file
+# 			system ("timelimit -T30 ish -- -mode text -file $cfg -zone $isi_zone -act update_silent >> $filename");	# call the ish shading and insolation analyzer with variables to automate the analysis. Note that ">>" is used so as to append each zone in the log file
+			system ("ish -mode text -file $cfg -zone $isi_zone -act update_silent >> $filename");	# call the ish shading and insolation analyzer with variables to automate the analysis. Note that ">>" is used so as to append each zone in the log file
 		};
 
 		# BEGIN THE BPS SIMULATION
 		print $FILE "- Complete,bps "; # Denote that ish is complete and that bps is about to begin
 		$filename = $house_name .'.bps';
-		system ("timelimit 500 bps -mode text -file $cfg -p sim_presets silent >> $filename");	#call the bps simulator with arguements to automate it
+# 		system ("timelimit -T500 bps -- -mode text -file $cfg -p sim_presets silent >> $filename");	#call the bps simulator with arguements to automate it
+		system ("bps -mode text -file $cfg -p sim_presets silent >> $filename");	#call the bps simulator with arguements to automate it
+        unlink $house_name .'.mfr'; # Destroy the .mfr file
 		
 
 		
@@ -183,7 +186,7 @@ SIMULATION: {
 			};
 
 			# Examine the cfg file and create a key of zone numbers to zone names
-			my @zones = grep (s/^\*geo \.\/\w+\.(\w+)\.geo$/$1/, @cfg); # Find all *.geo files and filter the zone name from it
+			my @zones = grep (s/^\*geo \.\/.+\.(\w+)\.geo$/$1/, @cfg); # Find all *.geo files and filter the zone name from it
 			my $zone_name_num; # Intialize a storage of zone name value at zone number key
 			foreach my $element (0..$#zones) { # Cycle over the array of zones by element number so it can be used
 				$zone_name_num->{$zones[$element]} = $element + 1; # key is zone name, value = index + 1
@@ -230,9 +233,9 @@ SIMULATION: {
 		print $FILE time . "\n";
 
 		# Cycle over results files and unlink them
-		foreach my $ext (qw(mfr elr res)) {
-			unlink "./$house_name.$ext";
-		};
+ 		foreach my $ext (qw(elr res)) {
+ 			unlink "./$house_name.$ext";
+ 		};
 
 		chdir ("../../../scripts"); # Return to the original working directory
 		$simulations++;			#increment the simulations counter

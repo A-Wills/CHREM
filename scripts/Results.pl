@@ -28,12 +28,14 @@ use CSV; #CSV-2 (for CSV split and join, this works best)
 #use Switch;
 use XML::Simple; # to parse the XML results files
 use XML::Dumper;
-use threads; #threads-1.71 (to multithread the program)
+use Parallel::ForkManager;
+#use threads; #threads-1.71 (to multithread the program)
 #use File::Path; #File-Path-2.04 (to create directory trees)
 #use File::Copy; #(to copy files)
 use Data::Dumper; # For debugging
 use Storable  qw(dclone); # To create copies of arrays so that grep can do find/replace without affecting the original data
 use Hash::Merge qw(merge); # To merge the results data
+use POSIX qw(ceil); # Rounding up
 
 # CHREM modules
 use lib ('./modules');
@@ -115,6 +117,7 @@ foreach my $hse_type (&array_order(values %{$hse_types})) {		#each house type
 		push (my @dirs, <../$hse_type$set_name/$region/*>);	#read all hse directories and store them in the array
 # 		print Dumper @dirs;
 		CHECK_FOLDER: foreach my $dir (@dirs) {
+            if($dir =~ m/(BCD)$/) {next CHECK_FOLDER;} # Skip the BCD folder
 			# cycle through the desired house names to see if this house matches. If so continue the house build
 			foreach my $desired (@houses_desired) {
 				# it matches, so set the flag
@@ -140,8 +143,8 @@ foreach my $file (<../summary_files/*>) { # Loop over the files
 #--------------------------------------------------------------------
 # Determine how many houses go to each core for core usage balancing
 #--------------------------------------------------------------------
-my $interval = int(@folders/$cores->{'num'}) + 1;	#round up to the nearest integer
-
+#my $interval = int(@folders/$cores->{'num'}) + 1;	#round up to the nearest integer
+my $interval = ceil((scalar @folders)/$cores->{'num'}); #round up to the nearest integer
 
 
 #--------------------------------------------------------------------
@@ -150,24 +153,62 @@ my $interval = int(@folders/$cores->{'num'}) + 1;	#round up to the nearest integ
 MULTITHREAD_RESULTS: {
 
 	my $thread; # Declare threads for each core
-	
-	foreach my $core (1..$cores->{'num'}) { # Cycle over the cores
-		if ($core >= $cores->{'low'} && $core <= $cores->{'high'}) { # Only operate if this is a desireable core
-			my $low_element = ($core - 1) * $interval; # Hse to start this particular core at
-			my $high_element = $core * $interval - 1; # Hse to end this particular core at
-			if ($core == $cores->{'num'}) { $high_element = $#folders}; # If the final core then adjust to end of array to account for rounding process
+    my $results_all = {}; # Declare a storage variable for all results
+    
+	my $n_processes = $cores->{'num'};
+    my $pm = Parallel::ForkManager->new( $n_processes );
+    # data structure retrieval and handling
+    $pm -> run_on_finish ( # called BEFORE the first call to start()
+        sub {
+        my ($pid, $exit_code, $ident, $exit_signal, $core_dump, $data_structure_reference) = @_;
+        
+        my $core = $exit_code;
 
-			$thread->{$core} = threads->new(\&collect_results_data, @folders[$low_element..$high_element]); # Spawn the threads and send to subroutine, supply the folders
-		};
-	};
+        # retrieve data structure from child
+        if (defined($data_structure_reference)) {  # children are not forced to send anything
+            $thread->{"$core"} = ${$data_structure_reference};  # child passed a string reference
+            $results_all = merge($results_all, $thread->{$core}); # Return the threads together for info collation using the merge function
+        }
+        else {  # problems occurring during storage or retrieval will throw a warning
+            print "No message received from child process $pid!\n";
+        }
+        }
+    );
+    
+    # run the parallel processes
+    SIM_CORES: for(my $core=1;$core<=$cores->{'num'};$core++) { # Cycle over the cores
+        $pm->start() and next SIM_CORES;
+        my $low_element = ($core - 1) * $interval; # Hse to start this particular core at
+        my $high_element;
+        if($core<$cores->{'num'}){
+            $high_element = $core * $interval - 1; # Hse to end this particular core at
+        } elsif ($core==$cores->{'num'}) {
+            $high_element = $#folders;
+        } else {
+            die "SIM_CORES: $core outside scope\n";
+        };
+        my $hCoreHash = &collect_results_data(@folders[$low_element..$high_element]);
+        $pm->finish($core, \$hCoreHash);  # note that it's a scalar REFERENCE, not the scalar itself
+    };
+    $pm->wait_all_children;
+    
+	#for(my $core=1;$core<=$cores->{'num'};$core++) { # Cycle over the cores
+	#	#if ($core >= $cores->{'low'} && $core <= $cores->{'high'}) { # Only operate if this is a desireable core
+	#		my $low_element = ($core - 1) * $interval; # Hse to start this particular core at
+	#		my $high_element = $core * $interval - 1; # Hse to end this particular core at
+	#		if ($core == $cores->{'num'}) { $high_element = $#folders}; # If the final core then adjust to end of array to account for rounding process
+    #        $pm->run_on_finish(\&collect_results_data, @folders[$low_element..$high_element]); # Spawn the threads and send to subroutine, supply the folders
+	#		#$thread->{$core} = threads->create(\&collect_results_data, @folders[$low_element..$high_element]); # Spawn the threads and send to subroutine, supply the folders
+	#	#};
+	#};
 
-	my $results_all = {}; # Declare a storage variable
 	
-	foreach my $core (1..$cores->{'num'}) { # Cycle over the cores
-		if ($core >= $cores->{'low'} && $core <= $cores->{'high'}) { # Only operate if this is a desireable core
-			$results_all = merge($results_all, $thread->{$core}->join()); # Return the threads together for info collation using the merge function
-		};
-	};
+	
+	#for(my $core=1;$core<=$cores->{'num'};$core++) { # Cycle over the cores
+	#	if ($core >= $cores->{'low'} && $core <= $cores->{'high'}) { # Only operate if this is a desireable core
+	#		$results_all = merge($results_all, $thread->{$core}->join()); # Return the threads together for info collation using the merge function
+	#	};
+	#};
 	
 	# Create a file to print out the xml results
 	my $xml_dump = new XML::Dumper;
@@ -204,7 +245,7 @@ sub collect_results_data {
 	# Cycle over each folder
 	FOLDER: foreach my $folder (@folders) {
 		# Determine the house type, region, and hse_name
-		my ($hse_type, $region, $hse_name) = ($folder =~ /^\.\.\/(\d-\w{2}).+\/(\d-\w{2})\/(\w+)$/);
+		my ($hse_type, $region, $hse_name) = ($folder =~ /^\.\.\/(\d-\w{2}).+\/(\d-\w{2})\/(.+)$/);
 
 		# Store the coordinate information for error reporting
 		my $coordinates = {'hse_type' => $hse_type, 'region' => $region, 'file_name' => $hse_name};
@@ -233,7 +274,7 @@ sub collect_results_data {
 		close $FILE;
 
 		# examine the cfg file and create a key of zone numbers to zone names
-		my @zones = grep(s/^\*geo \.\/\w+\.(\w+)\.geo$/$1/, @cfg); # find all *.geo files and filter the zone name from it
+		my @zones = grep(s/^\*geo \.\/.+\.(\w+)\.geo$/$1/, @cfg); # find all *.geo files and filter the zone name from it
 		my $zone_name_num; # intialize a storage of zone name value at zone number key
 		my $main_bsmt_zone_nums = ''; # Create a string to hold the zone numbers that are the basement or main levels. This will later be used to key to only zones of interest
 		foreach my $element (0..$#zones) { # cycle over the array of zones by element number so it can be used
@@ -262,6 +303,12 @@ sub collect_results_data {
 		
 		# Otherwise continue by reading the results XML file
 		my $results_hse = XMLin($folder . "/$hse_name.xml");
+        
+        if (!defined $results_hse->{'parameter'}) {
+            print "House is $hse_name\n";
+            #print Dumper $results_hse;
+            sleep;
+        };
 
 		# Cycle over the results and filter for SCD (secondary consumption), also filter for certain zones, the '' will skip anything else
 		foreach my $key (@{&order($results_hse->{'parameter'}, ['CHREM/SCD', "CHREM/zone_0[$main_bsmt_zone_nums]/Power/(GN_Heat|GN_Cool|CD_Opaq|CD_Trans|AV_AmbVent|AV_Infil|SW_Opaq|SW_Trans)"], [''])}) {
@@ -269,7 +316,7 @@ sub collect_results_data {
 			my $param;
 			if ($key =~ /^CHREM\/SCD\/(.+)$/) {$param = $1}
 			elsif ($key =~ /^CHREM\/(zone_\d\d)\/Power\/(\w+)$/) {$param = $1 . '/' . $2 . '/energy'};
-			
+# 			print "$param $key \n";
 			# If the parameter is in units for energy (as opposed to GHG or quantity) then we can store the min/max/avg information of watts demand)
 # 			if ($param =~ /energy$/) {
 # 				# Cycle over the different min/max/avg types
@@ -295,11 +342,15 @@ sub collect_results_data {
 		if ($zones_heat > 0) {
 			$results_all->{'house_results'}->{$hse_name}->{'Zone_heat/energy/integrated'} = sprintf($units->{'GJ'}, $zones_heat);
 			$results_all->{'parameter'}->{'Zone_heat/energy/integrated'} = 'GJ';
-			$results_all->{'house_results'}->{$hse_name}->{'Heating_Sys/Calc/COP'} = sprintf($units->{'COP'}, $zones_heat / $results_all->{'house_results'}->{$hse_name}->{'use/space_heating/energy/integrated'});
+            if (defined ($results_all->{'house_results'}->{$hse_name}->{'use/space_heating/energy/integrated'})) {
+                $results_all->{'house_results'}->{$hse_name}->{'Heating_Sys/Calc/COP'} = sprintf($units->{'COP'}, $zones_heat / $results_all->{'house_results'}->{$hse_name}->{'use/space_heating/energy/integrated'});
+            } else {
+                $results_all->{'house_results'}->{$hse_name}->{'Heating_Sys/Calc/COP'} = sprintf($units->{'COP'}, 0.0);
+            };
 			$results_all->{'parameter'}->{'Heating_Sys/Calc/COP'} = 'COP';
 			
 			# Check the Heating COP range
-			if ($results_all->{'house_results'}->{$hse_name}->{'Heating_Sys/Calc/COP'} > 7 || $results_all->{'house_results'}->{$hse_name}->{'Heating_Sys/Calc/COP'} < 0.15) {
+			if (($results_all->{'house_results'}->{$hse_name}->{'Heating_Sys/Calc/COP'} > 7 || $results_all->{'house_results'}->{$hse_name}->{'Heating_Sys/Calc/COP'} < 0.15) && (defined ($results_all->{'house_results'}->{$hse_name}->{'use/space_heating/energy/integrated'}))) {
 				# Store the house name so we no it is bad - with a note
 				$results_all->{'bad_houses'}->{$region}->{$province[0]}->{$hse_type}->{$hse_name} = "Bad Cooling COP - $results_all->{'house_results'}->{$hse_name}->{'Heating_Sys/Calc/COP'}";
 				# Delete this house so it does not affect the multiplier

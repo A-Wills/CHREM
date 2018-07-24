@@ -120,7 +120,7 @@ foreach my $hse_type (&array_order(values %{$hse_types})) {		#each house type
 			# cycle through the desired house names to see if this house matches. If so continue the house build
 			foreach my $desired (@houses_desired) {
 				# it matches, so set the flag
-				if ($dir =~ /\/$desired/) {
+				if (($dir =~ /\/$desired/) && ($dir !~ m/BCD$/)) {
 					push (@folders, $dir);
 					next CHECK_FOLDER;
 				};
@@ -134,7 +134,7 @@ foreach my $hse_type (&array_order(values %{$hse_types})) {		#each house type
 #--------------------------------------------------------------------
 # Determine how many houses go to each core for core usage balancing
 #--------------------------------------------------------------------
-my $interval = int(@folders/$cores->{'num'}) + 1;	#round up to the nearest integer
+my $interval = int(@folders/$cores->{'num'});	#round up to the nearest integer
 
 
 #--------------------------------------------------------------------

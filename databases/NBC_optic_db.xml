@@ -1,0 +1,86 @@
+<!--Author: Lukas Swan, Dalhousie Univ., Apl 2009
+This file holds values related to optics for ESP-r-->
+
+<optics>
+
+
+<!--	TMC optic name
+
+		layers (one for each material layers, from outside to inside)
+			refr_index = refractive index (estimated as 1.52 for all glass)
+			absorption = absorption properties at different angles (0deg 40deg 55deg 70deg 80deg from normal) [from Bart Lomanowski @ NRCan. He used Window 4.1 and placed the values in a spreadsheet ./NRCan_Window_Information_V2.xls]
+			}
+			
+		optic_con_props
+			trans_vis = visible transmittance
+			abs_solar_doc_only = solar absorptance (for documentation only)
+			refl_solar_doc_only = solar reflectance (for documentation only)
+			U_val_W_m2K_doc_only = u-value of the construction (for documentation only)
+			trans_dir = transmittance at different angles (0deg 40deg 55deg 70deg 80deg from normal; note floating point size and space delimit) [from Bart Lomanowski @ NRCan. He used Window 4.1 and placed the values in a spreadsheet ./NRCan_Window_Information_V2.xls]
+			heat_gain_doc_only = heat gain at angles (0deg 40deg 55deg 70deg 80deg from normal; note floating point size and space delimit) (for documentation only)
+			optical_description =
+			}
+			-->
+            
+    <Optic_NBC41 description="Triple glaze (3 mm), clear, 13 mm gaps, air">
+        <layers refr_index="1.52" absorption="0.093 0.103 0.113 0.127 0.129" />
+		<layers refr_index="1" absorption="0.001 0.001 0.001 0.001 0.001" />
+		<layers refr_index="1.52" absorption="0.072 0.078 0.081 0.079 0.064" />
+		<layers refr_index="1" absorption="0.001 0.001 0.001 0.001 0.001" />
+		<layers refr_index="1.52" absorption="0.056 0.058 0.056 0.044 0.026" />
+		<optic_con_props trans_vis="0.735" abs_solar_doc_only="0" refl_solar_doc_only="0" U_val_W_m2K_doc_only="0" 
+			     trans_solar="0.605 0.575 0.500 0.321 0.127" 
+			     heat_gain_doc_only="0 0 0 0 0" 
+			     optical_description="Area for extended description" 
+		/>
+    </Optic_NBC41>
+    
+    <Optic_NBC42 description="Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon">
+        <layers refr_index="1.52" absorption="0.108 0.118 0.127 0.139 0.138" />
+		<layers refr_index="1" absorption="0.001 0.001 0.001 0.001 0.001" />
+		<layers refr_index="1.52" absorption="0.091 0.094 0.091 0.080 0.050" />
+		<optic_con_props trans_vis="0.806" abs_solar_doc_only="0" refl_solar_doc_only="0" U_val_W_m2K_doc_only="0" 
+			     trans_solar="0.603 0.582 0.500 0.375 0.184" 
+			     heat_gain_doc_only="0 0 0 0 0" 
+			     optical_description="Area for extended description" 
+		/>
+    </Optic_NBC42>
+    
+    <Optic_NBC62 description="Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air">
+        <layers refr_index="1.52" absorption="0.101 0.112 0.115 0.137 0.138" />
+		<layers refr_index="1" absorption="0.001 0.001 0.001 0.001 0.001" />
+		<layers refr_index="1.52" absorption="0.127 0.131 0.127 0.116 0.077" />
+		<layers refr_index="1" absorption="0.001 0.001 0.001 0.001 0.001" />
+		<layers refr_index="1.52" absorption="0.083 0.083 0.076 0.058 0.030" />
+		<optic_con_props trans_vis="0.720" abs_solar_doc_only="0" refl_solar_doc_only="0" U_val_W_m2K_doc_only="0" 
+			     trans_solar="0.514 0.488 0.425 0.264 0.108" 
+			     heat_gain_doc_only="0 0 0 0 0" 
+			     optical_description="Area for extended description" 
+		/>
+    </Optic_NBC62>
+    
+    <Optic_NBC7B description="Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air">
+        <layers refr_index="1.52" absorption="0.113 0.113 0.133 0.146 0.144" />
+		<layers refr_index="1" absorption="0.001 0.001 0.001 0.001 0.001" />
+		<layers refr_index="1.52" absorption="0.106 0.109 0.107 0.101 0.069" />
+		<layers refr_index="1" absorption="0.001 0.001 0.001 0.001 0.001" />
+		<layers refr_index="1.52" absorption="0.064 0.065 0.061 0.048 0.026" />
+		<optic_con_props trans_vis="0.725" abs_solar_doc_only="0" refl_solar_doc_only="0" U_val_W_m2K_doc_only="0" 
+			     trans_solar="0.481 0.457 0.400 0.249 0.102" 
+			     heat_gain_doc_only="0 0 0 0 0" 
+			     optical_description="Area for extended description" 
+		/>
+    </Optic_NBC7B>
+
+<!-- DOUBLE GLAZE >
+	<Optic_20 description="Double glaze (3 mm), clear, one gap">
+		<layers refr_index="1.52" absorption="0.094 0.103 0.113 0.127 0.133" />
+		<layers refr_index="1" absorption="0.001 0.001 0.001 0.001 0.001" />
+		<layers refr_index="1.52" absorption="0.074 0.08 0.081 0.074 0.055" />
+		<optic_con_props trans_vis="0.81" abs_solar_doc_only="0" refl_solar_doc_only="0" U_val_W_m2K_doc_only="0" 
+			     trans_solar="0.705 0.678 0.6115 0.436 0.204" 
+			     heat_gain_doc_only="0 0 0 0 0" 
+			     optical_description="Area for extended description" 
+		/>
+	</Optic_20-->
+</optics>

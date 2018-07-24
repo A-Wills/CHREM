@@ -1,0 +1,57 @@
+<!--Author: Adam Wills, Carleton Univ., Apr 2015
+	    This file holds DC_AC 240 VAC inverter data for modelling in ESP-r -->
+
+<inv>
+
+    <_200 Pn="200" P0Pn = "0.003444249" Us = "11.12693" 
+    RiPn = "-88.1927" AuxPwr = "0" description="Enphase Energy M200-32-240-S0x"/>
+    
+    <_1100 Pn="1100" P0Pn = "0.010906" Us = "8.648664" 
+    RiPn = "3348.737" AuxPwr = "0" description="SMA America SB1100U"/>
+    
+    <_1670 Pn="1670" P0Pn = "0.00541265" Us = "5.843554" 
+    RiPn = "2558.561" AuxPwr = "0" description="Kaco Solar Geraretechnik GmbH Blue Planet 1501xi"/>
+    
+    <_2000 Pn="2000" P0Pn = "0.01031316" Us = "8.021154" 
+    RiPn = "155.3557" AuxPwr = "0" description="Fronius USA, LLC IG2000"/>
+    
+    <_3000 Pn="3000" P0Pn = "0.006151352" Us = "2.694152" 
+    RiPn = "1943.726" AuxPwr = "0" description="SunPower Corp SPR-3000m (240V)"/>
+    
+    <_4000 Pn="4000" P0Pn = "0.005308597" Us = "2.083785" 
+    RiPn = "1967.985" AuxPwr = "0" description="SunPower Corp SPR-4000m (240V)"/>
+    
+    <_5000 Pn="5000" P0Pn = "0.01020332" Us = "1.052402" 
+    RiPn = "1489.818" AuxPwr = "0" description="SunPower Corp SPR-5000m (240V)"/>
+    
+    <_6000 Pn="6000" P0Pn = "0.008000077" Us = "1.694903" 
+    RiPn = "1637.536" AuxPwr = "0" description="SunPower Corp SPR-6000m (240V)"/>
+    
+    <_7000 Pn="7000" P0Pn = "0.006637034" Us = "1.837922" 
+    RiPn = "1925.736" AuxPwr = "0" description="SunPower Corp SPR-7000m (240V)"/>
+    
+    <_8000 Pn="8000" P0Pn = "0.004491167" Us = "5.231623" 
+    RiPn = "1233.872" AuxPwr = "0" description="SunPower Corp SPR-8000f (240V)"/>
+    
+    <_10000 Pn="10000" P0Pn = "0.00401368" Us = "6.163176" 
+    RiPn = "716.7041" AuxPwr = "0" description="Fronius USA, LLC IG Plus 10.0-1 uni(240)"/>
+    
+    <_30000 Pn="30000" P0Pn = "0.01140284" Us = "2.920874" 
+    RiPn = "1334.205" AuxPwr = "0" description="SatCon Power Systems PVS-30 (240V)"/>
+    
+    <_50000 Pn="50000" P0Pn = "0.01983201" Us = "4.14836" 
+    RiPn = "1555.859" AuxPwr = "0" description="SatCon Power Systems AE-50-60-PV-F"/>  
+    
+    <_75000 Pn="75000" P0Pn = "0.007076929" Us = "2.941741" 
+    RiPn = "1170.906" AuxPwr = "0" description="SatCon Power Systems PVS-75 (240V)"/>
+    
+    <_100000 Pn="100000" P0Pn = "0.008158213" Us = "2.571929" 
+    RiPn = "1274.681" AuxPwr = "0" description="SatCon Power Systems PVS-100 (240V)"/>
+    
+    <_135000 Pn="135000" P0Pn = "0.006474339" Us = "3.646307" 
+    RiPn = "1027.368" AuxPwr = "0" description="SatCon Power Systems PVS-135 (240V)"/>
+    
+    <_250000 Pn="250000" P0Pn = "0.006138966" Us = "3.009757" 
+    RiPn = "1390.139" AuxPwr = "0" description="SatCon Power Systems PVS-250 (240V)"/>
+
+</inv>

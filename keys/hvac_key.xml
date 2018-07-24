@@ -14,7 +14,7 @@ the <system_type> is also listed in order starting from zero as listed in the CS
 		<system_type ESP-r_system_num = "1" ESP-r_equip_num = "12" Furnace_Fan = "1" Boiler_Pump = "0" description="Forced air furnace"/>
 		<system_type ESP-r_system_num = "3" ESP-r_equip_num = "1" Furnace_Fan = "0" Boiler_Pump = "0" description="Radiant floor panels - modeled as baseboard"/>
 		<system_type ESP-r_system_num = "3" ESP-r_equip_num = "1" Furnace_Fan = "0" Boiler_Pump = "0" description="Radiant ceiling panels - modeled as baseboard"/>
-		<system_type ESP-r_system_num = "7" ESP-r_equip_num = "1" Furnace_Fan = "1" Boiler_Pump = "0" ESP-r_backup_energy_num = "1" ESP-r_backup_system_num = "1" ESP-r_backup_equip_num = "12" ESP-r_backup_eff = "1.00" description="Air-source HP w/ Electric furnace backup"/>
+		<system_type ESP-r_system_num = "7" ESP-r_equip_num = "1" Furnace_Fan = "1" Boiler_Pump = "0" ESP-r_backup_energy_num = "1" ESP-r_backup_system_num = "3" ESP-r_backup_eff = "1.00" description="Air-source HP w/ Electric furnace backup (treat as plenum for ESP-r ASHP routine)"/>
 		<system_type ESP-r_system_num = "7" ESP-r_equip_num = "1" Furnace_Fan = "1" Boiler_Pump = "0" ESP-r_backup_energy_num = "2" ESP-r_backup_system_num = "1" ESP-r_backup_equip_num = "7" ESP-r_backup_eff = "0.78" description="Air-source HP w/ 78% eff Natural Gas backup"/>
 		<system_type ESP-r_system_num = "8" ESP-r_equip_num = "4" Furnace_Fan = "1" Boiler_Pump = "0" ESP-r_backup_energy_num = "1" ESP-r_backup_system_num = "2" ESP-r_backup_equip_num = "12" ESP-r_backup_eff = "1.00" description="Water-source HP w/ Electric boiler backup"/>
 	</energy_type>

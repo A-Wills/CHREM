@@ -1,8 +1,8 @@
 # composite constructions database (columnar format) constructed from con_db.xml by DB_Gen.pl based on mat_db.xml
 #
-69 # total number of constructions
+190 # total number of constructions
 #
-# for each construction list the: # of layers, construction name, type (OPAQ or TRAN), Optics name (or OPAQUE), symmetry.
+# for each construction list the: # of layers, construction name, type (OPAQ or TRAN or CFC), Optics name (or OPAQUE), symmetry.
 #	 followed by for each material of the construction:
 #		 material number, thickness (m), material name, and if 'Gap' then RSI at vert horiz and sloped
 #
@@ -12,7 +12,7 @@
 # A_or_R->M Description: Main wall insulated ceiling into the attic or roof space
 #
 # MATERIALS
-   71    0.0160  Drywall : Drywall gypsum board
+   91    0.0160  Drywall : Drywall gypsum board
    14    0.2000  Fbrglas_Batt : Fiberglass batt insulation
 #
 #
@@ -21,8 +21,8 @@
 # A_or_R_gbl Description: Attic gable is unisulated and composed of siding and sheathing
 #
 # MATERIALS
-   52    0.0030  Vinyl : Vinyl window frames and siding
-   83    0.0150  Plywood : Plywood for sheathing and flooring
+   62    0.0030  Vinyl : Vinyl window frames and siding
+  103    0.0150  Plywood : Plywood for sheathing and flooring
 #
 #
 # CONSTRUCTION
@@ -30,8 +30,8 @@
 # A_or_R_slop Description: Attic slope is unisulated and composed of roofing and sheathing
 #
 # MATERIALS
-   61    0.0050  Asph_Shngl : Aspault Shingles
-   83    0.0150  Plywood : Plywood for sheathing and flooring
+   71    0.0050  Asph_Shngl : Aspault Shingles
+  103    0.0150  Plywood : Plywood for sheathing and flooring
 #
 #
 # CONSTRUCTION
@@ -39,7 +39,7 @@
 # B->M Description: Wood flooring interface between the Basement and Main
 #
 # MATERIALS
-   83    0.0400  Plywood : Plywood for sheathing and flooring
+  103    0.0400  Plywood : Plywood for sheathing and flooring
 #
 #
 # CONSTRUCTION
@@ -73,7 +73,7 @@
 # B_sl_wd Description: Basement wood slab without insulation
 #
 # MATERIALS
-   84    0.1000  SPF : Spruce pine fir framing
+  104    0.1000  SPF : Spruce pine fir framing
 #
 #
 # CONSTRUCTION
@@ -82,7 +82,7 @@
 #
 # MATERIALS
    13    0.0380  EPS : Expanded polystyrene
-   84    0.1000  SPF : Spruce pine fir framing
+  104    0.1000  SPF : Spruce pine fir framing
 #
 #
 # CONSTRUCTION
@@ -115,10 +115,10 @@
 # B_wall_pony Description: Basement multiplayer pony wall - identical to Main wall
 #
 # MATERIALS
-   52    0.0030  Vinyl : Vinyl window frames and siding
-   82    0.0150  OSB : Oriented strand chipboard
+   62    0.0030  Vinyl : Vinyl window frames and siding
+  102    0.0150  OSB : Oriented strand chipboard
    14    0.1400  Fbrglas_Batt : Fiberglass batt insulation
-   71    0.0120  Drywall : Drywall gypsum board
+   91    0.0120  Drywall : Drywall gypsum board
 #
 #
 # CONSTRUCTION
@@ -126,7 +126,7 @@
 # B_wall_wd Description: Basement wood wall without insulation
 #
 # MATERIALS
-   84    0.0500  SPF : Spruce pine fir framing
+  104    0.0500  SPF : Spruce pine fir framing
 #
 #
 # CONSTRUCTION
@@ -134,7 +134,7 @@
 # C->M Description: Insulated wood flooring interface between the Crawl Space and Main
 #
 # MATERIALS
-   83    0.0400  Plywood : Plywood for sheathing and flooring
+  103    0.0400  Plywood : Plywood for sheathing and flooring
    14    0.1400  Fbrglas_Batt : Fiberglass batt insulation
 #
 #
@@ -169,10 +169,10 @@
 # C_wall Description: Crawl space multiplayer wall - identical to Main wall
 #
 # MATERIALS
-   52    0.0030  Vinyl : Vinyl window frames and siding
-   82    0.0150  OSB : Oriented strand chipboard
+   62    0.0030  Vinyl : Vinyl window frames and siding
+  102    0.0150  OSB : Oriented strand chipboard
    14    0.1400  Fbrglas_Batt : Fiberglass batt insulation
-   71    0.0120  Drywall : Drywall gypsum board
+   91    0.0120  Drywall : Drywall gypsum board
 #
 #
 # CONSTRUCTION
@@ -188,9 +188,9 @@
 # D_fbrgls_EPS Description: Fibreglass door with EPS insulation
 #
 # MATERIALS
-   51    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
+   61    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
    13    0.0250  EPS : Expanded polystyrene
-   51    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
+   61    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
 #
 #
 # CONSTRUCTION
@@ -198,9 +198,9 @@
 # D_fbrgs_Plur Description: Fibreglass door with polyurethane insulation
 #
 # MATERIALS
-   51    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
-   18    0.0250  Polyurethane : Urethane foam
-   51    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
+   61    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
+   19    0.0250  Polyurethane : Urethane foam
+   61    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
 #
 #
 # CONSTRUCTION
@@ -208,9 +208,9 @@
 # D_mtl_EPS Description: Metal door with EPS insulation
 #
 # MATERIALS
-   42    0.0030  Steel : Steel sheet
+   43    0.0030  Steel : Steel sheet
    13    0.0250  EPS : Expanded polystyrene
-   42    0.0030  Steel : Steel sheet
+   43    0.0030  Steel : Steel sheet
 #
 #
 # CONSTRUCTION
@@ -218,9 +218,9 @@
 # D_mtl_Plur Description: Metal door with polyurethane insulation
 #
 # MATERIALS
-   42    0.0030  Steel : Steel sheet
-   18    0.0250  Polyurethane : Urethane foam
-   42    0.0030  Steel : Steel sheet
+   43    0.0030  Steel : Steel sheet
+   19    0.0250  Polyurethane : Urethane foam
+   43    0.0030  Steel : Steel sheet
 #
 #
 # CONSTRUCTION
@@ -228,9 +228,9 @@
 # D_mtl_fbrgls Description: Metal door with fibreglass skeleton
 #
 # MATERIALS
-   42    0.0030  Steel : Steel sheet
-   51    0.0250  Fbrglas_Sld : Solid fibreglass for doors and window frames
-   42    0.0030  Steel : Steel sheet
+   43    0.0030  Steel : Steel sheet
+   61    0.0250  Fbrglas_Sld : Solid fibreglass for doors and window frames
+   43    0.0030  Steel : Steel sheet
 #
 #
 # CONSTRUCTION
@@ -238,9 +238,9 @@
 # D_wood_hlw Description: Hollow wood door
 #
 # MATERIALS
-   83    0.0050  Plywood : Plywood for sheathing and flooring
+  103    0.0050  Plywood : Plywood for sheathing and flooring
    13    0.0010  EPS : Expanded polystyrene
-   83    0.0050  Plywood : Plywood for sheathing and flooring
+  103    0.0050  Plywood : Plywood for sheathing and flooring
 #
 #
 # CONSTRUCTION
@@ -248,7 +248,7 @@
 # D_wood_sld Description: Solid wood door
 #
 # MATERIALS
-   84    0.0350  SPF : Spruce pine fir framing
+  104    0.0350  SPF : Spruce pine fir framing
 #
 #
 # CONSTRUCTION
@@ -256,9 +256,9 @@
 # FRM_Al Description: Aluminum window frame without thermal break
 #
 # MATERIALS
-   42    0.0030  Steel : Steel sheet
+   43    0.0030  Steel : Steel sheet
     0    0.0200  Gap  0.010 0.010 0.010
-   42    0.0030  Steel : Steel sheet
+   43    0.0030  Steel : Steel sheet
 #
 #
 # CONSTRUCTION
@@ -266,9 +266,19 @@
 # FRM_Al_brk Description: Aluminum window frame with thermal break
 #
 # MATERIALS
-   42    0.0030  Steel : Steel sheet
+   43    0.0030  Steel : Steel sheet
     0    0.0200  Gap  0.040 0.040 0.040
-   42    0.0030  Steel : Steel sheet
+   43    0.0030  Steel : Steel sheet
+#
+#
+# CONSTRUCTION
+    3    FRM_Al_brk_NBCOPAQ  OPAQUE        SYMMETRIC     
+# FRM_Al_brk_NBC Description: Aluminum window frame with thermal break
+#
+# MATERIALS
+   43    0.0030  Steel : Steel sheet
+    0    0.0200  Gap  0.040 0.040 0.040
+   43    0.0030  Steel : Steel sheet
 #
 #
 # CONSTRUCTION
@@ -276,9 +286,19 @@
 # FRM_Fbgls Description: Fibreglass window frame
 #
 # MATERIALS
-   51    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
+   61    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
     0    0.0200  Gap  0.130 0.130 0.130
-   51    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
+   61    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
+#
+#
+# CONSTRUCTION
+    3    FRM_NBC_Vinyl OPAQ  OPAQUE        SYMMETRIC     
+# FRM_NBC_Vinyl Description: Vinyl window frame from WINDOWS 7.5
+#
+# MATERIALS
+   62    0.0030  Vinyl : Vinyl window frames and siding
+    0    0.0540  Gap  0.340 0.340 0.340
+   62    0.0030  Vinyl : Vinyl window frames and siding
 #
 #
 # CONSTRUCTION
@@ -286,9 +306,9 @@
 # FRM_Vnl Description: Vinyl window frame
 #
 # MATERIALS
-   52    0.0030  Vinyl : Vinyl window frames and siding
+   62    0.0030  Vinyl : Vinyl window frames and siding
     0    0.0200  Gap  0.130 0.130 0.130
-   52    0.0030  Vinyl : Vinyl window frames and siding
+   62    0.0030  Vinyl : Vinyl window frames and siding
 #
 #
 # CONSTRUCTION
@@ -296,9 +316,9 @@
 # FRM_wood Description: Wood window frame
 #
 # MATERIALS
-   84    0.0030  SPF : Spruce pine fir framing
+  104    0.0030  SPF : Spruce pine fir framing
     0    0.0200  Gap  0.130 0.130 0.130
-   84    0.0030  SPF : Spruce pine fir framing
+  104    0.0030  SPF : Spruce pine fir framing
 #
 #
 # CONSTRUCTION
@@ -306,10 +326,10 @@
 # FRM_wood_Al Description: Aluminum clad Wood window frame
 #
 # MATERIALS
-   42    0.0010  Steel : Steel sheet
-   84    0.0030  SPF : Spruce pine fir framing
+   43    0.0010  Steel : Steel sheet
+  104    0.0030  SPF : Spruce pine fir framing
     0    0.0200  Gap  0.130 0.130 0.130
-   84    0.0030  SPF : Spruce pine fir framing
+  104    0.0030  SPF : Spruce pine fir framing
 #
 #
 # CONSTRUCTION
@@ -318,7 +338,7 @@
 #
 # MATERIALS
    14    0.3000  Fbrglas_Batt : Fiberglass batt insulation
-   71    0.0160  Drywall : Drywall gypsum board
+   91    0.0160  Drywall : Drywall gypsum board
 #
 #
 # CONSTRUCTION
@@ -326,7 +346,7 @@
 # M->B Description: Wood flooring interface between the Basement and Main
 #
 # MATERIALS
-   83    0.0400  Plywood : Plywood for sheathing and flooring
+  103    0.0400  Plywood : Plywood for sheathing and flooring
 #
 #
 # CONSTRUCTION
@@ -335,7 +355,7 @@
 #
 # MATERIALS
    14    0.1400  Fbrglas_Batt : Fiberglass batt insulation
-   83    0.0400  Plywood : Plywood for sheathing and flooring
+  103    0.0400  Plywood : Plywood for sheathing and flooring
 #
 #
 # CONSTRUCTION
@@ -343,7 +363,7 @@
 # M->M Description: Wood flooring interface between the Main levels
 #
 # MATERIALS
-   83    0.0400  Plywood : Plywood for sheathing and flooring
+  103    0.0400  Plywood : Plywood for sheathing and flooring
 #
 #
 # CONSTRUCTION
@@ -351,10 +371,10 @@
 # M_ceil_exp Description: Main wall insulated and roofed exposed-ceiling
 #
 # MATERIALS
-   61    0.0050  Asph_Shngl : Aspault Shingles
-   83    0.0150  Plywood : Plywood for sheathing and flooring
+   71    0.0050  Asph_Shngl : Aspault Shingles
+  103    0.0150  Plywood : Plywood for sheathing and flooring
    14    0.3000  Fbrglas_Batt : Fiberglass batt insulation
-   71    0.0160  Drywall : Drywall gypsum board
+   91    0.0160  Drywall : Drywall gypsum board
 #
 #
 # CONSTRUCTION
@@ -362,9 +382,9 @@
 # M_floor_exp Description: Main floor exposed with sheathing, insulation, and interior
 #
 # MATERIALS
-   83    0.0150  Plywood : Plywood for sheathing and flooring
+  103    0.0150  Plywood : Plywood for sheathing and flooring
    14    0.3000  Fbrglas_Batt : Fiberglass batt insulation
-   83    0.0300  Plywood : Plywood for sheathing and flooring
+  103    0.0300  Plywood : Plywood for sheathing and flooring
 #
 #
 # CONSTRUCTION
@@ -398,10 +418,10 @@
 # M_wall Description: Main wall conventional framed construction
 #
 # MATERIALS
-   52    0.0030  Vinyl : Vinyl window frames and siding
-   82    0.0150  OSB : Oriented strand chipboard
+   62    0.0030  Vinyl : Vinyl window frames and siding
+  102    0.0150  OSB : Oriented strand chipboard
    14    0.1400  Fbrglas_Batt : Fiberglass batt insulation
-   71    0.0120  Drywall : Drywall gypsum board
+   91    0.0120  Drywall : Drywall gypsum board
 #
 #
 # CONSTRUCTION
@@ -410,7 +430,55 @@
 #
 # MATERIALS
    14    0.0700  Fbrglas_Batt : Fiberglass batt insulation
-   71    0.0120  Drywall : Drywall gypsum board
+   91    0.0120  Drywall : Drywall gypsum board
+#
+#
+# CONSTRUCTION
+    2    PV->A_or_R_slopOPAQ  OPAQUE        A_or_R_slop   
+# PV->A_or_R_slop Description: PV bottom construction to the Attic slope
+#
+# MATERIALS
+  103    0.0150  Plywood : Plywood for sheathing and flooring
+   71    0.0050  Asph_Shngl : Aspault Shingles
+#
+#
+# CONSTRUCTION
+    1    PV_fict       OPAQ  OPAQUE        SYMMETRIC     
+# PV_fict Description: PV frame inlet or outlet
+#
+# MATERIALS
+   43    0.0020  Steel : Steel sheet
+#
+#
+# CONSTRUCTION
+    1    PV_frame      OPAQ  OPAQUE        SYMMETRIC     
+# PV_frame Description: PV frame sides
+#
+# MATERIALS
+  102    0.0020  OSB : Oriented strand chipboard
+#
+#
+# CONSTRUCTION
+    6    PV_roof       TRAN  Optic_PV      NONSYMMETRIC  
+# PV_roof Description: PV construction as part of roof
+#
+# MATERIALS
+   52    0.0030  LI_Glass : Low iron glass
+   51    0.0020  EVA : Ethylene-vinyl-acetate
+   43    0.0020  Steel : Steel sheet
+    0    0.0500  Gap  0.170 0.170 0.170
+   71    0.0050  Asph_Shngl : Aspault Shingles
+  103    0.0150  Plywood : Plywood for sheathing and flooring
+#
+#
+# CONSTRUCTION
+    3    PV_top        TRAN  Optic_PV      NONSYMMETRIC  
+# PV_top Description: PV construction for BP380 model
+#
+# MATERIALS
+   52    0.0030  LI_Glass : Low iron glass
+   51    0.0020  EVA : Ethylene-vinyl-acetate
+   43    0.0020  Steel : Steel sheet
 #
 #
 # CONSTRUCTION
@@ -674,4 +742,1392 @@
     0    0.0090  Gap  0.210 0.210 0.210
     1    0.0030  Glass_Float : Float glass pane
     0    0.0090  Gap  0.360 0.360 0.360
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    1    WNDW_C_100    CFC   USE GSLedit   SYMMETRIC     
+# WNDW_C_100 Description: Single glaze (3 mm), clear, no gap
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_100_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_100_I Description: Single glaze (3 mm) with indoor shading, clear, no gap 
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_100_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_100_O Description: Single glaze (3 mm) with outdoor shading, clear, no gap
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_200    CFC   USE GSLedit   SYMMETRIC     
+# WNDW_C_200 Description: Double glaze (3 mm), clear, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_200_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_200_B Description: Double glaze (3 mm) with between glazing shading, clear, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_200_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_200_I Description: Double glaze (3 mm) with indoor shading, clear, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_200_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_200_O Description: Double glaze (3 mm) with outdoor shading, clear, 13 mm gap, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_201    CFC   USE GSLedit   SYMMETRIC     
+# WNDW_C_201 Description: Double glaze (3 mm), clear, 9 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_201_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_201_B Description: Double glaze (3 mm) with between glazing shading, clear, 9 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_201_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_201_I Description: Double glaze (3 mm) with indoor shading, clear, 9 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_201_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_201_O Description: Double glaze (3 mm) with outdoor shading, clear, 9 mm gap, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_202    CFC   USE GSLedit   SYMMETRIC     
+# WNDW_C_202 Description: Double glaze (3 mm), clear, 6 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0060  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_202_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_202_B Description: Double glaze (3 mm) with between glazing shading, clear, 6 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0160  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0160  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_202_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_202_I Description: Double glaze (3 mm) with indoor shading, clear, 6 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0060  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_202_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_202_O Description: Double glaze (3 mm) with outdoor shading, clear, 6 mm gap, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0060  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_203    CFC   USE GSLedit   SYMMETRIC     
+# WNDW_C_203 Description: Double glaze (3 mm), clear, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_203_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_203_B Description: Double glaze (3 mm) with between glazing shading, clear, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_203_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_203_I Description: Double glaze (3 mm) with indoor shading, clear, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_203_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_203_O Description: Double glaze (3 mm) with outdoor shading, clear, 13 mm gap, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_210    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_210 Description: Double glaze (3 mm), inside pane low-E 0.04, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    2    0.0030  Glass_Low_E0.04 : Float glass pane with low e coated 0.04
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_210_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_210_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.04, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    2    0.0030  Glass_Low_E0.04 : Float glass pane with low e coated 0.04
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_210_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_210_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.04, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    2    0.0030  Glass_Low_E0.04 : Float glass pane with low e coated 0.04
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_210_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_210_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.04, 13 mm gap, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    2    0.0030  Glass_Low_E0.04 : Float glass pane with low e coated 0.04
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_213    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_213 Description: Double glaze (3 mm), inside pane low-E 0.04, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    2    0.0030  Glass_Low_E0.04 : Float glass pane with low e coated 0.04
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_213_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_213_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.04, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    2    0.0030  Glass_Low_E0.04 : Float glass pane with low e coated 0.04
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_213_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_213_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.04, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    2    0.0030  Glass_Low_E0.04 : Float glass pane with low e coated 0.04
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_213_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_213_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.04, 13 mm gap, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    2    0.0030  Glass_Low_E0.04 : Float glass pane with low e coated 0.04
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_220    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_220 Description: Double glaze (3 mm), inside pane low-E 0.10, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_220_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_220_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.10, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_220_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_220_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.10, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_220_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_220_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 13 mm gap, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_223    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_223 Description: Double glaze (3 mm), inside pane low-E 0.10, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_223_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_223_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.10, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_223_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_223_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.10, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_223_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_223_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 13 mm gap, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_224    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_224 Description: Double glaze (3 mm), inside pane low-E 0.10, 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_224_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_224_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.10, 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_224_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_224_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.10, 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_224_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_224_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 9 mm gap, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_230    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_230 Description: Double glaze (3 mm), inside pane low-E 0.20, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_230_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_230_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.20, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_230_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_230_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.20, 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_230_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_230_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 13 mm gap, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_231    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_231 Description: Double glaze (3 mm), inside pane low-E 0.20, 9 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_231_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_231_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.20, 9 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_231_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_231_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.20, 9 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_231_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_231_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 9 mm gap, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_233    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_233 Description: Double glaze (3 mm), inside pane low-E 0.20, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_233_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_233_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.20, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_233_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_233_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.20, 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_233_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_233_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 13 mm gap, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_234    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_234 Description: Double glaze (3 mm), inside pane low-E 0.20, 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_234_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_234_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.20, 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_234_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_234_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.20, 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_234_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_234_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 9 mm gap, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_240    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_240 Description: Double glaze (3 mm), inside pane low-E 0.40 (use for 0.35), 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_240_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_240_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_240_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_240_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_240_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_240_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_243    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_243 Description: Double glaze (3 mm), inside pane low-E 0.40 (use for 0.35), 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_243_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_243_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_243_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_243_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_243_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_243_O Description: Double glaze (3 mm) with outdoor shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+#
+#
+# CONSTRUCTION
+    3    WNDW_C_244    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_244 Description: Double glaze (3 mm), inside pane low-E 0.40 (use for 0.35), 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_244_B  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_244_B Description: Double glaze (3 mm) with between glazing shading, inside pane low-E 0.40 (use for 0.35), 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_244_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_244_I Description: Double glaze (3 mm) with indoor shading, inside pane low-E 0.40 (use for 0.35), 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_244_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_244_O Description: Double glaze (3 mm), inside pane low-E 0.40 (use for 0.35), 9 mm gap, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    5    0.0030  Glass_Low_E0.4 : Float glass pane with low e coated 0.4
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_300    CFC   USE GSLedit   SYMMETRIC     
+# WNDW_C_300 Description: Triple glaze (3 mm), clear, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_300_BI CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_300_BI Description: Triple glaze (3 mm) with between glazing shading (indoor), clear, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_300_BO CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_300_BO Description: Triple glaze (3 mm) with between glazing shading (outdoor), clear, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_300_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_300_I Description: Triple glaze (3 mm) with indoor shading, clear, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_300_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_300_O Description: Triple glaze (3 mm) with outdoor shading, clear, 13 mm gaps, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_301    CFC   USE GSLedit   SYMMETRIC     
+# WNDW_C_301 Description: Triple glaze (3 mm), clear, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_301_BI CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_301_BI Description: Triple glaze (3 mm) with between glazing shading (indoor), clear, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_301_BO CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_301_BO Description: Triple glaze (3 mm) with between glazing shading (outdoor), clear, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_301_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_301_I Description: Triple glaze (3 mm) with indoor shading, clear, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_301_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_301_O Description: Triple glaze (3 mm) with outdoor shading, clear, 9 mm gaps, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_320    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_320 Description: Triple glaze (3 mm), inside pane low-E 0.10, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_320_BI CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_320_BI Description: Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.10, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_320_BO CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_320_BO Description: Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.10, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_320_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_320_I Description: Triple glaze (3 mm) with indoor shading, inside pane low-E 0.10, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_320_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_320_O Description: Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 13 mm gaps, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_323    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_323 Description: Triple glaze (3 mm), inside pane low-E 0.10, 13 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_323_BI CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_323_BI Description: Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.10, 13 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_323_BO CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_323_BO Description: Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.10, 13 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_323_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_323_I Description: Triple glaze (3 mm) with indoor shading, inside pane low-E 0.10, 13 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_323_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_323_O Description: Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 13 mm gaps, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    3    0.0030  Glass_Low_E0.1 : Float glass pane with low e coated 0.1
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_330    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_330 Description: Triple glaze (3 mm), inside pane low-E 0.20, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_330_BI CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_330_BI Description: Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.20, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_330_BO CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_330_BO Description: Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.20, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_330_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_330_I Description: Triple glaze (3 mm) with indoor shading, inside pane low-E 0.20, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_330_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_330_O Description: Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 13 mm gaps, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_331    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_331 Description: Triple glaze (3 mm), inside pane low-E 0.20, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_331_BI CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_331_BI Description: Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.20, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_331_BO CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_331_BO Description: Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.20, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_331_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_331_I Description: Triple glaze (3 mm) with indoor shading, inside pane low-E 0.20, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_331_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_331_O Description: Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 9 mm gaps, air
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_333    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_333 Description: Triple glaze (3 mm), inside pane low-E 0.20, 13 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_333_BI CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_333_BI Description: Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.20, 13 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_333_BO CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_333_BO Description: Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.20, 13 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0200  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0200  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_333_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_333_I Description: Triple glaze (3 mm) with indoor shading, inside pane low-E 0.20, 13 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_333_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_333_O Description: Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 13 mm gaps, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_C_334    CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_334 Description: Triple glaze (3 mm), inside pane low-E 0.20, 9 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_334_BI CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_334_BI Description: Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.20, 9 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_334_BO CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_334_BO Description: Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.20, 9 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0180  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0180  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_334_I  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_334_I Description: Triple glaze (3 mm) with indoor shading, inside pane low-E 0.20, 9 mm gaps, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+    0    0.0400  Gap  0.170 0.170 0.170
+   81    0.0150  Venetian_blind : Shading layer
+#
+#
+# CONSTRUCTION
+    7    WNDW_C_334_O  CFC   USE GSLedit   NONSYMMETRIC  
+# WNDW_C_334_O Description: Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 9 mm gaps, argon
+#
+# MATERIALS
+   81    0.0150  Venetian_blind : Shading layer
+    0    0.0400  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.170 0.170 0.170
+    4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
+#
+#
+# CONSTRUCTION
+    5    WNDW_Z_4_1    TRAN  Optic_NBC41   SYMMETRIC     
+# WNDW_Z_4_1 Description: Triple glaze (3 mm), clear, 13 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0127  Gap  0.200 0.200 0.200
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0130  Gap  0.180 0.180 0.180
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    3    WNDW_Z_4_2    TRAN  Optic_NBC42   NONSYMMETRIC  
+# WNDW_Z_4_2 Description: Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.510 0.510 0.510
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    3    WNDW_Z_5_2    TRAN  Optic_NBC42   NONSYMMETRIC  
+# WNDW_Z_5_2 Description: Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.510 0.510 0.510
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_Z_6_2    TRAN  Optic_NBC62   SYMMETRIC     
+# WNDW_Z_6_2 Description: Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.290 0.290 0.290
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.270 0.270 0.270
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_Z_7A_2   TRAN  Optic_NBC62   SYMMETRIC     
+# WNDW_Z_7A_2 Description: Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.290 0.290 0.290
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0090  Gap  0.270 0.270 0.270
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_Z_7B_1   TRAN  Optic_NBC7B   SYMMETRIC     
+# WNDW_Z_7B_1 Description: Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0127  Gap  0.420 0.420 0.420
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0127  Gap  0.400 0.400 0.400
+    1    0.0030  Glass_Float : Float glass pane
+#
+#
+# CONSTRUCTION
+    5    WNDW_Z_8_1    TRAN  Optic_NBC7B   SYMMETRIC     
+# WNDW_Z_8_1 Description: Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air
+#
+# MATERIALS
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0127  Gap  0.420 0.420 0.420
+    1    0.0030  Glass_Float : Float glass pane
+    0    0.0127  Gap  0.400 0.400 0.400
     1    0.0030  Glass_Float : Float glass pane

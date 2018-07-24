@@ -1,0 +1,2 @@
+*header,melt_temp,solid_temp,cond_sol,cond_liq,spec_heat,member_a,member_b
+*data,23,22,0.4,0.2,1400,0,160000

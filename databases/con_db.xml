@@ -1,11 +1,13 @@
 <!--Author: Lukas Swan, Dalhousie Univ., Jan 2009
 This file holds values related to constructions for ESP-r-->
+<!--Modified: Sara Nikoofard, Dalhousie Univ., Oct. 2010
+The CFC constructions are added -->
 
 <constructions>
 
 <!--	construction (define a construction for each construction type)
 		name =  construction name
-		type = OPAQ (opaque) or TRAN (translucent)
+		type = OPAQ (opaque) or TRAN (translucent) or CFC (complex fenestration construction)
 		symmetry = SYMMETRIC or NONSYMMETRIC
 		code = the value is zero for common constructions, note that Doors and Windows are fully defined and as such recieve a code
 		description =
@@ -13,6 +15,9 @@ This file holds values related to constructions for ESP-r-->
 
 		IF (type = "TRAN") THEN {
 		optic_name = TMC optic name
+		}
+		If (type = "CFC") THEN {
+		optic_name = USE GSLedit
 		}
 
 		layers (one for each material layers, from outside to inside)
@@ -283,12 +288,12 @@ This file holds values related to constructions for ESP-r-->
 	</construction>
 
 
-<!-- WINDOW CENTER-OF-GLASS -->
+<!-- WINDOW CENTER-OF-GLASS TMC -->
 	<!-- SINGLE GLAZE -->
 		<construction name="WNDW_100" type="TRAN" symmetry="SYMMETRIC" optic_name="Optic_10" code="100" description="Single glaze (3 mm), clear, no gap">
 			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
 		</construction>
-
+		
 	<!-- DOUBLE GLAZE CLEAR -->
 		<construction name="WNDW_200" type="TRAN" symmetry="SYMMETRIC" optic_name="Optic_20" code="200" description="Double glaze (3 mm), clear, 13 mm gap, air">
 			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
@@ -555,5 +560,1867 @@ This file holds values related to constructions for ESP-r-->
 			</layers>
 			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
 		</construction>
+
+
+<!-- WINDOW CENTER-OF-GLASS CFC -->
+	<!-- SINGLE GLAZE -->
+		<construction name="WNDW_C_100" type="CFC" symmetry="SYMMETRIC" optic_name="USE GSLedit" code="100" description="Single glaze (3 mm), clear, no gap">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE CLEAR -->
+		<construction name="WNDW_C_200" type="CFC" symmetry="SYMMETRIC" optic_name="USE GSLedit" code="200" description="Double glaze (3 mm), clear, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_201" type="CFC" symmetry="SYMMETRIC" optic_name="USE GSLedit" code="201" description="Double glaze (3 mm), clear, 9 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_202" type="CFC" symmetry="SYMMETRIC" optic_name="USE GSLedit" code="202" description="Double glaze (3 mm), clear, 6 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="6" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_203" type="CFC" symmetry="SYMMETRIC" optic_name="USE GSLedit" code="203" description="Double glaze (3 mm), clear, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+	<!-- DOUBLE GLAZE inside pane low-E 0.04 -->
+		<construction name="WNDW_C_210" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="210" description="Double glaze (3 mm), inside pane low-E 0.04, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.04" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_213" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="213" description="Double glaze (3 mm), inside pane low-E 0.04, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.04" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.10 -->
+		<construction name="WNDW_C_220" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="220" description="Double glaze (3 mm), inside pane low-E 0.10, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_223" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="223" description="Double glaze (3 mm), inside pane low-E 0.10, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_224" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="224" description="Double glaze (3 mm), inside pane low-E 0.10, 9 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.20 -->
+		<construction name="WNDW_C_230" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="230" description="Double glaze (3 mm), inside pane low-E 0.20, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_231" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="231" description="Double glaze (3 mm), inside pane low-E 0.20, 9 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_233" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="233" description="Double glaze (3 mm), inside pane low-E 0.20, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_234" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="234" description="Double glaze (3 mm), inside pane low-E 0.20, 9 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.40 -->
+		<construction name="WNDW_C_240" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="240" description="Double glaze (3 mm), inside pane low-E 0.40 (use for 0.35), 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_243" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="243" description="Double glaze (3 mm), inside pane low-E 0.40 (use for 0.35), 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_244" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="244" description="Double glaze (3 mm), inside pane low-E 0.40 (use for 0.35), 9 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- TRIPLE GLAZE CLEAR -->
+		<construction name="WNDW_C_300" type="CFC" symmetry="SYMMETRIC" optic_name="USE GSLedit" code="300" description="Triple glaze (3 mm), clear, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_301" type="CFC" symmetry="SYMMETRIC" optic_name="USE GSLedit" code="301" description="Triple glaze (3 mm), clear, 9 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+	<!-- TRIPLE GLAZE inside pane low-E 0.10 -->
+		<construction name="WNDW_C_320" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="320" description="Triple glaze (3 mm), inside pane low-E 0.10, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_323" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="323" description="Triple glaze (3 mm), inside pane low-E 0.10, 13 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- TRIPLE GLAZE inside pane low-E 0.20 -->
+		<construction name="WNDW_C_330" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="330" description="Triple glaze (3 mm), inside pane low-E 0.20, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_331" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="331" description="Triple glaze (3 mm), inside pane low-E 0.20, 9 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_333" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="333" description="Triple glaze (3 mm), inside pane low-E 0.20, 13 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_334" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="334" description="Triple glaze (3 mm), inside pane low-E 0.20, 9 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+<!-- WINDOW with venetian Blind (CFC) outer side -->
+	<!-- SINGLE GLAZE -->
+		<construction name="WNDW_C_100_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="100" description="Single glaze (3 mm) with outdoor shading, clear, no gap">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+	<!-- DOUBLE GLAZE CLEAR -->
+		<construction name="WNDW_C_200_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="200" description="Double glaze (3 mm) with outdoor shading, clear, 13 mm gap, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_201_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="201" description="Double glaze (3 mm) with outdoor shading, clear, 9 mm gap, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_202_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="202" description="Double glaze (3 mm) with outdoor shading, clear, 6 mm gap, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="6" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_203_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="203" description="Double glaze (3 mm) with outdoor shading, clear, 13 mm gap, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+	<!-- DOUBLE GLAZE inside pane low-E 0.04 -->
+		<construction name="WNDW_C_210_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="210" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.04, 13 mm gap, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.04" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_213_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="213" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.04, 13 mm gap, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.04" thickness_mm="3" component="pane_1"/>
+		</construction>
+	
+	<!-- DOUBLE GLAZE inside pane low-E 0.10 -->
+		<construction name="WNDW_C_220_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="220" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 13 mm gap, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_223_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="223" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 13 mm gap, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_224_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="224" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 9 mm gap, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+	<!-- DOUBLE GLAZE inside pane low-E 0.20 -->
+		<construction name="WNDW_C_230_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="230" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 13 mm gap, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_231_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="231" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 9 mm gap, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_233_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="233" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 13 mm gap, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_234_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="234" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 9 mm gap, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.40 -->
+		<construction name="WNDW_C_240_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="240" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_243_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="243" description="Double glaze (3 mm) with outdoor shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_244_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="244" description="Double glaze (3 mm), inside pane low-E 0.40 (use for 0.35), 9 mm gap, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- TRIPLE GLAZE CLEAR -->
+		<construction name="WNDW_C_300_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="300" description="Triple glaze (3 mm) with outdoor shading, clear, 13 mm gaps, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_301_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="301" description="Triple glaze (3 mm) with outdoor shading, clear, 9 mm gaps, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+	<!-- TRIPLE GLAZE inside pane low-E 0.10 -->
+		<construction name="WNDW_C_320_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="320" description="Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 13 mm gaps, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_323_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="323" description="Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.10, 13 mm gaps, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- TRIPLE GLAZE inside pane low-E 0.20 -->
+		<construction name="WNDW_C_330_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="330" description="Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 13 mm gaps, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_331_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="331" description="Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 9 mm gaps, air">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_333_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="333" description="Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 13 mm gaps, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_334_O" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="334" description="Triple glaze (3 mm) with outdoor shading, inside pane low-E 0.20, 9 mm gaps, argon">
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+<!-- WINDOW with venetian Blind (CFC) inner side -->
+
+	<!-- SINGLE GLAZE -->
+		<construction name="WNDW_C_100_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="100" description="Single glaze (3 mm) with indoor shading, clear, no gap ">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+	<!-- DOUBLE GLAZE CLEAR -->
+		
+		<construction name="WNDW_C_200_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="200" description="Double glaze (3 mm) with indoor shading, clear, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_201_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="201" description="Double glaze (3 mm) with indoor shading, clear, 9 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_202_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="202" description="Double glaze (3 mm) with indoor shading, clear, 6 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="6" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_203_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="203" description="Double glaze (3 mm) with indoor shading, clear, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+	<!-- DOUBLE GLAZE inside pane low-E 0.04 -->
+		<construction name="WNDW_C_210_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="210" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.04, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.04" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_213_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="213" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.04, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.04" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.10 -->
+		<construction name="WNDW_C_220_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="220" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.10, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_223_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="223" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.10, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_224_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="224" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.10, 9 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.20 -->
+		<construction name="WNDW_C_230_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="230" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.20, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_231_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="231" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.20, 9 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_233_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="233" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.20, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_234_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="234" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.20, 9 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.40 -->
+		<construction name="WNDW_C_240_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="240" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_243_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="243" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_244_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="244" description="Double glaze (3 mm) with indoor shading, inside pane low-E 0.40 (use for 0.35), 9 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+
+	<!-- TRIPLE GLAZE CLEAR -->
+		<construction name="WNDW_C_300_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="300" description="Triple glaze (3 mm) with indoor shading, clear, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_301_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="301" description="Triple glaze (3 mm) with indoor shading, clear, 9 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+	<!-- TRIPLE GLAZE inside pane low-E 0.10 -->
+		<construction name="WNDW_C_320_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="320" description="Triple glaze (3 mm) with indoor shading, inside pane low-E 0.10, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_323_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="323" description="Triple glaze (3 mm) with indoor shading, inside pane low-E 0.10, 13 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+
+	<!-- TRIPLE GLAZE inside pane low-E 0.20 -->
+		<construction name="WNDW_C_330_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="330" description="Triple glaze (3 mm) with indoor shading, inside pane low-E 0.20, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_331_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="331" description="Triple glaze (3 mm) with indoor shading, inside pane low-E 0.20, 9 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_333_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="333" description="Triple glaze (3 mm) with indoor shading, inside pane low-E 0.20, 13 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+		
+		<construction name="WNDW_C_334_I" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="334" description="Triple glaze (3 mm) with indoor shading, inside pane low-E 0.20, 9 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+			<layers mat="Gap" thickness_mm="40" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+		</construction>
+
+
+<!-- WINDOW with venetian Blind (CFC) between glazing -->
+
+	<!-- DOUBLE GLAZE CLEAR -->
+		<construction name="WNDW_C_200_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="200" description="Double glaze (3 mm) with between glazing shading, clear, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_201_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="201" description="Double glaze (3 mm) with between glazing shading, clear, 9 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_202_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="202" description="Double glaze (3 mm) with between glazing shading, clear, 6 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="16" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="16" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_203_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="203" description="Double glaze (3 mm) with between glazing shading, clear, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+	<!-- DOUBLE GLAZE inside pane low-E 0.04 -->
+		<construction name="WNDW_C_210_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="210" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.04, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.04" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_213_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="213" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.04, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.04" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.10 -->
+		<construction name="WNDW_C_220_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="220" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.10, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_223_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="223" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.10, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_224_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="224" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.10, 9 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.20 -->
+		<construction name="WNDW_C_230_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="230" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.20, 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_231_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="231" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.20, 9 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_233_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="233" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.20, 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_234_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="234" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.20, 9 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- DOUBLE GLAZE inside pane low-E 0.40 -->
+		<construction name="WNDW_C_240_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="240" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_243_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="243" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.40 (use for 0.35), 13 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_244_B" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="244" description="Double glaze (3 mm) with between glazing shading, inside pane low-E 0.40 (use for 0.35), 9 mm gap, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.4" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- TRIPLE GLAZE CLEAR -->
+		<construction name="WNDW_C_300_BI" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="300" description="Triple glaze (3 mm) with between glazing shading (indoor), clear, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_300_BO" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="300" description="Triple glaze (3 mm) with between glazing shading (outdoor), clear, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_301_BI" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="301" description="Triple glaze (3 mm) with between glazing shading (indoor), clear, 9 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_301_BO" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="301" description="Triple glaze (3 mm) with between glazing shading (outdoor), clear, 9 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+	<!-- TRIPLE GLAZE inside pane low-E 0.10 -->
+		<construction name="WNDW_C_320_BI" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="320" description="Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.10, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_320_BO" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="320" description="Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.10, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_323_BI" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="323" description="Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.10, 13 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_323_BO" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="323" description="Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.10, 13 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.1" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+	<!-- TRIPLE GLAZE inside pane low-E 0.20 -->
+		<construction name="WNDW_C_330_BI" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="330" description="Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.20, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_330_BO" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="330" description="Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.20, 13 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_331_BI" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="331" description="Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.20, 9 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_331_BO" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="331" description="Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.20, 9 mm gaps, air">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_333_BI" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="333" description="Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.20, 13 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_333_BO" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="333" description="Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.20, 13 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="20" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="13" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_334_BI" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="334" description="Triple glaze (3 mm) with between glazing shading (indoor), inside pane low-E 0.20, 9 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+		
+		<construction name="WNDW_C_334_BO" type="CFC" symmetry="NONSYMMETRIC" optic_name="USE GSLedit" code="334" description="Triple glaze (3 mm) with between glazing shading (outdoor), inside pane low-E 0.20, 9 mm gaps, argon">
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_3"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_3">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Venetian_blind" thickness_mm="15" component="shade"/>
+			<layers mat="Gap" thickness_mm="18" component="gap_2">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17"/>
+			</layers>
+			<layers mat="Glass_Float" thickness_mm="3" component="pane_2"/>
+			<layers mat="Gap" thickness_mm="9" component="gap_1">
+	<!-- 			NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+	<!--			NOTE: gas-RSI will be calculated in each time step for CFCs these numbers are not used -->
+				<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+			</layers>
+			<layers mat="Glass_Low_E0.2" thickness_mm="3" component="pane_1"/>
+		</construction>
+
+
+<!-- PV construction -->
+	<construction name="PV_roof" type="TRAN" symmetry="NONSYMMETRIC" optic_name="Optic_PV" code="700" description="PV construction as part of roof">
+		<layers mat="LI_Glass" thickness_mm="3" component="cover glass"/>
+		<layers mat="EVA" thickness_mm="2" component="PV cells bed"/>
+		<layers mat="Steel" thickness_mm="2" component="back sheet"/>
+		<layers mat="Gap" thickness_mm="50" component="air gap">
+	<!-- 		NOTE: slope AND vert ARE ASSUMED TO BE SAME AS horiz -->
+			<gap_RSI horiz="0.17" slope="0.17" vert="0.17" />
+		</layers>
+		<layers mat="Asph_Shngl" thickness_mm="5" component="roofing"/>
+		<layers mat="Plywood" thickness_mm="15" component="sheathing_1"/>
+	</construction>
+	
+	<construction name="PV_top" type="TRAN" symmetry="NONSYMMETRIC" optic_name="Optic_PV" code="710" description="PV construction for BP380 model">
+		<layers mat="LI_Glass" thickness_mm="3" component="cover glass"/>
+		<layers mat="EVA" thickness_mm="2" component="PV cells bed"/>
+		<layers mat="Steel" thickness_mm="2" component="back sheet"/>
+	</construction>
+	
+	<construction name="PV->A_or_R_slop" type="OPAQ" symmetry="A_or_R_slop" code="0" description="PV bottom construction to the Attic slope">
+	<!-- NOTE: since we add the PV module as a zone to the roof slope the construction of slope should be inverted -->
+		<layers mat="Plywood" thickness_mm="15" component="sheathing"/>
+		<layers mat="Asph_Shngl" thickness_mm="5" component="roofing"/>
+	</construction>
+	
+	<construction name="PV_fict" type="OPAQ" symmetry="SYMMETRIC" code="0" description="PV frame inlet or outlet">
+		<layers mat="Steel" thickness_mm="2" component="inlet_oulet"/>
+	</construction>
+	
+	<construction name="PV_frame" type="OPAQ" symmetry="SYMMETRIC" code="0" description="PV frame sides">
+		<layers mat="OSB" thickness_mm="2" component="frame"/>
+	</construction>
 
 </constructions>

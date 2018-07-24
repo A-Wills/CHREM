@@ -16,14 +16,32 @@
   0 120 240
 # List and details of nodes in the network
 * nodes
+#NODES
   1
 # No.    Node name   Phase type   Phase Node type    Base volt
-    1  V_node_1      1-phase         1  fixed_V           220.00    0
+    1  V_node_1      1-phase         1  fixed_V           240.00    0
+#END_NODES_DATA
 ** end nodes
 # List and details of load and generator connections to nodes
 * hybrid components
+# The Number of hybrid components
+#NUM_HYBRID_COMPONENTS 
   0
+#
+# Data for each hybrid component 
+# The example is 
+#
+# No. comp. type   comp. name      phase type  connects node(s)  location
+#   1  spmaterial    pv-array      d.c.            2    0    0     1    0    0
+# description:
+# The PV-array connected to a PV_BUS for the electricity generation
+#BEGIN_HYBRID_COMPONENT_INFO
+#END_HYBRID_COMPONENT_INFO
+# No. of additional data items:
+#    0
+#END_ADD
 ** end hybrid
+# END HYBRID COMPONENTS
 #
 #
 # LIST AND DETAILS OF POWER ONLY COMPONENTS
@@ -58,10 +76,14 @@
 #
 # Listing and Description of components connecting the nodes
 * connecting components
+#BEGIN_CONNECTING_COMPONENTS
   0
+#END_CONNECTING_COMPONENTS
 ** end connecting components
 # connections between nodes in the network 
 * connections
+#BEGIN_CONNECTIONS
   0
+#END_CONNECTIONS
 ** end connections
 ** electrical network end

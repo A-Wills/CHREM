@@ -1,0 +1,66 @@
+<!-- Dwelling thermal characteristics taken from 2015 National Building Code Section 9.36-->
+<opt>
+    <Cities>
+        <_1-AT n="2">
+            <City_1>HALIFAX</City_1>
+            <City_2>FREDERICTON</City_2>
+        </_1-AT>
+        <_2-QC n="1">
+            <City_1>MONTREAL</City_1>
+        </_2-QC>
+        <_3-OT n="1">
+            <City_1>TORONTO</City_1>
+        </_3-OT>
+        <_4-PR n="1">
+            <City_1>CALGARY</City_1>
+        </_4-PR>
+        <_5-BC n="1">
+            <City_1>VANCOUVER</City_1>
+        </_5-BC>
+    </Cities>   
+    <Envelope_RSI>
+        <!-- Minimum RSI values of above grade assemblies with no HRV system -->
+        <above_grade_no_HRV> 
+            <Ceilings_below_attics Zone_4="6.91" Zone_5="8.67" Zone_6="8.67" Zone_7A="10.43" Zone_7B="10.43" Zone_8="10.43"/>
+            <Flat_Roof Zone_4="4.67" Zone_5="4.67" Zone_6="4.67" Zone_7A="5.02" Zone_7B="5.02" Zone_8="5.02"/>
+            <Walls Zone_4="2.78" Zone_5="3.08" Zone_6="3.08" Zone_7A="3.08" Zone_7B="3.85" Zone_8="3.85"/>
+            <Floors_unheated Zone_4="4.67" Zone_5="4.67" Zone_6="4.67" Zone_7A="5.02" Zone_7B="5.02" Zone_8="5.02"/> <!-- Above unheated space-->
+        </above_grade_no_HRV>
+        <!-- Minimum RSI values of above grade assemblies with HRV system -->
+        <above_grade_with_HRV> 
+            <Ceilings_below_attics Zone_4="6.91" Zone_5="8.67" Zone_6="8.67" Zone_7A="10.43" Zone_7B="10.43" Zone_8="10.43"/>
+            <Flat_Roof Zone_4="4.67" Zone_5="4.67" Zone_6="4.67" Zone_7A="5.02" Zone_7B="5.02" Zone_8="5.02"/>
+            <Walls Zone_4="2.78" Zone_5="2.97" Zone_6="2.97" Zone_7A="2.97" Zone_7B="3.08" Zone_8="3.08"/>
+            <Floors_unheated Zone_4="4.67" Zone_5="4.67" Zone_6="4.67" Zone_7A="5.02" Zone_7B="5.02" Zone_8="5.02"/> <!-- Above unheated space-->
+        </above_grade_with_HRV>
+        <!-- Fenetration and door properties --> <!--NOTE: Only max U value is used, and only for doors-->
+        <Fene_Door> 
+            <Max_U_Value Zone_4="1.80" Zone_5="1.80" Zone_6="1.60" Zone_7A="1.60" Zone_7B="1.40" Zone_8="1.40"/>
+            <SHGC Zone_4="0.26" Zone_5="0.26" Zone_6="0.26" Zone_7A="0.26" Zone_7B="0.26" Zone_8="0.26"/>
+            <Min_E_Rating Zone_4="21" Zone_5="21" Zone_6="25" Zone_7A="25" Zone_7B="29" Zone_8="29"/>
+        </Fene_Door>
+        <!-- Minimum RSI values of above grade assemblies with no HRV system -->
+        <below_grade_no_HRV> 
+            <Walls Zone_4="1.99" Zone_5="2.98" Zone_6="2.98" Zone_7A="3.46" Zone_7B="3.46" Zone_8="3.97"/>
+            <Floors_unheated_above_frost Zone_4="1.96" Zone_5="1.96" Zone_6="1.96" Zone_7A="1.96" Zone_7B="1.96" Zone_8="1.96"/>
+            <Floors_unheated_below_frost Zone_4="0" Zone_5="0" Zone_6="0" Zone_7A="0" Zone_7B="0" Zone_8="0"/>
+            <Floors_on_permafrost Zone_4="0" Zone_5="0" Zone_6="0" Zone_7A="0" Zone_7B="4.44" Zone_8="4.44"/>
+            <Floors_heated Zone_4="2.32" Zone_5="2.32" Zone_6="2.32" Zone_7A="2.84" Zone_7B="2.84" Zone_8="2.84"/>
+            <slab Zone_4="1.96" Zone_5="1.96" Zone_6="1.96" Zone_7A="3.72" Zone_7B="3.72" Zone_8="4.59"/>
+        </below_grade_no_HRV>
+        <!-- Minimum RSI values of above grade assemblies with no HRV system -->
+        <below_grade_with_HRV> 
+            <Walls Zone_4="1.99" Zone_5="2.98" Zone_6="2.98" Zone_7A="2.98" Zone_7B="2.98" Zone_8="2.98"/>
+            <Floors_unheated_above_frost Zone_4="1.96" Zone_5="1.96" Zone_6="1.96" Zone_7A="1.96" Zone_7B="1.96" Zone_8="1.96"/>
+            <Floors_unheated_below_frost Zone_4="0" Zone_5="0" Zone_6="0" Zone_7A="0" Zone_7B="0" Zone_8="0"/>
+            <Floors_on_permafrost Zone_4="0" Zone_5="0" Zone_6="0" Zone_7A="0" Zone_7B="4.44" Zone_8="4.44"/>
+            <Floors_heated Zone_4="2.32" Zone_5="2.32" Zone_6="2.32" Zone_7A="2.84" Zone_7B="2.84" Zone_8="2.84"/>
+            <slab Zone_4="1.96" Zone_5="1.96" Zone_6="1.96" Zone_7A="2.84" Zone_7B="2.84" Zone_8="3.72"/>
+        </below_grade_with_HRV>
+    </Envelope_RSI>
+    <Solar_abs walls="0.4" roof="0.4" exposed_floor="0.4" />
+    <ACH>2.5</ACH>
+    <DHW daily_consump="225" source="2015_NBC"/>
+    <!-- Select glazing compliance option from Table 9.36.2.7-C. Details provided in databases/NBC_cons.xml -->
+    <Glazing Zone_4="2" Zone_5="2" Zone_6="2" Zone_7A="2" Zone_7B="1" Zone_8="1"/>
+</opt>
