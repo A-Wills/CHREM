@@ -1,6 +1,0 @@
-- Integrated  Int units  Total Avg Active avg        Min        Max      Units Name                                               Description
--    -0.0151       (GJ)    -174.31    -174.31    -236.39    -106.29        (W) CHREM/zone_01/net/air_exch_zone_amb_total_CVI_avg  "total air exchange load between zone and ambient"
--     0.0284       (GJ)     328.91     328.91     105.81     717.25        (W) CHREM/zone_01/net/flux_cas_gain_CONV               "convective casual gains within the zone (typically (+))"
--     0.0284       (GJ)     328.91     328.91     105.81     717.25        (W) CHREM/zone_01/net/flux_cas_gain_RAD                "radiant casual gains within the zone (typically (+))"
--     0.0448       (GJ)     519.01     519.01      12.64    1052.02        (W) CHREM/zone_01/net/flux_heat_cool_sys               "supplied flux req to meet zone control temp setpoint"
--    -0.0000       (GJ)      -0.01      -0.01     -82.94      82.69        (W) CHREM/zone_01/net/storage_air_mass_sensible        "sensible heat transfer to the zone air point"
