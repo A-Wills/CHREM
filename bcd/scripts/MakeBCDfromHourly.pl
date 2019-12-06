@@ -75,7 +75,8 @@ foreach my $time_step (@iTstep) { # For each timestep
                 $TotalOther[$k]=sprintf("%d",$TotalOther[$k]);
                 $DHW_Draw[$k]=sprintf("%d",$DHW_Draw[$k]);
                 
-                my $newline = sprintf "%26s %15s %15s %10s %15s\n", $DHW_Draw[$k], 0,0,0,$TotalOther[$k];
+                # my $newline = sprintf "%26s %15s %15s %10s %15s\n", $DHW_Draw[$k], 0,0,0,$TotalOther[$k];
+                my $newline = sprintf "%26s\n", $DHW_Draw[$k];
                 push(@{$hse_file->{'bcd'}},$newline);
             };
             push(@{$hse_file->{'bcd'}},"*data_end\n"); # Add the end statement to the data

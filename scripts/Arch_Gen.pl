@@ -420,12 +420,9 @@ MAIN: {
 
 		my $models_attempted;	# incrementer of each encountered CSDDRD record
 		my $models_OK;	# incrementer of records that are OK
-        
-        my @sCities = @{$hLocations->{$region}}; # HOT 2XP Cities we're generating archetypes for
-        
+
         # storage for the houses characteristics for looking up BCD information
 		my $BCD_characteristics;
-
 		my $code_store;
 		my $con_name_store;
 
@@ -433,19 +430,13 @@ MAIN: {
 		# -----------------------------------------------
 		# Open the CSDDRD source
 		# -----------------------------------------------
-		EACH_CITY: foreach my $sHOT2XPcity (@sCities) {
-		
 		# Open the data source files from the CSDDRD - path to the correct CSDDRD type and region file
-		my $file = '../CSDDRD/' . $hse_type . '_Dwelling_Archetypes';
-
+		my $file = '../CSDDRD/' . $hse_type . '_subset_' . $region. '_Dwelling_Archetypes';
 		my $ext = '.csv';
 		my $CSDDRD_FILE;
 		open ($CSDDRD_FILE, '<', $file . $ext) or die ("Can't open datafile: $file$ext");	# open readable file
 
 		my $CSDDRD; # declare a hash reference to store the CSDDRD data. This will only store one house at a time and the header data
-        
-        my $sThisClimateZone = &getClimateZone($climate_ref->{'data'}->{$sHOT2XPcity}->{'CWEC_EC_HDD_18C'});
-        if(not defined $sThisClimateZone) {die "Could not determine climate zone for $sHOT2XPcity\n";}
 
 		# -----------------------------------------------
 		# GO THROUGH EACH LINE OF THE CSDDRD SOURCE DATAFILE AND BUILD THE HOUSE MODELS
@@ -462,21 +453,17 @@ MAIN: {
 			};
 			# if the flag was not set, go to the next house record
 			if ($desired_house == 0) {next RECORD};
-			
-# 			print Dumper $CSDDRD;
-			
+
 # 			print "$CSDDRD->{'file_name'}\n";
 			$models_attempted++;	# count the models attempted
 
 			my $time= localtime();	# note the present time
 			
 			# house file coordinates to print when an error is encountered
-			my $coordinates = {'hse_type' => $hse_type, 'region' => $region, 'file_name' => $CSDDRD->{'file_name'}."_$sHOT2XPcity"};
+			my $coordinates = {'hse_type' => $hse_type, 'region' => $region, 'file_name' => $CSDDRD->{'file_name'}};
 			
 			# remove the trailing HDF from the house name and check for bad filename
 			$CSDDRD->{'file_name'} =~ s/.HDF$// or  &die_msg ('RECORD: Bad record name (no *.HDF)', $CSDDRD->{'file_name'}, $coordinates);
-            $CSDDRD->{'file_name_orig'} = $CSDDRD->{'file_name'};
-            $CSDDRD->{'file_name'} = $CSDDRD->{'file_name'} . "_$sHOT2XPcity";
 
 			# DECLARE ZONE AND PROPERTY HASHES.
 			my $zones->{'name->num'} = {};	# hash ref of zone_names => zone_numbers
@@ -484,7 +471,8 @@ MAIN: {
 			my $record_indc = {};	# hash for holding the indication of dwelling properties: many of these are building and zone related are held under zone keys
 			
 			# Determine the climate for this house from the Climate Cross Reference
-			my $climate = $climate_ref->{'data'}->{$sHOT2XPcity};	# shorten the name for use this house
+			my $climate = $climate_ref->{'data'}->{$CSDDRD->{'HOT2XP_CITY'}};	# shorten the name for use this house
+            my $sThisClimateZone = &getClimateZone($climate_ref->{'data'}->{$CSDDRD->{'HOT2XP_CITY'}}->{'CWEC_EC_HDD_18C'});
 
 			my $high_level = 1;	# initialize the highest main floor level (1-3)
 
@@ -495,12 +483,10 @@ MAIN: {
 			# describe the basic sides of the house
 			my @sides = ('front', 'right', 'back', 'left');
 			
-			
 			# -----------------------------------------------
 			# DETERMINE ZONE INFORMATION (NUMBER AND TYPE) FOR USE IN THE GENERATION OF ZONE TEMPLATES
 			# -----------------------------------------------
 			ZONE_PRESENCE: {
-				
 				# initialize the main zone levels - there can be up to three levels
 				# do level 1 first as it exists in all of the houses
 				my $level = 1;
@@ -755,7 +741,7 @@ MAIN: {
 				# replace the latitude and logitude and then provide information on the locally selected climate and the CWEC climate
 				&replace ($hse_file->{'cfg'}, "#LAT_LONG", 1, 1, "%s\n# %s\n# %s\n#%s\n", 
 					"$climate->{'CWEC_LATITUDE'} $longitude_diff",
-					"CSDDRD is $sHOT2XPcity, $climate->{'HOT2XP_PROVINCE_ABBREVIATION'}, lat $climate->{'HOT2XP_EC_LATITUDE'}, long $climate->{'HOT2XP_EC_LONGITUDE'}, HDD \@ 18 C = $climate->{'HOT2XP_EC_HDD_18C'}",
+					"CSDDRD is $CSDDRD->{'HOT2XP_CITY'}, $climate->{'HOT2XP_PROVINCE_ABBREVIATION'}, lat $climate->{'HOT2XP_EC_LATITUDE'}, long $climate->{'HOT2XP_EC_LONGITUDE'}, HDD \@ 18 C = $climate->{'HOT2XP_EC_HDD_18C'}",
 					"CWEC is $climate->{'CWEC_CITY'}, $climate->{'CWEC_PROVINCE_ABBREVIATION'}, lat $climate->{'CWEC_EC_LATITUDE'}, long $climate->{'CWEC_EC_LONGITUDE'}, HDD \@ 18 C = $climate->{'CWEC_EC_HDD_18C'}",
 					"PROVINCE $climate->{'HOT2XP_PROVINCE_NAME'}"
 					);
@@ -3995,7 +3981,7 @@ MAIN: {
 		
 	    close $CSDDRD_FILE;
         
-        }; # END EACH_CITY
+#        }; # END EACH_CITY
 	
 	print "Thread for Model Generation of $hse_type $region - Complete\n";
 # 	print Dumper $issues;

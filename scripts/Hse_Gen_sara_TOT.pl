@@ -5239,6 +5239,11 @@ SUBROUTINES: {
 		# check to see if the full construction is defined, if it is not, the use the construction database to build it.
 		unless (defined ($con->{'layers'})) {
 			# Note we are cloning the database so that it is not used itself (messing up subseuqent calls to the database)
+            if(not defined $con_data->{$con->{'name'}}) {
+                print Dumper $con->{'name'};
+                print Dumper $coordinates;
+                die;
+            }
 			%{$con} = %{dclone($con_data->{$con->{'name'}})};
 		};
 		

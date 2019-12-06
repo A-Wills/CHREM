@@ -1,6 +1,6 @@
 # composite constructions database (columnar format) constructed from con_db.xml by DB_Gen.pl based on mat_db.xml
 #
-190 # total number of constructions
+181 # total number of constructions
 #
 # for each construction list the: # of layers, construction name, type (OPAQ or TRAN or CFC), Optics name (or OPAQUE), symmetry.
 #	 followed by for each material of the construction:
@@ -272,16 +272,6 @@
 #
 #
 # CONSTRUCTION
-    3    FRM_Al_brk_NBCOPAQ  OPAQUE        SYMMETRIC     
-# FRM_Al_brk_NBC Description: Aluminum window frame with thermal break
-#
-# MATERIALS
-   43    0.0030  Steel : Steel sheet
-    0    0.0200  Gap  0.040 0.040 0.040
-   43    0.0030  Steel : Steel sheet
-#
-#
-# CONSTRUCTION
     3    FRM_Fbgls     OPAQ  OPAQUE        SYMMETRIC     
 # FRM_Fbgls Description: Fibreglass window frame
 #
@@ -289,16 +279,6 @@
    61    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
     0    0.0200  Gap  0.130 0.130 0.130
    61    0.0030  Fbrglas_Sld : Solid fibreglass for doors and window frames
-#
-#
-# CONSTRUCTION
-    3    FRM_NBC_Vinyl OPAQ  OPAQUE        SYMMETRIC     
-# FRM_NBC_Vinyl Description: Vinyl window frame from WINDOWS 7.5
-#
-# MATERIALS
-   62    0.0030  Vinyl : Vinyl window frames and siding
-    0    0.0540  Gap  0.340 0.340 0.340
-   62    0.0030  Vinyl : Vinyl window frames and siding
 #
 #
 # CONSTRUCTION
@@ -2051,83 +2031,3 @@
     1    0.0030  Glass_Float : Float glass pane
     0    0.0090  Gap  0.170 0.170 0.170
     4    0.0030  Glass_Low_E0.2 : Float glass pane with low e coated 0.2
-#
-#
-# CONSTRUCTION
-    5    WNDW_Z_4_1    TRAN  Optic_NBC41   SYMMETRIC     
-# WNDW_Z_4_1 Description: Triple glaze (3 mm), clear, 13 mm gaps, air
-#
-# MATERIALS
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0127  Gap  0.200 0.200 0.200
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0130  Gap  0.180 0.180 0.180
-    1    0.0030  Glass_Float : Float glass pane
-#
-#
-# CONSTRUCTION
-    3    WNDW_Z_4_2    TRAN  Optic_NBC42   NONSYMMETRIC  
-# WNDW_Z_4_2 Description: Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon
-#
-# MATERIALS
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0090  Gap  0.510 0.510 0.510
-    1    0.0030  Glass_Float : Float glass pane
-#
-#
-# CONSTRUCTION
-    3    WNDW_Z_5_2    TRAN  Optic_NBC42   NONSYMMETRIC  
-# WNDW_Z_5_2 Description: Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon
-#
-# MATERIALS
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0090  Gap  0.510 0.510 0.510
-    1    0.0030  Glass_Float : Float glass pane
-#
-#
-# CONSTRUCTION
-    5    WNDW_Z_6_2    TRAN  Optic_NBC62   SYMMETRIC     
-# WNDW_Z_6_2 Description: Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air
-#
-# MATERIALS
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0090  Gap  0.290 0.290 0.290
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0090  Gap  0.270 0.270 0.270
-    1    0.0030  Glass_Float : Float glass pane
-#
-#
-# CONSTRUCTION
-    5    WNDW_Z_7A_2   TRAN  Optic_NBC62   SYMMETRIC     
-# WNDW_Z_7A_2 Description: Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air
-#
-# MATERIALS
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0090  Gap  0.290 0.290 0.290
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0090  Gap  0.270 0.270 0.270
-    1    0.0030  Glass_Float : Float glass pane
-#
-#
-# CONSTRUCTION
-    5    WNDW_Z_7B_1   TRAN  Optic_NBC7B   SYMMETRIC     
-# WNDW_Z_7B_1 Description: Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air
-#
-# MATERIALS
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0127  Gap  0.420 0.420 0.420
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0127  Gap  0.400 0.400 0.400
-    1    0.0030  Glass_Float : Float glass pane
-#
-#
-# CONSTRUCTION
-    5    WNDW_Z_8_1    TRAN  Optic_NBC7B   SYMMETRIC     
-# WNDW_Z_8_1 Description: Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air
-#
-# MATERIALS
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0127  Gap  0.420 0.420 0.420
-    1    0.0030  Glass_Float : Float glass pane
-    0    0.0127  Gap  0.400 0.400 0.400
-    1    0.0030  Glass_Float : Float glass pane

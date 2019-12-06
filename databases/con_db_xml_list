@@ -90,18 +90,10 @@
 	Steel : 3 (mm) : Steel sheet
 	Gap : 20 (mm) : Representative Gap material : not for direct use by ESP-r
 	Steel : 3 (mm) : Steel sheet
-  FRM_Al_brk_NBC :     OPAQ :        SYMMETRIC : Aluminum window frame with thermal break
-	Steel : 3 (mm) : Steel sheet
-	Gap : 20 (mm) : Representative Gap material : not for direct use by ESP-r
-	Steel : 3 (mm) : Steel sheet
        FRM_Fbgls :     OPAQ :        SYMMETRIC : Fibreglass window frame
 	Fbrglas_Sld : 3 (mm) : Solid fibreglass for doors and window frames
 	Gap : 20 (mm) : Representative Gap material : not for direct use by ESP-r
 	Fbrglas_Sld : 3 (mm) : Solid fibreglass for doors and window frames
-   FRM_NBC_Vinyl :     OPAQ :        SYMMETRIC : Vinyl window frame from WINDOWS 7.5
-	Vinyl : 3 (mm) : Vinyl window frames and siding
-	Gap : 54 (mm) : Representative Gap material : not for direct use by ESP-r
-	Vinyl : 3 (mm) : Vinyl window frames and siding
          FRM_Vnl :     OPAQ :        SYMMETRIC : Vinyl window frame
 	Vinyl : 3 (mm) : Vinyl window frames and siding
 	Gap : 20 (mm) : Representative Gap material : not for direct use by ESP-r
@@ -948,41 +940,3 @@
 	Glass_Float : 3 (mm) : Float glass pane
 	Gap : 9 (mm) : Representative Gap material : not for direct use by ESP-r
 	Glass_Low_E0.2 : 3 (mm) : Float glass pane with low e coated 0.2
-      WNDW_Z_4_1 :     TRAN :        SYMMETRIC : Triple glaze (3 mm), clear, 13 mm gaps, air
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 12.7 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 13 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-      WNDW_Z_4_2 :     TRAN :     NONSYMMETRIC : Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 9 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-      WNDW_Z_5_2 :     TRAN :     NONSYMMETRIC : Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 9 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-      WNDW_Z_6_2 :     TRAN :        SYMMETRIC : Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 9 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 9 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-     WNDW_Z_7A_2 :     TRAN :        SYMMETRIC : Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 9 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 9 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-     WNDW_Z_7B_1 :     TRAN :        SYMMETRIC : Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 12.7 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 12.7 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-      WNDW_Z_8_1 :     TRAN :        SYMMETRIC : Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 12.7 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane
-	Gap : 12.7 (mm) : Representative Gap material : not for direct use by ESP-r
-	Glass_Float : 3 (mm) : Float glass pane

@@ -73,36 +73,6 @@
     <layers absorption="0.107 0.111 0.106 0.083 0.047" refr_index="1.52" />
     <optic_con_props U_val_W_m2K_doc_only="0" abs_solar_doc_only="0" heat_gain_doc_only="0 0 0 0 0" optical_description="Area for extended description" refl_solar_doc_only="0" trans_solar="0.535 0.504 0.434 0.273 0.1" trans_vis="0.72" />
   </Optic_34>
-  <Optic_NBC41 name="Optic_NBC41" description="Triple glaze (3 mm), clear, 13 mm gaps, air">
-    <layers absorption="0.093 0.103 0.113 0.127 0.129" refr_index="1.52" />
-    <layers absorption="0.001 0.001 0.001 0.001 0.001" refr_index="1" />
-    <layers absorption="0.072 0.078 0.081 0.079 0.064" refr_index="1.52" />
-    <layers absorption="0.001 0.001 0.001 0.001 0.001" refr_index="1" />
-    <layers absorption="0.056 0.058 0.056 0.044 0.026" refr_index="1.52" />
-    <optic_con_props U_val_W_m2K_doc_only="0" abs_solar_doc_only="0" heat_gain_doc_only="0 0 0 0 0" optical_description="Area for extended description" refl_solar_doc_only="0" trans_solar="0.605 0.575 0.500 0.321 0.127" trans_vis="0.735" />
-  </Optic_NBC41>
-  <Optic_NBC42 name="Optic_NBC42" description="Double glaze (3 mm), inside pane low-E 0.1, 9 mm gap, argon">
-    <layers absorption="0.108 0.118 0.127 0.139 0.138" refr_index="1.52" />
-    <layers absorption="0.001 0.001 0.001 0.001 0.001" refr_index="1" />
-    <layers absorption="0.091 0.094 0.091 0.080 0.050" refr_index="1.52" />
-    <optic_con_props U_val_W_m2K_doc_only="0" abs_solar_doc_only="0" heat_gain_doc_only="0 0 0 0 0" optical_description="Area for extended description" refl_solar_doc_only="0" trans_solar="0.603 0.582 0.500 0.375 0.184" trans_vis="0.806" />
-  </Optic_NBC42>
-  <Optic_NBC62 name="Optic_NBC62" description="Triple glaze (3 mm), two pane low-E 0.2, 9 mm gaps, air">
-    <layers absorption="0.101 0.112 0.115 0.137 0.138" refr_index="1.52" />
-    <layers absorption="0.001 0.001 0.001 0.001 0.001" refr_index="1" />
-    <layers absorption="0.127 0.131 0.127 0.116 0.077" refr_index="1.52" />
-    <layers absorption="0.001 0.001 0.001 0.001 0.001" refr_index="1" />
-    <layers absorption="0.083 0.083 0.076 0.058 0.030" refr_index="1.52" />
-    <optic_con_props U_val_W_m2K_doc_only="0" abs_solar_doc_only="0" heat_gain_doc_only="0 0 0 0 0" optical_description="Area for extended description" refl_solar_doc_only="0" trans_solar="0.514 0.488 0.425 0.264 0.108" trans_vis="0.720" />
-  </Optic_NBC62>
-  <Optic_NBC7B name="Optic_NBC7B" description="Triple glaze (3 mm), two pane low-E 0.1, 12.7 mm gaps, air">
-    <layers absorption="0.113 0.113 0.133 0.146 0.144" refr_index="1.52" />
-    <layers absorption="0.001 0.001 0.001 0.001 0.001" refr_index="1" />
-    <layers absorption="0.106 0.109 0.107 0.101 0.069" refr_index="1.52" />
-    <layers absorption="0.001 0.001 0.001 0.001 0.001" refr_index="1" />
-    <layers absorption="0.064 0.065 0.061 0.048 0.026" refr_index="1.52" />
-    <optic_con_props U_val_W_m2K_doc_only="0" abs_solar_doc_only="0" heat_gain_doc_only="0 0 0 0 0" optical_description="Area for extended description" refl_solar_doc_only="0" trans_solar="0.481 0.457 0.400 0.249 0.102" trans_vis="0.725" />
-  </Optic_NBC7B>
   <Optic_PV name="Optic_PV" description="Special construction for PV (3 mm), low iron panes, one gap">
     <layers absorption="0.016 0.018 0.019 0.020 0.021" refr_index="1.52" />
     <layers absorption="0.001 0.001 0.001 0.001 0.001" refr_index="1" />
